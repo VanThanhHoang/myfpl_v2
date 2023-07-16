@@ -34,16 +34,16 @@ const AxiosInstance = (contentType = 'application/json') => {
         if (!isRefreshing) {
           console.log('loi accesstoke het han');
           try {
-            await GetRefeshToken();
-            axiosInstance(originalRequest);
             isRefreshing = true;
+            await GetRefeshToken();
+            await axiosInstance(originalRequest);
           } catch (err) {
             console.log('refeshToken het han login di');
             return Promise.reject(err);
           }
         }
       }
-      Promise.reject(err);
+      return Promise.reject(err);
     },
   );
   return axiosInstance;

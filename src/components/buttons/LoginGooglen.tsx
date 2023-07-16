@@ -4,12 +4,25 @@ import {buttonGeneralStyle} from './GenaralStyles';
 import {loginWithGoogle} from '../../service/LoginWithGoogle';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {ApiKey} from '../../constant/ApiKey';
+import {useDispatch} from 'react-redux';
+import {AppDispatch} from '../../redux/store';
+import {showLoadingModal} from '../../helper/showLoadingModal';
+import {useNavigation} from '@react-navigation/native';
+import {AppNavigationProp} from '../../navigation/AppNavigator';
 const LoginGoogleButton = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const appNavigation = useNavigation<AppNavigationProp>();
   GoogleSignin.configure({
     webClientId: ApiKey.googleClientId,
   });
-  const onLoginButtonPress = () => {
-    loginWithGoogle();
+  const onLoginButtonPress = async () => {
+    showLoadingModal(dispatch, true);
+    await loginWithGoogle();
+    showLoadingModal(dispatch, false);
+    appNavigation.reset({
+      index: 0, // chỉ định vị trí màn hình muốn reset
+      routes: [{name: 'Main'}], // chỉ định tên màn hình mà bạn muốn reset đến
+    });
   };
   return (
     <TouchableOpacity

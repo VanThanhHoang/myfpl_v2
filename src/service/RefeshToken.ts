@@ -11,8 +11,17 @@ export const GetRefeshToken = async () => {
     const res: any = await AxiosInstance().post('auth/refeshtoken', {
       refeshtoken: refeshToken,
     });
-    await AsyncStorage.setItem(AsyncStorageKey.AccessTokenKey, res.accessToken);
-    await AsyncStorage.setItem(AsyncStorageKey.RefeshTokenKey, res.refeshToken);
+    console.log('in asccess', res);
+    if (res.accessToken && res.refeshToken) {
+      await AsyncStorage.setItem(
+        AsyncStorageKey.AccessTokenKey,
+        res.accessToken,
+      );
+      await AsyncStorage.setItem(
+        AsyncStorageKey.RefeshTokenKey,
+        res.refeshToken,
+      );
+    }
   } catch (err) {
     console.log(err);
   }

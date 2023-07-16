@@ -1,13 +1,15 @@
-import React, {useCallback, useState} from 'react';
-import {SafeAreaView, TouchableOpacity, Text} from 'react-native';
-import LoginScreen from './src/screens/LoginScreen';
+import React from 'react';
 import AppNavigator from './src/navigation/AppNavigator';
 import {NavigationContainer} from '@react-navigation/native';
+import {Provider} from 'react-redux';
+import store from './src/redux/store';
 const App = () => {
   return (
-    <NavigationContainer>
-      <AppNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 };
 

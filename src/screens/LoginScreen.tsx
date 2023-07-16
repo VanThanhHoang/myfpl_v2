@@ -8,7 +8,6 @@ import {Facility} from '../types/Facility';
 import {AppImages} from '../constant/AppAsset';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AsyncStorageKey} from '../constant/AsyncStorageKey';
-import {getData} from '../service/test.callapi';
 const LoginScreen = () => {
   const [facility, setFacility] = useState<Facility>();
   const [isShowModalSelectFacility, setShowModalSelectFacility] =
@@ -24,16 +23,7 @@ const LoginScreen = () => {
       setFacility(JSON.parse(facilityMemo));
     }
   };
-  const [accTk, setAccTk] = useState<string>();
-
-  const getAccessToken = async () => {
-    const acctk = await AsyncStorage.getItem(AsyncStorageKey.AccessTokenKey);
-    if (acctk) {
-      setAccTk(acctk);
-    }
-  };
   useEffect(() => {
-    getAccessToken();
     getFacilityFromStorage();
   }, []);
   return (
@@ -51,9 +41,6 @@ const LoginScreen = () => {
         label={facility ? facility.name : ''}
         onPress={onShowModalSelectFacilityButtonPress}
       />
-      <Text style={{fontSize: 24, fontWeight: '700'}}>
-        {accTk ? 'dang nhap rui' : 'chua dang nhap'}
-      </Text>
       <LoginGoogleButton />
       <SelectFacilityModal
         setFacility={setFacility}

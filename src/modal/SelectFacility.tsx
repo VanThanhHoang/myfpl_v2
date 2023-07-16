@@ -4,6 +4,7 @@ import FacilityCard from '../components/item_card/Facility';
 import {Facility} from '../types/Facility';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AsyncStorageKey} from '../constant/AsyncStorageKey';
+import ModalGenaralStyle from './ModalGenaralStyle';
 const fakeData: Facility[] = [
   {
     id: '1',
@@ -57,7 +58,7 @@ const SelectFacilityModal = ({
   }, []);
   return (
     <Modal transparent visible={isShowModal}>
-      <View style={styles.container}>
+      <View style={ModalGenaralStyle.container}>
         <View style={styles.scrollViewContainer}>
           <Text style={styles.label}>Chọn cơ sở đào tạo:</Text>
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -79,13 +80,6 @@ const SelectFacilityModal = ({
 };
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
   scrollViewContainer: {
     justifyContent: 'center',
     padding: 24,
