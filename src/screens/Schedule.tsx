@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import { FAKEDATAHOCTAP, FAKEDATAHOATDONG, FAKEDATAHOCPHI } from '../modal/FakeData';
 import { Color } from '../constant/Colors';
-import { TABSHOME } from '../types/Tab';
+import { TABSSCHEDULE } from '../types/Tab';
 
 interface Item {
     id: number;
@@ -12,8 +12,8 @@ interface Item {
     name?: string;
 }
 
-const ShowContent: React.FC = () => {
-    const [selectedTabId, setSelectedTabId] = useState<number>(TABSHOME[0].id);
+const Schedule: React.FC = () => {
+    const [selectedTabId, setSelectedTabId] = useState<number>(TABSSCHEDULE[0].id);
 
     const getSelectedTabData = (): Item[] => {
         switch (selectedTabId) {
@@ -48,7 +48,7 @@ const ShowContent: React.FC = () => {
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.tabsContainer}>
-                {TABSHOME.map((item) => (
+                {TABSSCHEDULE.map((item) => (
                     <View key={item.id}>
                         <TouchableOpacity style={[styles.tabItem]} onPress={() => setSelectedTabId(item.id)}>
                             <Text style={[styles.tabTitle, item.id === selectedTabId ? styles.selectedTabTitle : null]}>{item.title}</Text>
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ShowContent;
+export default Schedule;
