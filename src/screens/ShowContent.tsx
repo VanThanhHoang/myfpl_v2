@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import { FAKEDATAHOCTAP, FAKEDATAHOATDONG, FAKEDATAHOCPHI } from '../modal/FakeData';
 import { Color } from '../constant/Colors';
-import { Tab } from '../modal/Tab';
+import { TABSHOME } from '../types/Tab';
 
 interface Item {
     id: number;
@@ -12,15 +12,8 @@ interface Item {
     name?: string;
 }
 
-const TABS: Tab[] = [
-    { id: 1, title: 'Học Tập' },
-    { id: 2, title: 'Hoạt Động' },
-    { id: 3, title: 'Học Phí' },
-];
-
-
 const ShowContent: React.FC = () => {
-    const [selectedTabId, setSelectedTabId] = useState<number>(TABS[0].id);
+    const [selectedTabId, setSelectedTabId] = useState<number>(TABSHOME[0].id);
 
     const getSelectedTabData = (): Item[] => {
         switch (selectedTabId) {
@@ -55,7 +48,7 @@ const ShowContent: React.FC = () => {
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.tabsContainer}>
-                {TABS.map((item) => (
+                {TABSHOME.map((item) => (
                     <View key={item.id}>
                         <TouchableOpacity style={[styles.tabItem]} onPress={() => setSelectedTabId(item.id)}>
                             <Text style={[styles.tabTitle, item.id === selectedTabId ? styles.selectedTabTitle : null]}>{item.title}</Text>
