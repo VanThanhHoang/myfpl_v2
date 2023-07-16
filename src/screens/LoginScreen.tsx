@@ -33,7 +33,6 @@ const LoginScreen = () => {
     }
   };
   useEffect(() => {
-    getData();
     getAccessToken();
     getFacilityFromStorage();
   }, []);
