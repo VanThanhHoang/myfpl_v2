@@ -1,5 +1,5 @@
 import ScreenContainer from '../components/ScreenContainer';
-import {Image, Text, View} from 'react-native';
+import {Image, Text, View, ImageStyle} from 'react-native';
 import LoginGoogleButton from '../components/buttons/LoginGooglen';
 import ShowModalSelectFacilityButton from '../components/buttons/ShowModalSelectFacility';
 import {useCallback, useEffect, useState} from 'react';
@@ -8,6 +8,7 @@ import {Facility} from '../types/Facility';
 import {AppImages} from '../constant/AppAsset';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AsyncStorageKey} from '../constant/AsyncStorageKey';
+import {getData} from '../service/test.callapi';
 const LoginScreen = () => {
   const [facility, setFacility] = useState<Facility>();
   const [isShowModalSelectFacility, setShowModalSelectFacility] =
@@ -23,7 +24,17 @@ const LoginScreen = () => {
       setFacility(JSON.parse(facilityMemo));
     }
   };
+  const [accTk, setAccTk] = useState<string>();
+
+  const getAccessToken = async () => {
+    const acctk = await AsyncStorage.getItem(AsyncStorageKey.AccessTokenKey);
+    if (acctk) {
+      setAccTk(acctk);
+    }
+  };
   useEffect(() => {
+    getData();
+    getAccessToken();
     getFacilityFromStorage();
   }, []);
   return (
@@ -41,6 +52,9 @@ const LoginScreen = () => {
         label={facility ? facility.name : ''}
         onPress={onShowModalSelectFacilityButtonPress}
       />
+      <Text style={{fontSize: 24, fontWeight: '700'}}>
+        {accTk ? 'dang nhap rui' : 'chua dang nhap'}
+      </Text>
       <LoginGoogleButton />
       <SelectFacilityModal
         setFacility={setFacility}
@@ -48,18 +62,16 @@ const LoginScreen = () => {
         isShowModal={isShowModalSelectFacility}
         setVisible={setShowModalSelectFacility}
       />
-      <Image
-        style={{
-          alignSelf: 'center',
-          bottom: 30,
-          position: 'absolute',
-          resizeMode: 'center',
-          width: '100%',
-          height: 48,
-        }}
-        source={AppImages.poly}
-      />
+      <Image style={logoPolyStyles} source={AppImages.poly} />
     </ScreenContainer>
   );
+};
+const logoPolyStyles: ImageStyle = {
+  alignSelf: 'center',
+  bottom: 30,
+  position: 'absolute',
+  resizeMode: 'center',
+  width: '100%',
+  height: 48,
 };
 export default LoginScreen;
