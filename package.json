@@ -40,6 +40,8 @@
 
     "axios": "^1.4.0",
 
+    "axios-retry": "^3.5.1",
+
     "lottie-react-native": "^5.1.6",
 
     "react": "18.2.0",

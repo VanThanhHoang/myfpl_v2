@@ -1,17 +1,15 @@
 import AxiosInstance from '../helper/axiosInstance';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {ApiKey} from '../constant/ApiKey';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AsyncStorageKey} from '../constant/AsyncStorageKey';
-export const GetRefeshToken = async () => {
+export const RefeshToken = async () => {
   try {
     const refeshToken = await AsyncStorage.getItem(
       AsyncStorageKey.RefeshTokenKey,
     );
+    console.log('refesh toke trong refesh token', refeshToken);
     const res: any = await AxiosInstance().post('auth/refeshtoken', {
       refeshtoken: refeshToken,
     });
-    console.log('in asccess', res);
     if (res.accessToken && res.refeshToken) {
       await AsyncStorage.setItem(
         AsyncStorageKey.AccessTokenKey,
@@ -22,7 +20,8 @@ export const GetRefeshToken = async () => {
         res.refeshToken,
       );
     }
+    return res.accessToken;
   } catch (err) {
-    console.log(err);
+    console.log('trong refeshToken', err);
   }
 };

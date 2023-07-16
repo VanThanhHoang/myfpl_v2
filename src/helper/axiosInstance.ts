@@ -2,7 +2,8 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native';
 import {AsyncStorageKey} from '../constant/AsyncStorageKey';
-import {GetRefeshToken} from '../service/RefeshToken';
+import {RefeshToken} from '../service/RefeshToken';
+import axiosRetry from 'axios-retry';
 const AxiosInstance = (contentType = 'application/json') => {
   let isRefreshing = false;
   const axiosInstance = axios.create({
@@ -35,8 +36,10 @@ const AxiosInstance = (contentType = 'application/json') => {
           console.log('loi accesstoke het han');
           try {
             isRefreshing = true;
-            await GetRefeshToken();
-            await axiosInstance(originalRequest);
+            const newAccessToken = await RefeshToken();
+            axios.defaults.headers.common['Authorization'] =
+              'Bearer ' + newAccessToken;
+            return axiosInstance(originalRequest);
           } catch (err) {
             console.log('refeshToken het han login di');
             return Promise.reject(err);
