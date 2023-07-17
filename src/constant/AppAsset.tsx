@@ -11,7 +11,11 @@ export const AppIcons = {
   sms: require('../assets/icon/sms.png'),
   uploadImage: require('../assets/icon/uploadImage.png'),
   user: require('../assets/icon/user.png'),
+  logout: require('../assets/icon/logout.png'),
 
+  //Status bar
+  qr: require('../assets/icon/qrCode.png'),
+  notification: require('../assets/icon/notification.png'),
 };
 export const AppImages = {
   poly: require('../assets/img/img_poly.png'),

@@ -2,6 +2,11 @@ import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react
 import React from 'react';
 import { AppIcons } from '../constant/AppAsset';
 import { Item } from '../types/QuickMenuItem';
+import { Color } from '../constant/Colors';
+
+const handleLogout = () => {
+  console.log('Logout');
+};
 
 const DATA: Item[] = [
   {
@@ -39,14 +44,25 @@ const DATA: Item[] = [
     title: 'User',
     icon: AppIcons.user,
   },
+
+  {
+    id: '9',
+    title: 'Đăng Xuất',
+    icon: AppIcons.logout,
+  },
 ];
 
 const renderItem = ({ item }: { item: Item }) => (
   <View>
-    <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', width: 100, height: 100, borderRadius: 50 }}>
+    <TouchableOpacity onPress={() => {
+      if (item.id === '9') {
+        handleLogout();
+      }
+    }}
+      style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', width: 100, height: 100, borderRadius: 50 }}>
       <Image source={item.icon} />
     </TouchableOpacity>
-    <Text style={{ fontSize: 12, marginTop: 5, alignSelf: 'center' }}>{item.title}</Text>
+    <Text style={{ fontSize: 12, marginTop: 5, alignSelf: 'center', color: Color.TEXT }}>{item.title}</Text>
   </View>
 );
 

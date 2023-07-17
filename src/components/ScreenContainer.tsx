@@ -1,4 +1,4 @@
-import {SafeAreaView, StyleSheet} from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
 const ScreenContainer = ({
   children,
@@ -7,7 +7,7 @@ const ScreenContainer = ({
 };
 const styles = StyleSheet.create({
   container: {
-    padding: 24,
+    padding: 0,
     flex: 1,
     backgroundColor: 'white',
   },
