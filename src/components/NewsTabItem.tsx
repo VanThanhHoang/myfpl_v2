@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     width: '30%',
   },
   label: {
+    color: '#7c82a1',
     fontSize: 15,
     fontWeight: '600',
   },
