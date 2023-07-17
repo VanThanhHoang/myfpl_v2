@@ -8,7 +8,11 @@ import {Facility} from '../types/Facility';
 import {AppImages} from '../constant/AppAsset';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AsyncStorageKey} from '../constant/AsyncStorageKey';
+import {loginWithGoogle} from '../service/LoginWithGoogle';
+import {useNavigation} from '@react-navigation/native';
+import {AppNavigationProp} from '../navigation/AppNavigator';
 const LoginScreen = () => {
+  const appNavigation = useNavigation<AppNavigationProp>();
   const [facility, setFacility] = useState<Facility>();
   const [isShowModalSelectFacility, setShowModalSelectFacility] =
     useState<boolean>(false);
@@ -23,6 +27,17 @@ const LoginScreen = () => {
       setFacility(JSON.parse(facilityMemo));
     }
   };
+  const [isLoading, setLoading] = useState<boolean>(false);
+
+  const onGoogleLoginButtonPress = useCallback(async () => {
+    setLoading(true);
+    await loginWithGoogle();
+    setLoading(false);
+    appNavigation.reset({
+      index: 0, // chỉ định vị trí màn hình muốn reset
+      routes: [{name: 'Main'}], // chỉ định tên màn hình mà bạn muốn reset đến
+    });
+  }, []);
   useEffect(() => {
     getFacilityFromStorage();
   }, []);
@@ -41,7 +56,10 @@ const LoginScreen = () => {
         label={facility ? facility.name : ''}
         onPress={onShowModalSelectFacilityButtonPress}
       />
-      <LoginGoogleButton />
+      <LoginGoogleButton
+        isLoading={isLoading}
+        onPress={onGoogleLoginButtonPress}
+      />
       <SelectFacilityModal
         setFacility={setFacility}
         facility={facility}

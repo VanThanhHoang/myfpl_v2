@@ -14,15 +14,16 @@ import {useSelector} from 'react-redux';
 import {AppAnimations} from '../constant/AppAsset';
 import {RootState} from '../redux/store';
 import LoadingModal from '../modal/Loading';
-import {CompositeNavigationProp} from '@react-navigation/native';
+import MainBottomNavigatior from './MainBottomNavigator';
 type RootStackParamList = {
   Login: undefined;
   Main: undefined;
 };
 
-export type MainNavigationProp = NativeStackNavigationProp<
+export type AppNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'Main'
+  'Main',
+  'Login'
 >;
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator = () => {
@@ -49,7 +50,7 @@ const AppNavigator = () => {
         screenOptions={{headerShown: false}}
         initialRouteName={initialRouteName}>
         <RootStack.Screen name="Login" component={LoginScreen} />
-        <RootStack.Screen name="Main" component={HomeScreen} />
+        <RootStack.Screen name="Main" component={MainBottomNavigatior} />
       </RootStack.Navigator>
       <LoadingModal isShowModal={isLoading} />
     </>

@@ -8,6 +8,7 @@ const ScreenContainer = ({
 const styles = StyleSheet.create({
   container: {
     padding: 24,
+    paddingBottom: 0,
     flex: 1,
     backgroundColor: 'white',
   },

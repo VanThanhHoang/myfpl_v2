@@ -1,7 +1,7 @@
-import {Text} from 'react-native';
 import ScreenContainer from '../components/ScreenContainer';
 import {useEffect} from 'react';
 import {getData} from '../service/test.callapi';
+import DashBoard from './DashBoard';
 
 const HomeScreen = () => {
   useEffect(() => {
@@ -9,7 +9,7 @@ const HomeScreen = () => {
   }, []);
   return (
     <ScreenContainer>
-      <Text>Home</Text>
+      <DashBoard />
     </ScreenContainer>
   );
 };

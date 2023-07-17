@@ -1,37 +1,51 @@
 import {Image, Text, TouchableOpacity} from 'react-native';
-import {AppIcons} from '../../constant/AppAsset';
+import {AppAnimations, AppIcons} from '../../constant/AppAsset';
 import {buttonGeneralStyle} from './GenaralStyles';
-import {loginWithGoogle} from '../../service/LoginWithGoogle';
+
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {ApiKey} from '../../constant/ApiKey';
-import {useDispatch} from 'react-redux';
-import {AppDispatch} from '../../redux/store';
-import {showLoadingModal} from '../../helper/showLoadingModal';
-import {useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../../navigation/AppNavigator';
-const LoginGoogleButton = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const appNavigation = useNavigation<AppNavigationProp>();
+
+import AnimatedLottieView from 'lottie-react-native';
+import {memo} from 'react';
+type LoginGoogleButtonProps = {
+  isLoading: boolean;
+  onPress: Function;
+};
+const LoginGoogleButton = ({isLoading, onPress}: LoginGoogleButtonProps) => {
   GoogleSignin.configure({
     webClientId: ApiKey.googleClientId,
   });
-  const onLoginButtonPress = async () => {
-    showLoadingModal(dispatch, true);
-    await loginWithGoogle();
-    showLoadingModal(dispatch, false);
-    appNavigation.reset({
-      index: 0, // chỉ định vị trí màn hình muốn reset
-      routes: [{name: 'Main'}], // chỉ định tên màn hình mà bạn muốn reset đến
-    });
-  };
   return (
     <TouchableOpacity
-      onPress={onLoginButtonPress}
-      style={buttonGeneralStyle.container}>
-      <Image style={buttonGeneralStyle.icon} source={AppIcons.google} />
-      <Text style={buttonGeneralStyle.text}>Đăng nhập với Google</Text>
+      disabled={isLoading}
+      onPress={async () => {
+        onPress();
+      }}
+      style={[buttonGeneralStyle.container]}>
+      {isLoading ? (
+        <AnimatedLottieView
+          speed={1}
+          duration={2500}
+          resizeMode="contain"
+          style={{
+            width: 'auto',
+            height: '100%',
+            alignSelf: 'center',
+          }}
+          autoPlay
+          loop
+          source={AppAnimations.ggLoadingAnm}
+        />
+      ) : (
+        <>
+          <Image style={buttonGeneralStyle.icon} source={AppIcons.google} />
+          <Text style={buttonGeneralStyle.text}>Đăng nhập với Google</Text>
+        </>
+      )}
     </TouchableOpacity>
   );
 };
-
-export default LoginGoogleButton;
+{
+  /* */
+}
+export default memo(LoginGoogleButton);

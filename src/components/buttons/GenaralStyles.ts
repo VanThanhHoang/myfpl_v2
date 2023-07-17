@@ -2,7 +2,6 @@ import {StyleSheet} from 'react-native';
 export const buttonGeneralStyle = StyleSheet.create({
   container: {
     marginVertical: 10,
-    alignSelf: 'center',
     paddingHorizontal: 20,
     flexDirection: 'row',
     justifyContent: 'center',

@@ -37,6 +37,7 @@ const AxiosInstance = (contentType = 'application/json') => {
           try {
             isRefreshing = true;
             const newAccessToken = await RefeshToken();
+            //set new header
             axios.defaults.headers.common['Authorization'] =
               'Bearer ' + newAccessToken;
             return axiosInstance(originalRequest);
