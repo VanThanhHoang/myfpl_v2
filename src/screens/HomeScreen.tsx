@@ -14,7 +14,6 @@ const HomeScreen = () => {
     <ScreenContainer>
       <AppToolBar />
       <DashBoard />
-      <PolyLoadingView />
     </ScreenContainer>
   );
 };
