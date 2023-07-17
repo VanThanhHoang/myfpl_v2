@@ -12,12 +12,16 @@ export const AppIcons = {
   sms: require('../assets/icon/sms.png'),
   uploadImage: require('../assets/icon/uploadImage.png'),
   user: require('../assets/icon/user.png'),
+  logout: require('../assets/icon/logout.png'),
 
   //icon bottom tab
   home: require('../assets/icon/ic_home.png'),
   schedule: require('../assets/icon/ic_calender.png'),
   account: require('../assets/icon/ic_user.png'),
   mark: require('../assets/icon/ic_mark.png'),
+  //Status bar
+  qr: require('../assets/icon/qrCode.png'),
+  notification: require('../assets/icon/notification.png'),
 };
 export const AppImages = {
   poly: require('../assets/img/img_poly.png'),
