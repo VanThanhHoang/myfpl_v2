@@ -1,70 +1,7 @@
-import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, FlatList } from 'react-native';
 import React from 'react';
-import { AppIcons } from '../constant/AppAsset';
-import { Item } from '../types/QuickMenuItem';
-import { Color } from '../constant/Colors';
-
-const handleLogout = () => {
-  console.log('Logout');
-};
-
-const DATA: Item[] = [
-  {
-    id: '1',
-    title: 'Dashboard',
-    icon: AppIcons.dashboard,
-  },
-  {
-    id: '2',
-    title: 'FAQ',
-    icon: AppIcons.faq,
-  },
-  {
-    id: '3',
-    title: 'Upload Image',
-    icon: AppIcons.uploadImage,
-  },
-  {
-    id: '4',
-    title: 'Re’n’Dis',
-    icon: AppIcons.rnd,
-  },
-  {
-    id: '5',
-    title: 'Setting',
-    icon: AppIcons.setting,
-  },
-  {
-    id: '6',
-    title: 'SMS',
-    icon: AppIcons.sms,
-  },
-  {
-    id: '7',
-    title: 'User',
-    icon: AppIcons.user,
-  },
-
-  {
-    id: '9',
-    title: 'Đăng Xuất',
-    icon: AppIcons.logout,
-  },
-];
-
-const renderItem = ({ item }: { item: Item }) => (
-  <View>
-    <TouchableOpacity onPress={() => {
-      if (item.id === '9') {
-        handleLogout();
-      }
-    }}
-      style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'white', width: 100, height: 100, borderRadius: 50 }}>
-      <Image source={item.icon} />
-    </TouchableOpacity>
-    <Text style={{ fontSize: 12, marginTop: 5, alignSelf: 'center', color: Color.TEXT }}>{item.title}</Text>
-  </View>
-);
+import { renderItem } from './EventMenu';
+import { DATA } from './EventMenu';
 
 const QuickMenu: React.FC = () => {
   return (
@@ -83,5 +20,3 @@ const QuickMenu: React.FC = () => {
 };
 
 export default QuickMenu;
-
-const styles = StyleSheet.create({});
