@@ -25,13 +25,13 @@ interface Item {
 }
 const Tabs = [
   {
-    name: 'Tab1',
+    name: 'Học tập',
   },
   {
-    name: 'Tab2',
+    name: 'Hoạt động',
   },
   {
-    name: 'Tab3',
+    name: 'Học phí',
   },
 ];
 const DashBoard: React.FC = () => {
@@ -61,10 +61,11 @@ const DashBoard: React.FC = () => {
 
 const styles = StyleSheet.create({
   tabsContainer: {
+    marginVertical: 20,
+    paddingHorizontal: 24,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
     height: 55,
     width: '100%',
   },

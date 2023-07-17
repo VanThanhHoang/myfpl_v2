@@ -8,12 +8,11 @@ type IconBottomTabProps = {
 };
 const IconBottomTab = ({color, name, icon, focused}: IconBottomTabProps) => {
   return (
-    <View
-      style={[
-        styles.container,
-        focused && {backgroundColor: Color.MAINCOLOR, elevation: 2},
-      ]}>
-      <Image style={[styles.icon, {tintColor: color}]} source={icon} />
+    <View style={[styles.container, focused && styles.containerFocused]}>
+      <Image
+        style={[styles.icon, focused && styles.iconFocused]}
+        source={icon}
+      />
       {focused && <Text style={[styles.label, {color: color}]}>{name}</Text>}
     </View>
   );
@@ -24,10 +23,18 @@ const styles = StyleSheet.create({
     width: 17,
     height: 17,
   },
+  iconFocused: {
+    tintColor: Color.MAINCOLOR,
+    width: 22,
+    height: 22,
+  },
+  containerFocused: {
+    borderTopColor: Color.MAINCOLOR,
+    borderTopWidth: 2,
+  },
   container: {
-    width: 65,
-    height: 40,
-    borderRadius: 20,
+    width: 50,
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },

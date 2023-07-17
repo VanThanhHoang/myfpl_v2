@@ -1,38 +1,13 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  ListRenderItem,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {AppIcons} from '../constant/AppAsset';
 import {Color} from '../constant/Colors';
 import {useNavigation} from '@react-navigation/native';
 import {EmailNavigationProp} from '../navigation/AppNavigator';
-
-interface ItemData {
-  id: number;
-  name: string;
-  email: string;
-  photo: string;
-  familyName: string;
-  givenName: string;
-}
-
 const AppToolBar: React.FC = () => {
   const navigation = useNavigation<EmailNavigationProp>();
   return (
-    <View
-      style={{
-        height: 50,
-        backgroundColor: Color.MAINCOLOR,
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 24,
-      }}>
+    <View style={styles.container}>
       <Image
         source={{
           uri: 'https://lh3.googleusercontent.com/a/AAcHTteekTstA5kgs1FHesSYpP7-lUiLXgONjLeDp_-IhzB0=s96-c',
@@ -64,6 +39,16 @@ const AppToolBar: React.FC = () => {
 
 export default AppToolBar;
 const styles = StyleSheet.create({
+  container: {
+    elevation: 3,
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    height: 60,
+    backgroundColor: Color.MAINCOLOR,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 24,
+  },
   profileImage: {
     width: 40,
     height: 40,
@@ -94,15 +79,3 @@ const styles = StyleSheet.create({
     height: 20,
   },
 });
-
-const DATA: ItemData[] = [
-  {
-    id: 111385531577159129259,
-    name: 'Van Nam Phuc (FPL HCM)',
-    email: 'phucvnps25452@fpt.edu.vn',
-    photo:
-      'https://lh3.googleusercontent.com/a/AAcHTteekTstA5kgs1FHesSYpP7-lUiLXgONjLeDp_-IhzB0=s96-c',
-    familyName: '(FPL HCM)',
-    givenName: 'Van Nam Phuc',
-  },
-];

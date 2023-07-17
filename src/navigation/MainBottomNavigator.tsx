@@ -3,6 +3,7 @@ import HomeScreen from '../screens/HomeScreen';
 import {AppIcons} from '../constant/AppAsset';
 import {ViewStyle} from 'react-native';
 import IconBottomTab from '../components/IconBottomTab';
+import {Color} from '../constant/Colors';
 
 const Tab = createBottomTabNavigator();
 const ScreenTabs = [
@@ -34,7 +35,7 @@ const MainBottomNavigatior = () => {
         tabBarStyle: bottomTabContainerStyle,
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarActiveTintColor: 'white',
+        tabBarActiveTintColor: Color.MAINCOLOR,
         tabBarInactiveTintColor: 'black',
       }}>
       {ScreenTabs.map(tab => {

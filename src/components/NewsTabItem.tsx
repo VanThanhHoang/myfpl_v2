@@ -12,15 +12,24 @@ export const NewsTabItem = ({name, isSelected, onPress}: NewsTabItem) => {
       onPress={() => {
         onPress(name);
       }}
-      style={[styles.container]}>
-      <Text style={isSelected && {color: 'red'}}>{name}</Text>
+      style={[styles.container, isSelected && {backgroundColor: '#04b14a'}]}>
+      <Text style={[styles.label, isSelected && {color: 'white'}]}>{name}</Text>
     </TouchableOpacity>
   );
 };
 const styles = StyleSheet.create({
   container: {
+    elevation: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 25,
+    backgroundColor: '#f3f4f6',
     height: 40,
-    width: 'auto',
+    width: '30%',
+  },
+  label: {
+    fontSize: 15,
+    fontWeight: '600',
   },
 });
 export default NewsTabItem;
