@@ -44,18 +44,16 @@ const DashBoard: React.FC = () => {
     // setData('ass');
   }, [tabSelected]);
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.tabsContainer}>
-        {Tabs.map(tab => (
-          <NewsTabItem
-            onPress={onTabPress}
-            key={tab.name}
-            name={tab.name}
-            isSelected={tab.name === tabSelected}
-          />
-        ))}
-      </View>
-    </ScrollView>
+    <View style={styles.tabsContainer}>
+      {Tabs.map(tab => (
+        <NewsTabItem
+          onPress={onTabPress}
+          key={tab.name}
+          name={tab.name}
+          isSelected={tab.name === tabSelected}
+        />
+      ))}
+    </View>
   );
 };
 

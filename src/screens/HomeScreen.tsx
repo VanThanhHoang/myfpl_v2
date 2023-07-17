@@ -4,6 +4,7 @@ import {getData} from '../service/test.callapi';
 import {useEffect} from 'react';
 import AppToolBar from '../components/AppToolBar';
 import {getEmail} from '../service/GetEmail';
+import PolyLoadingView from '../components/PolyLoadingView';
 const HomeScreen = () => {
   useEffect(() => {
     getData();
@@ -13,6 +14,7 @@ const HomeScreen = () => {
     <ScreenContainer>
       <AppToolBar />
       <DashBoard />
+      <PolyLoadingView />
     </ScreenContainer>
   );
 };
