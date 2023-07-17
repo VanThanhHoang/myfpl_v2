@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -14,6 +14,7 @@ import {
 } from '../modal/FakeData';
 import {Color} from '../constant/Colors';
 import {TABSHOME} from '../types/Tab';
+import {NewsTabItem} from '../components/NewsTabItem';
 
 interface Item {
   id: number;
@@ -22,72 +23,38 @@ interface Item {
   publish?: string;
   name?: string;
 }
-
+const Tabs = [
+  {
+    name: 'Tab1',
+  },
+  {
+    name: 'Tab2',
+  },
+  {
+    name: 'Tab3',
+  },
+];
 const DashBoard: React.FC = () => {
-  const [selectedTabId, setSelectedTabId] = useState<number>(TABSHOME[0].id);
-
-  const getSelectedTabData = (): Item[] => {
-    switch (selectedTabId) {
-      case 1:
-        return FAKEDATAHOCTAP;
-      case 2:
-        return FAKEDATAHOATDONG;
-      case 3:
-        return FAKEDATAHOCPHI;
-      default:
-        return [];
-    }
+  const [tabSelected, setTab] = useState<string>(Tabs[0].name);
+  const [data, setData] = useState(FAKEDATAHOCTAP);
+  const onTabPress = (name: string) => {
+    setTab(name);
   };
-
-  const renderContent = () => {
-    const selectedData: Item[] = getSelectedTabData();
-    return (
-      <View style={{marginTop: 20, paddingHorizontal: 20}}>
-        {selectedData.map(item => (
-          <View
-            key={item.id}
-            style={{
-              backgroundColor: 'white',
-              height: 150,
-              borderRadius: 10,
-              marginBottom: 22,
-              paddingHorizontal: 20,
-              paddingVertical: 10,
-            }}>
-            <Text style={{fontSize: 18, fontWeight: 'bold', color: 'black'}}>
-              {item.content}
-            </Text>
-            <Text style={{color: Color.TEXT}}>Người đăng: {item.name}</Text>
-            <Text style={{color: Color.TEXT}}>Thời gian: {item.publish}</Text>
-            <Text style={{color: Color.TEXT}}>{item.description}</Text>
-          </View>
-        ))}
-      </View>
-    );
-  };
+  useEffect(() => {
+    // setData('ass');
+  }, [tabSelected]);
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.tabsContainer}>
-        {TABSHOME.map(item => (
-          <View key={item.id}>
-            <TouchableOpacity
-              style={[styles.tabItem]}
-              onPress={() => setSelectedTabId(item.id)}>
-              <Text
-                style={[
-                  styles.tabTitle,
-                  item.id === selectedTabId ? styles.selectedTabTitle : null,
-                ]}>
-                {item.title}
-              </Text>
-              {item.id === selectedTabId && (
-                <View style={styles.tabUnderline} />
-              )}
-            </TouchableOpacity>
-          </View>
+        {Tabs.map(tab => (
+          <NewsTabItem
+            onPress={onTabPress}
+            key={tab.name}
+            name={tab.name}
+            isSelected={tab.name === tabSelected}
+          />
         ))}
       </View>
-      {renderContent()}
     </ScrollView>
   );
 };

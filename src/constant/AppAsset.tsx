@@ -22,6 +22,7 @@ export const AppIcons = {
   //Status bar
   qr: require('../assets/icon/qrCode.png'),
   notification: require('../assets/icon/notification.png'),
+  mail: require('../assets/icon/ic_mail.png'),
 };
 export const AppImages = {
   poly: require('../assets/img/img_poly.png'),

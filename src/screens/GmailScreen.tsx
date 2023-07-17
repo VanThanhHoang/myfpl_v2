@@ -5,18 +5,15 @@ import QuickMenu from './QuickMentu';
 import {getData} from '../service/test.callapi';
 import {useEffect} from 'react';
 import AppToolBar from '../components/AppToolBar';
-import {getEmail} from '../service/GetEmail';
-const HomeScreen = () => {
+const EmailScreen = () => {
   useEffect(() => {
     getData();
-    getEmail();
   }, []);
   return (
     <ScreenContainer>
-      <AppToolBar />
-      <DashBoard />
+      <Text>mail</Text>
     </ScreenContainer>
   );
 };
 
-export default HomeScreen;
+export default EmailScreen;

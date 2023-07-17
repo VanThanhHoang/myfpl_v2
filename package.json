@@ -42,6 +42,12 @@
 
     "axios-retry": "^3.5.1",
 
+    "google-auth-library": "^8.9.0",
+
+    "googleapis": "^122.0.0",
+
+    "googleapis-common": "^6.0.4",
+
     "lottie-react-native": "^5.1.6",
 
     "react": "18.2.0",

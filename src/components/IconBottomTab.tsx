@@ -1,4 +1,5 @@
 import {View, StyleSheet, Image, ImageSourcePropType, Text} from 'react-native';
+import {Color} from '../constant/Colors';
 type IconBottomTabProps = {
   color: string;
   name: string;
@@ -10,7 +11,7 @@ const IconBottomTab = ({color, name, icon, focused}: IconBottomTabProps) => {
     <View
       style={[
         styles.container,
-        focused && {backgroundColor: '#fa912a', elevation: 2},
+        focused && {backgroundColor: Color.MAINCOLOR, elevation: 2},
       ]}>
       <Image style={[styles.icon, {tintColor: color}]} source={icon} />
       {focused && <Text style={[styles.label, {color: color}]}>{name}</Text>}

@@ -15,15 +15,23 @@ import {AppAnimations} from '../constant/AppAsset';
 import {RootState} from '../redux/store';
 import LoadingModal from '../modal/Loading';
 import MainBottomNavigatior from './MainBottomNavigator';
+import EmailScreen from '../screens/GmailScreen';
 type RootStackParamList = {
   Login: undefined;
   Main: undefined;
+  Email: undefined;
 };
 
 export type AppNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'Main',
   'Login'
+>;
+
+export type EmailNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Main',
+  'Email'
 >;
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator = () => {
@@ -51,6 +59,7 @@ const AppNavigator = () => {
         initialRouteName={initialRouteName}>
         <RootStack.Screen name="Login" component={LoginScreen} />
         <RootStack.Screen name="Main" component={MainBottomNavigatior} />
+        <RootStack.Screen name="Email" component={EmailScreen} />
       </RootStack.Navigator>
       <LoadingModal isShowModal={isLoading} />
     </>

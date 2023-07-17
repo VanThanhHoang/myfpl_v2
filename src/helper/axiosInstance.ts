@@ -3,7 +3,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native';
 import {AsyncStorageKey} from '../constant/AsyncStorageKey';
 import {RefeshToken} from '../service/RefeshToken';
-import axiosRetry from 'axios-retry';
 const AxiosInstance = (contentType = 'application/json') => {
   let isRefreshing = false;
   const axiosInstance = axios.create({
