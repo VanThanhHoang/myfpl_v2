@@ -1,13 +1,13 @@
 import {View, Text} from 'react-native';
-import {Picker} from 'react-native-wheel-pick-2';
+import {useState} from 'react';
+import DropDownPicker from 'react-native-dropdown-picker';
 const ScrollTimeStudy = () => {
-  const datesArray = [
-    '15 Ngày trước',
-    '7 Ngày trước',
-    'Hôm nay',
-    '7 Ngày tới',
-    '15 Ngày tới',
-  ];
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    {label: 'Apple', value: 'apple'},
+    {label: 'Banana', value: 'banana'},
+  ]);
   return (
     <View
       style={{
@@ -15,14 +15,13 @@ const ScrollTimeStudy = () => {
         alignItems: 'center',
         marginVertical: 10,
       }}>
-      <Picker
-        style={{backgroundColor: 'white', width: 300, height: 150}}
-        textColor={'black'}
-        selectedValue={datesArray[2]}
-        pickerData={datesArray}
-        onValueChange={(value: any) => {
-          console.log(value);
-        }}
+      <DropDownPicker
+        open={open}
+        value={value}
+        items={items}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setItems}
       />
     </View>
   );
