@@ -1,10 +1,9 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
-import {Alert} from 'react-native';
-import {AppIcons} from '../constant/AppAsset';
+import { Alert } from 'react-native';
+import { AppIcons } from '../constant/AppAsset';
 
-// asdasdasdasd
 interface DataItem {
   time: string;
   timeEnd: string;
@@ -32,7 +31,7 @@ const ScheduleTimes: React.FC = () => {
       description: 'Room: T11—06 *Toà T',
       imageUrl:
         'https://images.pexels.com/photos/2250394/pexels-photo-2250394.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=250&w=250',
-      lecturers: 'Nguyễn Tuấn Kiệt',
+      lecturers: 'Ngô Tuấn Kiệt',
     },
     {
       time: '12:30',
@@ -81,8 +80,8 @@ const ScheduleTimes: React.FC = () => {
             </Text>
           </View>
 
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-            <Image source={{uri: rowData.imageUrl}} style={styles.imageStyle} />
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+            <Image source={{ uri: rowData.imageUrl }} style={styles.imageStyle} />
             <Text
               style={{
                 marginHorizontal: 5,
@@ -95,7 +94,7 @@ const ScheduleTimes: React.FC = () => {
       );
 
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         {title}
         {desc}
       </View>
@@ -127,7 +126,7 @@ const ScheduleTimes: React.FC = () => {
         </View>
       );
 
-    return <View style={{width: 80, backgroundColor: '#ffffff'}}>{desc}</View>;
+    return <View style={{ width: 80, backgroundColor: '#ffffff' }}>{desc}</View>;
   };
 
   return (
@@ -143,7 +142,7 @@ const ScheduleTimes: React.FC = () => {
           padding: 5,
           borderRadius: 13,
         }}
-        descriptionStyle={{color: 'white', fontWeight: '400'}}
+        descriptionStyle={{ color: 'white', fontWeight: '400' }}
         detailContainerStyle={{
           marginBottom: 20,
           backgroundColor: '#4DC591',
