@@ -146,6 +146,7 @@ const ScheduleTimes: React.FC = () => {
         descriptionStyle={{color: 'white', fontWeight: '400'}}
         detailContainerStyle={{
           marginBottom: 20,
+          elevation: 2,
           backgroundColor: '#4DC591',
           borderRadius: 15,
           marginHorizontal: 10,
