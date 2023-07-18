@@ -28,9 +28,6 @@ interface Item {
 }
 const Tabs = [
   {
-    name: 'Tất cả',
-  },
-  {
     name: 'Học tập',
   },
   {
@@ -64,19 +61,14 @@ const DashBoard: React.FC = () => {
   return (
     <>
       <View style={styles.tabsContainer}>
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
-          style={{width: '100%'}}
-          horizontal>
-          {Tabs.map(tab => (
-            <NewsTabItem
-              onPress={onTabPress}
-              key={tab.name}
-              name={tab.name}
-              isSelected={tab.name === tabSelected}
-            />
-          ))}
-        </ScrollView>
+        {Tabs.map(tab => (
+          <NewsTabItem
+            onPress={onTabPress}
+            key={tab.name}
+            name={tab.name}
+            isSelected={tab.name === tabSelected}
+          />
+        ))}
       </View>
       <FlatList
         refreshControl={

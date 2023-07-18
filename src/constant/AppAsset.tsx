@@ -16,6 +16,8 @@ export const AppIcons = {
   admin: require('../assets/icon/ic_admin.png'),
   logOut: require('../assets/icon/ic_logout.png'),
   //icon bottom tab
+  arr_up: require('../assets/icon/ic_arr_up.png'),
+  arr_down: require('../assets/icon/ic_arr_down.png'),
   home: require('../assets/icon/ic_home.png'),
   schedule: require('../assets/icon/ic_calender.png'),
   account: require('../assets/icon/ic_user.png'),
@@ -24,6 +26,8 @@ export const AppIcons = {
   qr: require('../assets/icon/qrCode.png'),
   notification: require('../assets/icon/notification.png'),
   mail: require('../assets/icon/ic_mail.png'),
+
+  place: require('../assets/icon/ic_place.png'),
 };
 export const AppImages = {
   poly: require('../assets/img/img_poly.png'),

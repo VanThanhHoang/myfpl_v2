@@ -1,4 +1,5 @@
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+
 type NewsTabItem = {
   isSelected: boolean;
   name: string;
@@ -19,14 +20,12 @@ export const NewsTabItem = ({name, isSelected, onPress}: NewsTabItem) => {
 const styles = StyleSheet.create({
   container: {
     elevation: 3,
-    marginHorizontal: 3,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25,
     backgroundColor: '#f3f4f6',
     height: 40,
-    marginVertical: 3,
-    width: 90,
+    width: '30%',
   },
   label: {
     color: '#7c82a1',

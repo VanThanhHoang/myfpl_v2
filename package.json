@@ -30,8 +30,6 @@
 
     "@react-native-google-signin/google-signin": "^10.0.1",
 
-    "@react-native-picker/picker": "^2.4.10",
-
     "@react-navigation/bottom-tabs": "^6.5.8",
 
     "@react-navigation/native": "^6.1.7",
@@ -70,9 +68,7 @@
 
     "react-native-screens": "^3.22.1",
 
-    "react-native-wheel-pick-2": "^1.0.2",
-
-    "react-native-wheel-scrollview-picker": "^2.0.1",
+    "react-native-timeline-flatlist": "^0.8.0",
 
     "react-redux": "^8.1.1"
 
