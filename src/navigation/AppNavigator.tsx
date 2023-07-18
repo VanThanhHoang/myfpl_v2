@@ -3,17 +3,17 @@ import {
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/LoginScreen';
-import HomeScreen from '../screens/HomeScreen';
 import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AsyncStorageKey} from '../constant/AsyncStorageKey';
 import {View} from 'react-native';
 import AnimatedLottieView from 'lottie-react-native';
 import {useSelector} from 'react-redux';
-
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {AppAnimations} from '../constant/AppAsset';
 import {RootState} from '../redux/store';
 import LoadingModal from '../modal/Loading';
+import {ApiKey} from '../constant/ApiKey';
 import MainBottomNavigatior from './MainBottomNavigator';
 import EmailScreen from '../screens/GmailScreen';
 type RootStackParamList = {
@@ -35,6 +35,9 @@ export type EmailNavigationProp = NativeStackNavigationProp<
 >;
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator = () => {
+  GoogleSignin.configure({
+    webClientId: ApiKey.googleClientId,
+  });
   const [initialRouteName, setInitialRouteName] = useState<'Login' | 'Main'>(
     'Login',
   );
