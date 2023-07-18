@@ -4,6 +4,7 @@ import {AppIcons} from '../constant/AppAsset';
 import {ViewStyle} from 'react-native';
 import IconBottomTab from '../components/IconBottomTab';
 import {Color} from '../constant/Colors';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 const ScreenTabs = [
@@ -25,7 +26,7 @@ const ScreenTabs = [
   {
     name: 'Cá nhân',
     icon: AppIcons.account,
-    component: HomeScreen,
+    component: ProfileScreen,
   },
 ];
 const MainBottomNavigatior = () => {

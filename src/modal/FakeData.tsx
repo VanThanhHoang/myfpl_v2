@@ -1,3 +1,9 @@
+export type News = {
+  id: number;
+  content: string;
+  name: string;
+  publish: string;
+};
 export const FAKEDATAHOCTAP = [
   {
     id: 1,
@@ -33,6 +39,46 @@ export const FAKEDATAHOCTAP = [
   },
   {
     id: 5,
+    content:
+      'Thông báo phát chứng chỉ giáo dục quốc phòng và an ninh khóa 19.3',
+    name: 'nhapnh',
+    publish: '2021-05-05',
+    // description: "Đây là nội dung liên quan đến Học Tập.",
+  },
+  {
+    id: 11,
+    content:
+      'Thông báo lịch học môn PDP102 khoá 19.3 học kỳ summer 2023 (Block 2)',
+    name: 'nhapnh',
+    publish: '2021-05-05',
+    // description: "Đây là nội dung liên quan đến Học Tập.",
+  },
+  {
+    id: 21,
+    content:
+      'Phòng Khảo thí thông báo Kế hoạch thi tập trung final trên hệ thống EOS_SU23_B2 như sau:',
+    name: 'nhapnh',
+    publish: '2021-05-05',
+    // description: "Đây là nội dung liên quan đến Học Tập.",
+  },
+  {
+    id: 31,
+    content:
+      'Thông báo phát chứng chỉ giáo dục quốc phòng và an ninh khóa 19.3',
+    name: 'nhapnh',
+    publish: '2021-05-05',
+    // description: "Đây là nội dung liên quan đến Học Tập.",
+  },
+  {
+    id: 41,
+    content:
+      'Thông báo phát chứng chỉ giáo dục quốc phòng và an ninh khóa 19.3',
+    name: 'nhapnh',
+    publish: '2021-05-05',
+    // description: "Đây là nội dung liên quan đến Học Tập.",
+  },
+  {
+    id: 51,
     content:
       'Thông báo phát chứng chỉ giáo dục quốc phòng và an ninh khóa 19.3',
     name: 'nhapnh',

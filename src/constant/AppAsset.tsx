@@ -13,7 +13,8 @@ export const AppIcons = {
   uploadImage: require('../assets/icon/uploadImage.png'),
   user: require('../assets/icon/user.png'),
   logout: require('../assets/icon/logout.png'),
-
+  admin: require('../assets/icon/ic_admin.png'),
+  logOut: require('../assets/icon/ic_logout.png'),
   //icon bottom tab
   home: require('../assets/icon/ic_home.png'),
   schedule: require('../assets/icon/ic_calender.png'),

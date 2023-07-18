@@ -3,7 +3,6 @@ import {ApiKey} from '../constant/ApiKey';
 import AxiosInstance from '../helper/axiosInstance';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AsyncStorageKey} from '../constant/AsyncStorageKey';
-import {google} from 'googleapis';
 import auth from '@react-native-firebase/auth';
 export const loginWithGoogle = async () => {
   GoogleSignin.configure({
@@ -20,7 +19,6 @@ export const loginWithGoogle = async () => {
     );
     // Sign-in the user with the credential
     await auth().signInWithCredential(googleCredential);
-
     const resSeverLogin: any = await AxiosInstance().post('/auth/logingoogle', {
       webClientId: ApiKey.googleClientId,
       idToken: resGoogleLogin.idToken,

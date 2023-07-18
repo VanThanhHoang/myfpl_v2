@@ -6,15 +6,18 @@ import {
   FlatList,
   TouchableOpacity,
   ScrollView,
+  ListRenderItem,
 } from 'react-native';
 import {
   FAKEDATAHOCTAP,
   FAKEDATAHOATDONG,
   FAKEDATAHOCPHI,
+  News,
 } from '../modal/FakeData';
 import {Color} from '../constant/Colors';
-import {TABSHOME} from '../types/Tab';
 import {NewsTabItem} from '../components/NewsTabItem';
+import ListNewsItem from '../components/item_card/ListNewsItem';
+import {RefreshControl} from 'react-native-gesture-handler';
 
 interface Item {
   id: number;
@@ -36,15 +39,27 @@ const Tabs = [
 ];
 const DashBoard: React.FC = () => {
   const [tabSelected, setTab] = useState<string>(Tabs[0].name);
+  const [isListNewRefesh, setListNewRefesh] = useState<boolean>(false);
   const [data, setData] = useState(FAKEDATAHOCTAP);
   const onTabPress = (name: string) => {
     setTab(name);
+  };
+  const onListNewsRefesh = () => {
+    setListNewRefesh(true);
+    setTimeout(() => {
+      setListNewRefesh(false);
+    }, 3000);
+  };
+  const RenderItemNews: ListRenderItem<News> = ({item}) => {
+    return (
+      <ListNewsItem name={item.name} title={item.content} time={item.publish} />
+    );
   };
   useEffect(() => {
     // setData('ass');
   }, [tabSelected]);
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <>
       <View style={styles.tabsContainer}>
         {Tabs.map(tab => (
           <NewsTabItem
@@ -55,7 +70,21 @@ const DashBoard: React.FC = () => {
           />
         ))}
       </View>
-    </ScrollView>
+      <FlatList
+        refreshControl={
+          <RefreshControl
+            refreshing={isListNewRefesh}
+            onRefresh={() => {
+              onListNewsRefesh();
+            }}
+          />
+        }
+        showsVerticalScrollIndicator={false}
+        style={{height: 100}}
+        data={FAKEDATAHOCTAP}
+        renderItem={RenderItemNews}
+      />
+    </>
   );
 };
 
