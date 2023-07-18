@@ -24,6 +24,8 @@ export const AppIcons = {
   qr: require('../assets/icon/qrCode.png'),
   notification: require('../assets/icon/notification.png'),
   mail: require('../assets/icon/ic_mail.png'),
+
+  place: require('../assets/icon/ic_place.png'),
 };
 export const AppImages = {
   poly: require('../assets/img/img_poly.png'),
