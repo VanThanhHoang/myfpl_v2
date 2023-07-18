@@ -5,6 +5,7 @@ import {ViewStyle} from 'react-native';
 import IconBottomTab from '../components/IconBottomTab';
 import {Color} from '../constant/Colors';
 import ProfileScreen from '../screens/ProfileScreen';
+import ScheduleScreen from '../screens/ScheduleScreen';
 
 const Tab = createBottomTabNavigator();
 const ScreenTabs = [
@@ -16,7 +17,7 @@ const ScreenTabs = [
   {
     name: 'Lịch học',
     icon: AppIcons.schedule,
-    component: HomeScreen,
+    component: ScheduleScreen,
   },
   {
     name: 'Bảng điểm',
