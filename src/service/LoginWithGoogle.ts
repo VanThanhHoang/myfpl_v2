@@ -5,9 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AsyncStorageKey} from '../constant/AsyncStorageKey';
 import auth from '@react-native-firebase/auth';
 export const loginWithGoogle = async () => {
-  GoogleSignin.configure({
-    webClientId: ApiKey.googleClientId,
-  });
   // Check if your device supports Google Play
   try {
     await GoogleSignin.signOut();

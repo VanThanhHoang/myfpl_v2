@@ -16,10 +16,12 @@ import LoadingModal from '../modal/Loading';
 import {ApiKey} from '../constant/ApiKey';
 import MainBottomNavigatior from './MainBottomNavigator';
 import EmailScreen from '../screens/GmailScreen';
+import ContactScreen from '../screens/ContactsScreen';
 type RootStackParamList = {
   Login: undefined;
   Main: undefined;
   Email: undefined;
+  Contact: undefined;
 };
 
 export type AppNavigationProp = NativeStackNavigationProp<
@@ -33,11 +35,19 @@ export type EmailNavigationProp = NativeStackNavigationProp<
   'Main',
   'Email'
 >;
+
+export type ContactNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Main',
+  'Contact'
+>;
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator = () => {
+  //google config
   GoogleSignin.configure({
     webClientId: ApiKey.googleClientId,
   });
+
   const [initialRouteName, setInitialRouteName] = useState<'Login' | 'Main'>(
     'Login',
   );
@@ -52,9 +62,6 @@ const AppNavigator = () => {
   useEffect(() => {
     getAccessToken();
   }, []);
-  const isLoading: boolean = useSelector(
-    (state: RootState) => state.showLoadingModalReducer.isShowLoadingModal,
-  );
   return isCheckLogin ? (
     <>
       <RootStack.Navigator
@@ -63,8 +70,8 @@ const AppNavigator = () => {
         <RootStack.Screen name="Login" component={LoginScreen} />
         <RootStack.Screen name="Main" component={MainBottomNavigatior} />
         <RootStack.Screen name="Email" component={EmailScreen} />
+        <RootStack.Screen name="Contact" component={ContactScreen} />
       </RootStack.Navigator>
-      <LoadingModal isShowModal={isLoading} />
     </>
   ) : (
     <View style={{flex: 1}}>

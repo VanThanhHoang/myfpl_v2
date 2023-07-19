@@ -29,13 +29,14 @@ const LogoutButton = () => {
 };
 const styles = StyleSheet.create({
   container: {
+    marginVertical: 15,
     flexDirection: 'row',
     borderRadius: 18,
     height: 40,
     backgroundColor: '#0063ac',
     width: '38%',
-    position: 'absolute',
-    bottom: 30,
+    // position: 'absolute',
+    // bottom: 30,
     alignSelf: 'center',
     elevation: 3,
     justifyContent: 'center',

@@ -18,16 +18,6 @@ const ScheduleScreen = () => {
   return (
     <ScreenContainer>
       <AppToolBar />
-      {/* <Text
-        style={{
-          fontWeight: '900',
-          fontSize: 18,
-          textAlign: 'center',
-          color: Color.MAINCOLOR,
-          marginVertical: 10,
-        }}>
-        Thời gian :
-      </Text> */}
       <ScrollTimeStudy />
       <ScheduleTimes />
     </ScreenContainer>

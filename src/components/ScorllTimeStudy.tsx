@@ -60,6 +60,11 @@ const ScrollTimeStudy = () => {
   );
 };
 const styles = StyleSheet.create({
-  iconDropDown: {width: 18, height: 18, tintColor: Color.MAINCOLOR},
+  iconDropDown: {
+    marginRight: 10,
+    width: 15,
+    height: 15,
+    tintColor: Color.MAINCOLOR,
+  },
 });
 export default ScrollTimeStudy;

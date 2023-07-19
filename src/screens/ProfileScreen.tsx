@@ -1,12 +1,58 @@
+import {ScrollView} from 'react-native-gesture-handler';
 import AppToolBar from '../components/AppToolBar';
 import ScreenContainer from '../components/ScreenContainer';
 import StudentCard from '../components/StudentCard';
 import LogoutButton from '../components/buttons/LogoutButton';
+import ProfileMenuItem from '../components/item_card/ProflieMenuItem';
+import {AppIcons} from '../constant/AppAsset';
+import {View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {ContactNavigationProp} from '../navigation/AppNavigator';
+
 const ProfileScreen = () => {
+  const navigation = useNavigation<ContactNavigationProp>();
+  const menuItems = [
+    {
+      label: 'Thông tin cá nhân',
+      icon: AppIcons.info,
+      onPress: () => {
+        navigation.navigate('Contact');
+      },
+    },
+    {
+      label: 'Khen thưởng - Kỷ luật',
+      icon: AppIcons.prize,
+      onPress: () => {
+        navigation.navigate('Contact');
+      },
+    },
+    {
+      label: 'Cổng liên hệ',
+      icon: AppIcons.contact,
+      onPress: () => {
+        navigation.navigate('Contact');
+      },
+    },
+  ];
   return (
     <ScreenContainer>
       <AppToolBar />
-      <StudentCard />
+      <ScrollView>
+        <StudentCard />
+        <View
+          style={{
+            marginVertical: 20,
+          }}>
+          {menuItems.map(item => (
+            <ProfileMenuItem
+              onPress={item.onPress}
+              key={item.label}
+              label={item.label}
+              icon={item.icon}
+            />
+          ))}
+        </View>
+      </ScrollView>
       <LogoutButton />
     </ScreenContainer>
   );
