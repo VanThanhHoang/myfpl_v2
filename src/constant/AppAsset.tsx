@@ -15,6 +15,7 @@ export const AppIcons = {
   logout: require('../assets/icon/logout.png'),
   admin: require('../assets/icon/ic_admin.png'),
   logOut: require('../assets/icon/ic_logout.png'),
+  back: require('../assets/icon/ic_back.png'),
   //icon bottom tab
   arr_up: require('../assets/icon/ic_arr_up.png'),
   arr_down: require('../assets/icon/ic_arr_down.png'),

@@ -17,11 +17,13 @@ import {ApiKey} from '../constant/ApiKey';
 import MainBottomNavigatior from './MainBottomNavigator';
 import EmailScreen from '../screens/GmailScreen';
 import ContactScreen from '../screens/ContactsScreen';
+import DetailNewsScreen from '../screens/DetailNewsScreen';
 type RootStackParamList = {
   Login: undefined;
   Main: undefined;
   Email: undefined;
   Contact: undefined;
+  DetailNews: undefined;
 };
 
 export type AppNavigationProp = NativeStackNavigationProp<
@@ -40,6 +42,12 @@ export type ContactNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'Main',
   'Contact'
+>;
+
+export type DetailNewsNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Main',
+  'DetailNews'
 >;
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator = () => {
@@ -71,6 +79,7 @@ const AppNavigator = () => {
         <RootStack.Screen name="Main" component={MainBottomNavigatior} />
         <RootStack.Screen name="Email" component={EmailScreen} />
         <RootStack.Screen name="Contact" component={ContactScreen} />
+        <RootStack.Screen name="DetailNews" component={DetailNewsScreen} />
       </RootStack.Navigator>
     </>
   ) : (

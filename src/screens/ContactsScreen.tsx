@@ -1,10 +1,10 @@
 import ScreenContainer from '../components/ScreenContainer';
 import {StyleSheet} from 'react-native';
 import ScreenToolBar from '../components/ScreenToolBar';
-import {Text, View, Image} from 'react-native';
+import {View, Image} from 'react-native';
 import ContactInfoItem from '../components/ContactInfoItem';
 import {ScrollView} from 'react-native-gesture-handler';
-import {AppIcons, AppImages} from '../constant/AppAsset';
+import {AppImages} from '../constant/AppAsset';
 const ContactInfos = [
   {
     name: 'Phòng Dịch vụ sinh viên',

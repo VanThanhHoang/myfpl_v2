@@ -8,42 +8,46 @@ import {
   ScrollView,
   ListRenderItem,
 } from 'react-native';
-import {
-  FAKEDATAHOCTAP,
-  FAKEDATAHOATDONG,
-  FAKEDATAHOCPHI,
-  News,
-} from '../modal/FakeData';
+import {FakeNews} from '../modal/FakeData';
 import {Color} from '../constant/Colors';
 import {NewsTabItem} from '../components/NewsTabItem';
 import ListNewsItem from '../components/item_card/ListNewsItem';
 import {RefreshControl} from 'react-native-gesture-handler';
-
-interface Item {
-  id: number;
-  content?: string;
-  description?: string;
-  publish?: string;
-  name?: string;
-}
+import {News} from '../types/News';
+import {NewsType} from '../types/NewType';
 const Tabs = [
   {
-    name: 'Học tập',
+    name: 'Tất cả',
+    newsType: 'All',
   },
   {
+    name: 'Học tập',
+    newsType: 'Study',
+  },
+
+  {
     name: 'Hoạt động',
+    newsType: 'Activity',
   },
   {
     name: 'Học phí',
+    newsType: 'Tuition',
   },
 ];
 const DashBoard: React.FC = () => {
-  const [tabSelected, setTab] = useState<string>(Tabs[0].name);
+  const [tabSelected, setTab] = useState<NewsType | string>(Tabs[0].newsType);
   const [isListNewRefesh, setListNewRefesh] = useState<boolean>(false);
-  const [data, setData] = useState(FAKEDATAHOCTAP);
-  const onTabPress = (name: string) => {
-    setTab(name);
+  const [data, setData] = useState(FakeNews);
+  const fillterDataByType = () => {
+    console.log(FakeNews === data);
+    if (tabSelected === 'All') return FakeNews;
+    console.log(FakeNews.filter(item => item.type === tabSelected));
+    return FakeNews.filter(item => item.type === tabSelected);
   };
+  const onTabPress = (newsType: NewsType | string) => {
+    setTab(newsType);
+  };
+
   const onListNewsRefesh = () => {
     setListNewRefesh(true);
     setTimeout(() => {
@@ -52,23 +56,45 @@ const DashBoard: React.FC = () => {
   };
   const RenderItemNews: ListRenderItem<News> = ({item}) => {
     return (
-      <ListNewsItem name={item.name} title={item.content} time={item.publish} />
+      <ListNewsItem
+        content={item.content}
+        name={'Hoang Van Thanh'}
+        title={item.title}
+        timePushlish={item.publishedAt}
+      />
     );
   };
   useEffect(() => {
-    // setData('ass');
+    setData(fillterDataByType());
   }, [tabSelected]);
   return (
     <>
-      <View style={styles.tabsContainer}>
-        {Tabs.map(tab => (
-          <NewsTabItem
-            onPress={onTabPress}
-            key={tab.name}
-            name={tab.name}
-            isSelected={tab.name === tabSelected}
-          />
-        ))}
+      <View
+        style={{
+          marginTop: 20,
+          paddingHorizontal: 20,
+        }}>
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          contentContainerStyle={{
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          style={{
+            height: 60,
+          }}>
+          {Tabs.map(tab => (
+            <NewsTabItem
+              onPress={() => {
+                onTabPress(tab.newsType);
+              }}
+              key={tab.name}
+              name={tab.name}
+              isSelected={tab.newsType === tabSelected}
+            />
+          ))}
+        </ScrollView>
       </View>
       <FlatList
         refreshControl={
@@ -81,48 +107,11 @@ const DashBoard: React.FC = () => {
         }
         showsVerticalScrollIndicator={false}
         style={{height: 100}}
-        data={FAKEDATAHOCTAP}
+        data={data}
         renderItem={RenderItemNews}
       />
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  tabsContainer: {
-    marginVertical: 20,
-    paddingHorizontal: 24,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 55,
-    width: '100%',
-  },
-  tabItem: {
-    marginHorizontal: 10,
-    alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 10,
-  },
-  tabTitle: {
-    color: Color.MAINCOLOR,
-    fontSize: 16,
-    textTransform: 'uppercase',
-    fontWeight: '400',
-  },
-  selectedTabTitle: {
-    color: Color.MAINCOLOR,
-    fontWeight: 'bold',
-  },
-  tabUnderline: {
-    backgroundColor: Color.MAINCOLOR,
-    height: 3,
-    width: 80,
-    borderRadius: 2,
-    position: 'absolute',
-    bottom: 0,
-  },
-});
 
 export default DashBoard;

@@ -1,17 +1,38 @@
 import React, {memo} from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
 import {AppIcons} from '../../constant/AppAsset';
-
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import 'moment/locale/vi';
+import moment from 'moment';
+import {useNavigation} from '@react-navigation/native';
+import {AppNavigationProp} from '../../navigation/AppNavigator';
 type ListNewsItemProps = {
   name: string;
-  time: string;
+  timePushlish: string;
   title: string;
+  content: string;
 };
-const ListNewsItem: React.FC<ListNewsItemProps> = ({name, time, title}) => {
+const ListNewsItem: React.FC<ListNewsItemProps> = ({
+  name,
+  timePushlish,
+  title,
+  content,
+}) => {
+  const navigation = useNavigation<AppNavigationProp>();
+  const datetime = moment(timePushlish, 'YYYYMMDD');
+  // Tùy chỉnh ngôn ngữ thành tiếng Việt
+  datetime.locale('vi');
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('DetailNews');
+      }}
+      style={styles.container}>
       <Text numberOfLines={2} lineBreakMode="middle" style={[styles.title]}>
         {title}
+      </Text>
+      <Text numberOfLines={3} style={{fontSize: 13}}>
+        {content}
       </Text>
       <View
         style={{
@@ -19,9 +40,9 @@ const ListNewsItem: React.FC<ListNewsItemProps> = ({name, time, title}) => {
           alignItems: 'center',
         }}>
         <AuthorView name={name} />
-        <Text style={styles.timeText}>* {time}</Text>
+        <Text style={styles.timeText}>{datetime.fromNow()}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 const AuthorView: React.FC<{name: string}> = ({name}) => {
@@ -46,21 +67,13 @@ const AuthorView: React.FC<{name: string}> = ({name}) => {
   );
 };
 const styles = StyleSheet.create({
-  title: {
-    color: '#323f53',
-    fontSize: 16,
-    marginRight: 10,
-    marginVertical: 2,
-    width: '100%',
-    fontWeight: '700',
-    marginTop: 10,
-  },
   timeText: {
     marginLeft: 10,
     fontWeight: '600',
     color: '#a9aeb6',
   },
   container: {
+    overflow: 'scroll',
     margin: 3,
     elevation: 3,
     borderRadius: 5,
@@ -71,6 +84,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     justifyContent: 'center',
     marginBottom: 10,
+  },
+  title: {
+    color: '#323f53',
+    fontSize: 16,
+    marginRight: 10,
+    marginVertical: 2,
+    width: '100%',
+    fontWeight: '700',
+    marginTop: 10,
   },
   nameText: {
     color: '#0063ac',
