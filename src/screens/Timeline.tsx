@@ -1,138 +1,98 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import {StyleSheet, Text, View, Image} from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
-import { Alert } from 'react-native';
-import { AppIcons } from '../constant/AppAsset';
-
-interface DataItem {
-  time: string;
-  timeEnd: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  lecturers: string;
-}
-
+import {Alert} from 'react-native';
+import {AppIcons} from '../constant/AppAsset';
+import {fakeSchedule} from '../modal/FakeData';
+import {ClassInfo} from '../types/ClassInfo';
+import {convertHourAndMinuesToString} from '../helper/convertHourAndMinute';
+import moment from 'moment';
 const ScheduleTimes: React.FC = () => {
-  const data: DataItem[] = [
-    {
-      time: '09:00',
-      timeEnd: '10:30',
-      title: 'Lập trình React Native',
-      description: 'Room: T11—06 *Toà T',
-      imageUrl:
-        'https://images.pexels.com/photos/2250394/pexels-photo-2250394.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=250&w=250',
-      lecturers: 'Hoàng Văn Thành',
-    },
-    {
-      time: '10:45',
-      timeEnd: '12:15',
-      title: 'Lập trình C#',
-      description: 'Room: T11—06 *Toà T',
-      imageUrl:
-        'https://images.pexels.com/photos/2250394/pexels-photo-2250394.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=250&w=250',
-      lecturers: 'Ngô Tuấn Kiệt',
-    },
-    {
-      time: '12:30',
-      timeEnd: '14:00',
-      title: 'Lập trình PHP',
-      description: 'Room: T11—06 *Toà T',
-      imageUrl:
-        'https://images.pexels.com/photos/2250394/pexels-photo-2250394.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=250&w=250',
-      lecturers: 'Văn Nam Phúc',
-    },
-    {
-      time: '14:15',
-      timeEnd: '15:45',
-      title: 'Lập trình Java',
-      description: 'Room: T11—06 *Toà T',
-      imageUrl:
-        'https://images.pexels.com/photos/2250394/pexels-photo-2250394.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=250&w=250',
-      lecturers: 'Nguyễn Định',
-    },
-    {
-      time: '16:00',
-      timeEnd: '17:30',
-      title: 'Lập trình Python',
-      description: 'Room: P05—06 *Toà P',
-      imageUrl:
-        'https://images.pexels.com/photos/2250394/pexels-photo-2250394.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=250&w=250',
-      lecturers: 'Nguyễn Chấn',
-    },
-  ];
-
-  const renderDetail = (rowData: DataItem): JSX.Element => {
-    let title = <Text style={[styles.rowTitle]}>{rowData.title}</Text>;
-    var desc = null;
-    if (rowData.description && rowData.imageUrl)
-      desc = (
+  const renderDetail = (classInfo: ClassInfo): JSX.Element => {
+    return (
+      <View style={{flex: 1}}>
+        <Text
+          style={[
+            styles.rowTitle,
+          ]}>{`${classInfo.subject.name} (${classInfo.subject.code})`}</Text>
         <View style={styles.descriptionContainer}>
           <View
             style={{
+              alignItems: 'center',
               flexDirection: 'row',
               justifyContent: 'flex-start',
-              paddingBottom: 8,
             }}>
-            <Image source={AppIcons.place}></Image>
+            <Image style={styles.icon} source={AppIcons.des}></Image>
             <Text style={[styles.textDescriptionStyle]}>
-              {rowData.description}
+              {classInfo.description}
+            </Text>
+          </View>
+          <View
+            style={{
+              alignItems: 'center',
+              flexDirection: 'row',
+              justifyContent: 'flex-start',
+            }}>
+            <Image style={styles.icon} source={AppIcons.place}></Image>
+            <Text style={[styles.textDescriptionStyle]}>
+              {classInfo.clsasAddress.room +
+                '* Tòa nhà ' +
+                classInfo.clsasAddress.buiding}
             </Text>
           </View>
 
-          <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-            <Image source={{ uri: rowData.imageUrl }} style={styles.imageStyle} />
+          <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
+            <Image
+              source={{uri: classInfo.teacher.photo}}
+              style={styles.imageStyle}
+            />
             <Text
               style={{
+                fontWeight: '500',
                 marginHorizontal: 5,
-                color: '#ffffff',
+                color: 'black',
               }}>
-              {rowData.lecturers}
+              {`${classInfo.teacher.name} (${classInfo.teacher.code})`}
             </Text>
           </View>
         </View>
-      );
-
-    return (
-      <View style={{ flex: 1 }}>
-        {title}
-        {desc}
       </View>
     );
   };
 
-  const renderTime = (rowData: DataItem): JSX.Element => {
-    var desc = null;
-    if (rowData.time && rowData.timeEnd)
-      desc = (
-        <View>
-          <Text
-            style={{
-              marginHorizontal: 10,
-              fontSize: 16,
-              color: 'black',
-              fontWeight: '700',
-            }}>
-            {rowData.time}
-          </Text>
-
-          <Text
-            style={{
-              marginHorizontal: 10,
-              color: '#BCC1CD',
-            }}>
-            {rowData.timeEnd}
-          </Text>
-        </View>
-      );
-
-    return <View style={{ width: 80, backgroundColor: '#ffffff' }}>{desc}</View>;
+  const renderTime = (classInfo: ClassInfo): JSX.Element => {
+    return (
+      <View style={{width: 80, backgroundColor: '#ffffff'}}>
+        <Text
+          style={{
+            fontSize: 14,
+            color: '#327ab8',
+            fontWeight: '700',
+          }}>
+          {moment(classInfo.date).subtract(10, 'days').calendar()}
+        </Text>
+        <Text
+          style={{
+            fontSize: 13,
+            color: 'black',
+            fontWeight: '700',
+          }}>
+          {convertHourAndMinuesToString(classInfo.slot.startTime)}
+        </Text>
+        <Text
+          style={{
+            color: '#BCC1CD',
+          }}>
+          {convertHourAndMinuesToString(classInfo.slot.endTime)}
+        </Text>
+      </View>
+    );
   };
 
   return (
     <View style={styles.container}>
       <Timeline
-        data={data}
+        data={fakeSchedule}
         circleSize={20}
         circleColor="rgba(0,0,0,0)"
         lineColor="#BCC1CD"
@@ -142,15 +102,14 @@ const ScheduleTimes: React.FC = () => {
           padding: 5,
           borderRadius: 13,
         }}
-        descriptionStyle={{ color: 'white', fontWeight: '400' }}
+        descriptionStyle={{color: 'white', fontWeight: '400'}}
         detailContainerStyle={{
+          padding: 10,
+          width: '98%',
           marginBottom: 20,
           elevation: 2,
-          backgroundColor: '#4DC591',
+          backgroundColor: '#fffbe8',
           borderRadius: 15,
-          marginHorizontal: 10,
-          paddingHorizontal: 10,
-          paddingVertical: 8,
         }}
         onEventPress={(item: any) =>
           Alert.alert(`${item.title} at ${item.time}`)
@@ -181,7 +140,7 @@ const styles = StyleSheet.create({
   rowTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#327ab8',
     marginBottom: 2,
   },
   descriptionContainer: {
@@ -194,8 +153,13 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   textDescriptionStyle: {
-    marginLeft: 5,
-    color: '#ffffff',
+    margin: 5,
+    color: 'black',
+  },
+  icon: {
+    tintColor: 'black',
+    width: 12,
+    height: 12,
   },
 });
 
