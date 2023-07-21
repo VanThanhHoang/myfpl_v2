@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
 import {Alert} from 'react-native';
@@ -88,7 +88,6 @@ const ScheduleTimes: React.FC = () => {
       </View>
     );
   };
-
   return (
     <View style={styles.container}>
       <Timeline
@@ -163,4 +162,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ScheduleTimes;
+export default memo(ScheduleTimes);

@@ -1,10 +1,12 @@
 import ScreenContainer from '../components/ScreenContainer';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 import ScreenToolBar from '../components/ScreenToolBar';
-import {View, Image} from 'react-native';
+import {View, Image, Linking} from 'react-native';
 import ContactInfoItem from '../components/ContactInfoItem';
 import {ScrollView} from 'react-native-gesture-handler';
-import {AppImages} from '../constant/AppAsset';
+import {AppIcons, AppImages} from '../constant/AppAsset';
+import {useNavigation} from '@react-navigation/native';
+import {AppNavigationProp} from '../navigation/AppNavigator';
 const ContactInfos = [
   {
     name: 'Phòng Dịch vụ sinh viên',
@@ -28,9 +30,15 @@ const ContactInfos = [
   },
 ];
 const ContactScreen = () => {
+  const navigation = useNavigation<AppNavigationProp>();
   return (
     <ScreenContainer>
-      <ScreenToolBar title="Cổng thông tin liên hệ FPOLY" />
+      <ScreenToolBar
+        onButtonBackPress={() => {
+          navigation.goBack();
+        }}
+        title="Cổng thông tin liên hệ FPOLY"
+      />
       <ScrollView>
         <View
           style={{
@@ -51,6 +59,26 @@ const ContactScreen = () => {
           </View>
         </View>
       </ScrollView>
+      <TouchableOpacity
+        onPress={async () => {
+          // Opening the link with some app, if the URL scheme is "http" the web link should be opened
+          // by some browser in the mobile
+          try {
+            await Linking.openURL('https://www.facebook.com/ctsvfpolyhcm');
+          } catch (err) {
+            console.log(err);
+          }
+        }}
+        style={styles.buttonFacebook}>
+        <Text style={styles.label}>Fanpage CTSV FOLY HCM</Text>
+        <Image
+          style={{
+            width: 30,
+            height: 30,
+          }}
+          source={AppIcons.poly}
+        />
+      </TouchableOpacity>
       <Image
         style={{
           alignSelf: 'center',
@@ -64,5 +92,23 @@ const ContactScreen = () => {
     </ScreenContainer>
   );
 };
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  buttonFacebook: {
+    justifyContent: 'center',
+    borderRadius: 15,
+    width: '80%',
+    alignSelf: 'center',
+    height: 50,
+    backgroundColor: '#558bf7',
+    elevation: 3,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  label: {
+    fontWeight: '700',
+    fontSize: 17,
+    color: 'white',
+    marginRight: 10,
+  },
+});
 export default ContactScreen;

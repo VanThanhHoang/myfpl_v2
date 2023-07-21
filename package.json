@@ -44,6 +44,8 @@
 
     "axios-retry": "^3.5.1",
 
+    "carousel-with-pagination-rn": "^1.1.8",
+
     "google-auth-library": "^8.9.0",
 
     "googleapis": "^122.0.0",
@@ -74,6 +76,8 @@
 
     "react-native-screens": "^3.22.1",
 
+    "react-native-snap-carousel": "^3.9.1",
+
     "react-native-timeline-flatlist": "^0.8.0",
 
     "react-redux": "^8.1.1"
@@ -97,6 +101,8 @@
     "@types/react": "^18.0.24",
 
     "@types/react-native-calendar-picker": "^7.0.3",
+
+    "@types/react-native-snap-carousel": "^3.8.5",
 
     "@types/react-test-renderer": "^18.0.0",
 

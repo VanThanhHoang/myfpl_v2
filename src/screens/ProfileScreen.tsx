@@ -16,14 +16,14 @@ const ProfileScreen = () => {
       label: 'Thông tin cá nhân',
       icon: AppIcons.info,
       onPress: () => {
-        navigation.navigate('Contact');
+        navigation.navigate('DetailProfile');
       },
     },
     {
       label: 'Khen thưởng - Kỷ luật',
       icon: AppIcons.prize,
       onPress: () => {
-        navigation.navigate('Contact');
+        navigation.navigate('DetailProfile');
       },
     },
     {

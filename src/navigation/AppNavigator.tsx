@@ -8,22 +8,21 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AsyncStorageKey} from '../constant/AsyncStorageKey';
 import {View} from 'react-native';
 import AnimatedLottieView from 'lottie-react-native';
-import {useSelector} from 'react-redux';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {AppAnimations} from '../constant/AppAsset';
-import {RootState} from '../redux/store';
-import LoadingModal from '../modal/Loading';
 import {ApiKey} from '../constant/ApiKey';
 import MainBottomNavigatior from './MainBottomNavigator';
 import EmailScreen from '../screens/GmailScreen';
 import ContactScreen from '../screens/ContactsScreen';
 import DetailNewsScreen from '../screens/DetailNewsScreen';
+import DetailProFile from '../screens/DetailProfileScreen';
 type RootStackParamList = {
   Login: undefined;
   Main: undefined;
   Email: undefined;
   Contact: undefined;
   DetailNews: undefined;
+  DetailProfile: undefined;
 };
 
 export type AppNavigationProp = NativeStackNavigationProp<
@@ -49,6 +48,7 @@ export type DetailNewsNavigationProp = NativeStackNavigationProp<
   'Main',
   'DetailNews'
 >;
+
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator = () => {
   //google config
@@ -80,6 +80,7 @@ const AppNavigator = () => {
         <RootStack.Screen name="Email" component={EmailScreen} />
         <RootStack.Screen name="Contact" component={ContactScreen} />
         <RootStack.Screen name="DetailNews" component={DetailNewsScreen} />
+        <RootStack.Screen name="DetailProfile" component={DetailProFile} />
       </RootStack.Navigator>
     </>
   ) : (

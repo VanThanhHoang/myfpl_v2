@@ -1,23 +1,62 @@
 import ScreenContainer from '../components/ScreenContainer';
-import DashBoard from './NewsList';
 import {getData} from '../service/test.callapi';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import AppToolBar from '../components/AppToolBar';
 import {getEmail} from '../service/GetEmail';
-import PolyLoadingView from '../components/PolyLoadingView';
 import ScrollTimeStudy from '../components/ScorllTimeStudy';
-import {Text} from 'react-native';
-import {Color} from '../constant/Colors';
-import Timeline from 'react-native-timeline-flatlist';
 import ScheduleTimes from './Timeline';
+import {View} from 'react-native';
+import NewsTabItem from '../components/NewsTabItem';
+import {ScrollView} from 'react-native-gesture-handler';
+const Tabs = [
+  {
+    name: 'Lịch học',
+    scheduleType: 'All',
+  },
+  {
+    name: ' Lịch thi',
+    scheduleType: 'Study',
+  },
+  {
+    name: 'Điểm danh',
+    scheduleType: 'Activity',
+  },
+];
 const ScheduleScreen = () => {
   useEffect(() => {
     getData();
     getEmail();
   }, []);
+  const [tabSelected, setTab] = useState<string>(Tabs[0].scheduleType);
+  const onTabPress = (newsType: string) => {
+    setTab(newsType);
+  };
   return (
     <ScreenContainer>
       <AppToolBar />
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          contentContainerStyle={{
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          style={{
+            height: 60,
+          }}>
+          {Tabs.map(tab => (
+            <NewsTabItem
+              onPress={() => {
+                onTabPress(tab.scheduleType);
+              }}
+              key={tab.name}
+              name={tab.name}
+              isSelected={tab.scheduleType === tabSelected}
+            />
+          ))}
+        </ScrollView>
+      </View>
       <ScrollTimeStudy />
       <ScheduleTimes />
     </ScreenContainer>

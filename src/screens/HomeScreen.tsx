@@ -4,12 +4,17 @@ import {getData} from '../service/test.callapi';
 import {useEffect} from 'react';
 import AppToolBar from '../components/AppToolBar';
 import {getEmail} from '../service/GetEmail';
-import PolyLoadingView from '../components/PolyLoadingView';
 const HomeScreen = () => {
   useEffect(() => {
     getData();
     getEmail();
   }, []);
+  const data = [
+    'https://img.vn/uploads/thuvien/singa-png-20220719150401Tdj1WAJFQr.png',
+    'https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/IMG_Academy_Logo.svg/800px-IMG_Academy_Logo.svg.png',
+    'https://img.vn/uploads/thuvien/singa-png-20220719150401Tdj1WAJFQr.png',
+    'https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/IMG_Academy_Logo.svg/800px-IMG_Academy_Logo.svg.png',
+  ];
   return (
     <ScreenContainer>
       <AppToolBar />
@@ -17,5 +22,4 @@ const HomeScreen = () => {
     </ScreenContainer>
   );
 };
-
 export default HomeScreen;

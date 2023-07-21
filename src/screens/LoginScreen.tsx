@@ -1,5 +1,4 @@
-import ScreenContainer from '../components/ScreenContainer';
-import {Image, Text, View, ImageStyle} from 'react-native';
+import {Image, Text, View, ImageStyle, StyleSheet} from 'react-native';
 import LoginGoogleButton from '../components/buttons/LoginGooglen';
 import ShowModalSelectFacilityButton from '../components/buttons/ShowModalSelectFacility';
 import {useCallback, useEffect, useState} from 'react';
@@ -42,14 +41,8 @@ const LoginScreen = () => {
     getFacilityFromStorage();
   }, []);
   return (
-    <ScreenContainer>
-      <View
-        style={{
-          backgroundColor: 'red',
-          width: '100%',
-          height: '40%',
-          marginBottom: 20,
-        }}>
+    <View style={{flex: 1, padding: 24}}>
+      <View style={styles.container}>
         <Text>Thong tin gi do moi</Text>
       </View>
       <ShowModalSelectFacilityButton
@@ -67,9 +60,17 @@ const LoginScreen = () => {
         setVisible={setShowModalSelectFacility}
       />
       <Image style={logoPolyStyles} source={AppImages.poly} />
-    </ScreenContainer>
+    </View>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'red',
+    width: '100%',
+    height: '40%',
+    marginBottom: 20,
+  },
+});
 const logoPolyStyles: ImageStyle = {
   alignSelf: 'center',
   bottom: 30,
