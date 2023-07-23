@@ -29,7 +29,7 @@ type RootStackParamList = {
 };
 
 export type AppNavigationProp = NativeStackNavigationProp<RootStackParamList>;
-export type SearchResultProps = NativeStackScreenProps<
+export type SearchResultScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'SearchResultScreen'
 >;

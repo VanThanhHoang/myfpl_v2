@@ -50,7 +50,7 @@ const SearchResultScreen = () => {
             <Text style={styles.searchText}>Kết quả tìm kiếm cho</Text>
             <Text style={styles.searchKey}>{searchKey}</Text>
           </View>
-          <DashBoard newsData={data} />
+          <DashBoard setData={setData} newsData={data} />
         </>
       )}
     </ScreenContainer>

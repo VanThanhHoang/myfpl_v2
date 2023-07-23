@@ -54,6 +54,8 @@
 
     "i": "^0.3.7",
 
+    "lodash": "^4.17.21",
+
     "lottie-react-native": "^5.1.6",
 
     "moment": "^2.29.4",
@@ -80,6 +82,8 @@
 
     "react-native-snap-carousel": "^3.9.1",
 
+    "react-native-svg": "^13.10.0",
+
     "react-native-timeline-flatlist": "^0.8.0",
 
     "react-redux": "^8.1.1"
@@ -99,6 +103,8 @@
     "@react-native/metro-config": "^0.72.9",
 
     "@tsconfig/react-native": "^3.0.0",
+
+    "@types/lodash": "^4.14.195",
 
     "@types/react": "^18.0.24",
 

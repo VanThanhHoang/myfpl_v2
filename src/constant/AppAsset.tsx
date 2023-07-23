@@ -37,6 +37,9 @@ export const AppIcons = {
   des: require('../assets/icon/ic_des.png'),
   search: require('../assets/icon/ic_search.png'),
   clear: require('../assets/icon/ic_clear.png'),
+  // Sorted Transcripts
+  asc: require('../assets/icon/up_arrow.png'),
+  desc: require('../assets/icon/down_arrow.png'),
 };
 export const AppImages = {
   poly: require('../assets/img/img_poly.png'),

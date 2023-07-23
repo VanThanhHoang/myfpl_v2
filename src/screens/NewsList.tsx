@@ -1,13 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
-  ScrollView,
-  ListRenderItem,
-} from 'react-native';
+import {View, FlatList, ScrollView, ListRenderItem} from 'react-native';
 import {FakeNews} from '../modal/FakeData';
 import {Color} from '../constant/Colors';
 import {NewsTabItem} from '../components/NewsTabItem';

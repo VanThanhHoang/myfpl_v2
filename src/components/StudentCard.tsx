@@ -1,17 +1,41 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {AppIcons, AppImages} from '../constant/AppAsset';
-
+import QRCode from 'react-native-qrcode-svg';
+import {useState} from 'react';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 const StudentCard = () => {
+  const [showQr, setShowQr] = useState<boolean>(false);
   return (
     <View style={styles.container}>
       <Header />
       <View style={{flexDirection: 'row'}}>
-        <Image
-          style={styles.avatar}
-          source={{
-            uri: 'https://lh3.googleusercontent.com/a/AAcHTteekTstA5kgs1FHesSYpP7-lUiLXgONjLeDp_-IhzB0=s96-c',
+        <TouchableOpacity
+          onPress={() => {
+            setShowQr(!showQr);
           }}
-        />
+          style={{width: 100}}>
+          {!showQr ? (
+            <Image
+              style={[styles.avatar]}
+              source={{
+                uri: 'https://lh3.googleusercontent.com/a/AAcHTtcaYbY_Y4JFNJK22N6omBixSkEEQkNPy96fJ7-3oJ72og=s96-c',
+              }}
+            />
+          ) : (
+            <QRCode
+              logo={AppIcons.poly}
+              logoSize={30}
+              logoBackgroundColor="transparent"
+              value="https://www.facebook.com/luvmbdev/"
+            />
+          )}
+
+          <Text style={{fontSize: 12, fontWeight: '700'}}>
+            {!showQr
+              ? 'Chạm để hiển thị mã QR'
+              : 'Chạm để hiển thị ảnh sinh viên'}
+          </Text>
+        </TouchableOpacity>
         <View style={{marginLeft: 30}}>
           <NameView />
           <InfoView infoType="MSSV/StudentId" value="PS25812" />
@@ -28,7 +52,7 @@ const StudentCard = () => {
           </View>
         </View>
       </View>
-      <Image
+      {/* <Image
         style={{
           resizeMode: 'center',
           position: 'absolute',
@@ -38,7 +62,7 @@ const StudentCard = () => {
           right: 10,
         }}
         source={AppIcons.poly}
-      />
+      /> */}
     </View>
   );
 };
@@ -80,6 +104,7 @@ const styles = StyleSheet.create({
   infoTypeLabel: {color: 'black', fontWeight: '400'},
   webSchoolContainer: {
     height: 25,
+    fontWeigh: '400',
     justifyContent: 'center',
     backgroundColor: '#1975be',
     marginVertical: 10,
@@ -88,9 +113,9 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   avatar: {
+    height: 100,
     borderRadius: 10,
     width: 100,
-    height: 120,
   },
   cardName: {
     textAlign: 'center',
@@ -122,7 +147,7 @@ const styles = StyleSheet.create({
     width: '95%',
     height: 230,
     alignSelf: 'center',
-    borderRadius: 20,
+    borderRadius: 18,
     backgroundColor: 'white',
     elevation: 5,
   },

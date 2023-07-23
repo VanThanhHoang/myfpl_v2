@@ -7,10 +7,10 @@ import ProfileMenuItem from '../components/item_card/ProflieMenuItem';
 import {AppIcons} from '../constant/AppAsset';
 import {View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {ContactNavigationProp} from '../navigation/AppNavigator';
+import {AppNavigationProp} from '../navigation/AppNavigator';
 
 const ProfileScreen = () => {
-  const navigation = useNavigation<ContactNavigationProp>();
+  const navigation = useNavigation<AppNavigationProp>();
   const menuItems = [
     {
       label: 'Thông tin cá nhân',

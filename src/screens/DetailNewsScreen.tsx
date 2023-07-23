@@ -21,10 +21,12 @@ const DetailNewsScreen = () => {
       />
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Image
-          style={styles.banner}
-          source={require('../assets/img/img_banner.png')}
-        />
+        <View style={{elevation: 3}}>
+          <Image
+            style={styles.banner}
+            source={require('../assets/img/img_banner.png')}
+          />
+        </View>
         <View style={{padding: 24}}>
           <Text style={styles.title}>Bí quyết thành công trong học tập</Text>
           <View
@@ -82,8 +84,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: 25,
-    height: 25,
+    width: 35,
+    height: 35,
     marginRight: 10,
   },
   title: {
@@ -107,11 +109,9 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
   },
   banner: {
-    borderRadius: 20,
+    width: '101%',
     alignSelf: 'center',
-    width: '95%',
     height: 200,
-    backgroundColor: 'red',
     marginTop: 30,
     resizeMode: 'cover',
   },
