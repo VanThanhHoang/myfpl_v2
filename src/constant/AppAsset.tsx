@@ -1,6 +1,7 @@
 export const AppAnimations = {
   loadingAnm: require('../assets/animations/anm_loading.json'),
   ggLoadingAnm: require('../assets/animations/anm_gg_loading2.json'),
+  noResult: require('../assets/animations/anm_no_result.json'),
 };
 export const AppIcons = {
   google: require('../assets/icon/ic_gg.png'),

@@ -5,12 +5,17 @@ import {useCallback, useState} from 'react';
 import {AppIcons} from '../constant/AppAsset';
 import {useNavigation} from '@react-navigation/native';
 import {AppNavigationProp} from '../navigation/AppNavigator';
-const SearchBar = () => {
+export type SearchBarProps = {
+  searchKeyPassed: string;
+};
+const SearchBar = ({searchKeyPassed}: SearchBarProps) => {
   const navigation = useNavigation<AppNavigationProp>();
   const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [searchKey, setSearchKey] = useState<string>('');
+  const [searchKey, setSearchKey] = useState<string>(searchKeyPassed);
   const onSearch = useCallback(() => {
-    navigation.navigate('SearchResultScreen');
+    if (searchKey) {
+      navigation.navigate('SearchResultScreen', {searchKey});
+    }
   }, [searchKey]);
   return (
     <View

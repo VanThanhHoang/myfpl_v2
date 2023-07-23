@@ -34,24 +34,31 @@ const Tabs = [
     newsType: 'Tuition',
   },
 ];
-const DashBoard: React.FC = () => {
+export type DashBoardProps = {
+  newsData: News[];
+  setData: Function;
+};
+const DashBoard = ({newsData, setData}: DashBoardProps): React.JSX.Element => {
   const [tabSelected, setTab] = useState<NewsType | string>(Tabs[0].newsType);
   const [isListNewRefesh, setListNewRefesh] = useState<boolean>(false);
-  const [data, setData] = useState(FakeNews);
-  const fillterDataByType = () => {
+  const filterDataByType = () => {
     if (tabSelected === 'All') return FakeNews;
-    return FakeNews.filter(item => item.type === tabSelected);
+    console.log('dang loc');
+    const newDataFiltered = FakeNews.filter(item => item.type === tabSelected);
+    setData(newDataFiltered);
   };
   const onTabPress = (newsType: NewsType | string) => {
     setTab(newsType);
   };
-
   const onListNewsRefesh = () => {
     setListNewRefesh(true);
     setTimeout(() => {
       setListNewRefesh(false);
     }, 3000);
   };
+  useEffect(() => {
+    filterDataByType();
+  }, [tabSelected]);
   const RenderItemNews: ListRenderItem<News> = ({item}) => {
     return (
       <ListNewsItem
@@ -62,14 +69,11 @@ const DashBoard: React.FC = () => {
       />
     );
   };
-  useEffect(() => {
-    setData(fillterDataByType());
-  }, [tabSelected]);
   return (
     <>
       <View
         style={{
-          paddingHorizontal: 20,
+          paddingHorizontal: 15,
         }}>
         <ScrollView
           showsHorizontalScrollIndicator={false}
@@ -104,7 +108,7 @@ const DashBoard: React.FC = () => {
         }
         showsVerticalScrollIndicator={false}
         style={{height: 100}}
-        data={data}
+        data={newsData}
         renderItem={RenderItemNews}
       />
     </>

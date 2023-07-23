@@ -1,5 +1,6 @@
 import {
   NativeStackNavigationProp,
+  NativeStackScreenProps,
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/LoginScreen';
@@ -24,10 +25,14 @@ type RootStackParamList = {
   Contact: undefined;
   DetailNews: undefined;
   DetailProfile: undefined;
-  SearchResultScreen: undefined;
+  SearchResultScreen: {searchKey: string};
 };
 
 export type AppNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+export type SearchResultProps = NativeStackScreenProps<
+  RootStackParamList,
+  'SearchResultScreen'
+>;
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator = () => {
