@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react-native';
 import _ from 'lodash';
+import { AppIcons } from '../constant/AppAsset';
 
 interface TranscriptItem {
     Name: string;
@@ -160,8 +161,8 @@ const Transcript: React.FC = () => {
                                 <Image
                                     source={
                                         direction === 'desc'
-                                            ? require('./up-arrow.png')
-                                            : require('./down-arrow.png')
+                                            ? AppIcons.asc
+                                            : AppIcons.desc
                                     }
                                     style={styles.arrowIcon}
                                 />
