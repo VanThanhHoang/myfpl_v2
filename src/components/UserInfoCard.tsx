@@ -13,15 +13,14 @@ const UserInfoCard = ({info, infoLabel}: UserInfoCardProps) => {
 };
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 5,
     width: '100%',
   },
   info: {
     fontWeight: '500',
-    fontSize: 17,
+    fontSize: 15,
     lineHeight: 30,
     color: '#595151',
-    borderWidth: 1,
+    borderWidth: 1.3,
     padding: 10,
     borderRadius: 15,
     borderColor: '#bababa',
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     fontWeight: '700',
     color: 'black',
-    fontSize: 19,
+    fontSize: 17,
   },
 });
 export default UserInfoCard;

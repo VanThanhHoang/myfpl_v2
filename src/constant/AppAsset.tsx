@@ -34,6 +34,8 @@ export const AppIcons = {
   prize: require('../assets/icon/ic_prize.png'),
   info: require('../assets/icon/ic_info.png'),
   des: require('../assets/icon/ic_des.png'),
+  search: require('../assets/icon/ic_search.png'),
+  clear: require('../assets/icon/ic_clear.png'),
 };
 export const AppImages = {
   poly: require('../assets/img/img_poly.png'),

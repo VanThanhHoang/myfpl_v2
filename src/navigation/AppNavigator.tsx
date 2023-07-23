@@ -16,6 +16,7 @@ import EmailScreen from '../screens/GmailScreen';
 import ContactScreen from '../screens/ContactsScreen';
 import DetailNewsScreen from '../screens/DetailNewsScreen';
 import DetailProFile from '../screens/DetailProfileScreen';
+import SearchResultScreen from '../screens/SearchResult';
 type RootStackParamList = {
   Login: undefined;
   Main: undefined;
@@ -23,31 +24,10 @@ type RootStackParamList = {
   Contact: undefined;
   DetailNews: undefined;
   DetailProfile: undefined;
+  SearchResultScreen: undefined;
 };
 
-export type AppNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'Main',
-  'Login'
->;
-
-export type EmailNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'Main',
-  'Email'
->;
-
-export type ContactNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'Main',
-  'Contact'
->;
-
-export type DetailNewsNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'Main',
-  'DetailNews'
->;
+export type AppNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator = () => {
@@ -81,6 +61,10 @@ const AppNavigator = () => {
         <RootStack.Screen name="Contact" component={ContactScreen} />
         <RootStack.Screen name="DetailNews" component={DetailNewsScreen} />
         <RootStack.Screen name="DetailProfile" component={DetailProFile} />
+        <RootStack.Screen
+          name="SearchResultScreen"
+          component={SearchResultScreen}
+        />
       </RootStack.Navigator>
     </>
   ) : (

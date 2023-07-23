@@ -1,10 +1,13 @@
-import {IAMAuth} from 'google-auth-library';
+
 import {View, StatusBar, Image, StyleSheet, Text} from 'react-native';
-import {AppImages} from '../constant/AppAsset';
+import {AppIcons, AppImages} from '../constant/AppAsset';
 import UserInfoCard from '../components/UserInfoCard';
-import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
+import {AppNavigationProp} from '../navigation/AppNavigator';
 
 const DetailProFile = () => {
+  const navigation = useNavigation<AppNavigationProp>();
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style={{elevation: 3}}>
@@ -13,8 +16,20 @@ const DetailProFile = () => {
           source={require('../assets/img/bannerFpoly.png')}
         />
         <View style={styles.backGround}></View>
+
         <Image style={styles.logo} source={AppImages.poly} />
         <NameAndAvatarContainer />
+        <View style={styles.backButton}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.goBack();
+            }}>
+            <Image
+              style={{tintColor: 'white', width: 24, height: 24}}
+              source={AppIcons.back}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
       <ScrollView
         showsHorizontalScrollIndicator={false}
@@ -94,6 +109,13 @@ const styles = StyleSheet.create({
     height: 90,
     position: 'absolute',
     bottom: 50,
+  },
+  backButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 100,
+    height: 100,
+    position: 'absolute',
   },
 });
 export default DetailProFile;

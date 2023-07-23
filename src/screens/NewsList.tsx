@@ -39,9 +39,7 @@ const DashBoard: React.FC = () => {
   const [isListNewRefesh, setListNewRefesh] = useState<boolean>(false);
   const [data, setData] = useState(FakeNews);
   const fillterDataByType = () => {
-    console.log(FakeNews === data);
     if (tabSelected === 'All') return FakeNews;
-    console.log(FakeNews.filter(item => item.type === tabSelected));
     return FakeNews.filter(item => item.type === tabSelected);
   };
   const onTabPress = (newsType: NewsType | string) => {
@@ -71,7 +69,6 @@ const DashBoard: React.FC = () => {
     <>
       <View
         style={{
-          marginTop: 20,
           paddingHorizontal: 20,
         }}>
         <ScrollView

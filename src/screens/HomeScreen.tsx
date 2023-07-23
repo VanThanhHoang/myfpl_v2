@@ -4,6 +4,7 @@ import {getData} from '../service/test.callapi';
 import {useEffect} from 'react';
 import AppToolBar from '../components/AppToolBar';
 import {getEmail} from '../service/GetEmail';
+import SearchBar from '../components/SearchBar';
 const HomeScreen = () => {
   useEffect(() => {
     getData();
@@ -18,6 +19,7 @@ const HomeScreen = () => {
   return (
     <ScreenContainer>
       <AppToolBar />
+      <SearchBar />
       <DashBoard />
     </ScreenContainer>
   );
