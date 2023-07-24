@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react-native';
 import _ from 'lodash';
 import { AppIcons } from '../constant/AppAsset';
-import { Color } from '../constant/Colors';
+
 
 interface GradeItem {
   name: string;
