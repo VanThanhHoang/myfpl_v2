@@ -38,6 +38,10 @@ export const AppIcons = {
   search: require('../assets/icon/ic_search.png'),
   clear: require('../assets/icon/ic_clear.png'),
   sendEmail: require('../assets/icon/ic_send_mail.png'),
+
+  //Transcript sort icon
+  asc: require('../assets/icon/up_arrow.png'),
+  desc: require('../assets/icon/down_arrow.png'),
 };
 export const AppImages = {
   poly: require('../assets/img/img_poly.png'),
