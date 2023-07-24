@@ -33,7 +33,6 @@ const ContactInfoItem = ({info, name}: ContactInfoItemProps) => {
   return (
     <View style={{marginVertical: 10}}>
       <Text style={[styles.textInfo, {color: 'black'}]}>{name} :</Text>
-
       <View style={styles.container}>
         <Text style={styles.textInfo}>{info}</Text>
         <TouchableOpacity onPress={CoppyToClipBoard}>

@@ -1,34 +1,52 @@
 import ScreenContainer from '../components/ScreenContainer';
 import ScreenToolBar from '../components/ScreenToolBar';
-import {Text, StyleSheet, View, Image} from 'react-native';
+import {Text, StyleSheet, View, Image, StatusBar} from 'react-native';
 import {AppIcons, AppImages} from '../constant/AppAsset';
 import moment from 'moment';
-import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 import {AppNavigationProp} from '../navigation/AppNavigator';
+import {BlurView} from '@react-native-community/blur';
+import {Color} from '../constant/Colors';
 const DetailNewsScreen = () => {
   const navigation = useNavigation<AppNavigationProp>();
   const datetime = moment('2023-07-18T17:21:19.791Z', 'YYYYMMDD');
   // Tùy chỉnh ngôn ngữ thành tiếng Việt
   datetime.locale('vi');
   return (
-    <ScreenContainer>
-      <ScreenToolBar
-        onButtonBackPress={() => {
-          navigation.goBack();
-        }}
-        title="Chi tiết bài đăng"
-      />
+    <View style={{flex: 1}}>
+      <StatusBar translucent backgroundColor="transparent" />
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{elevation: 3}}>
+        <View>
           <Image
             style={styles.banner}
             source={require('../assets/img/img_banner.png')}
           />
         </View>
-        <View style={{padding: 24}}>
+        <View
+          style={{
+            backgroundColor: 'white',
+            top: -40,
+            padding: 24,
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
+          }}>
+          <View
+            style={{
+              backgroundColor: '#0b85e5',
+              borderRadius: 20,
+              width: 100,
+              height: 40,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <Text style={{fontWeight: 'bold', fontSize: 17, color: 'white'}}>
+              Học tập
+            </Text>
+          </View>
           <Text style={styles.title}>Bí quyết thành công trong học tập</Text>
+
           <View
             style={{
               flexDirection: 'row',
@@ -73,7 +91,39 @@ const DetailNewsScreen = () => {
           source={AppImages.poly}
         />
       </ScrollView>
-    </ScreenContainer>
+      <View
+        style={{
+          borderRadius: 20,
+          top: 50,
+          position: 'absolute',
+          left: 10,
+          width: 50,
+          height: 50,
+          backgroundColor: 'rgba(255, 165, 0, 0.6)',
+        }}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}
+          style={{
+            alignItems: 'center',
+            width: '100%',
+            height: '100%',
+            justifyContent: 'center',
+          }}>
+          <Image
+            style={{
+              width: 18,
+              tintColor: 'white',
+
+              height: 18,
+              resizeMode: 'contain',
+            }}
+            source={AppIcons.back}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -111,9 +161,8 @@ const styles = StyleSheet.create({
   banner: {
     width: '101%',
     alignSelf: 'center',
-    height: 200,
-    marginTop: 30,
     resizeMode: 'cover',
+    height: 400,
   },
 });
 

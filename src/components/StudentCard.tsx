@@ -17,9 +17,7 @@ const StudentCard = () => {
           {!showQr ? (
             <Image
               style={[styles.avatar]}
-              source={{
-                uri: 'https://lh3.googleusercontent.com/a/AAcHTtcaYbY_Y4JFNJK22N6omBixSkEEQkNPy96fJ7-3oJ72og=s96-c',
-              }}
+              source={require('../assets/img/anhthesv.jpg')}
             />
           ) : (
             <QRCode
@@ -113,7 +111,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   avatar: {
-    height: 100,
+    height: 110,
     borderRadius: 10,
     width: 100,
   },

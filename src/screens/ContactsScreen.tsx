@@ -32,20 +32,6 @@ const ContactInfos = [
 ];
 const ContactScreen = () => {
   const navigation = useNavigation<AppNavigationProp>();
-  const shareViaEmail = async () => {
-    const shareOptions = {
-      subject: 'Chia sẻ qua email',
-      body: 'Nội dung bạn muốn chia sẻ qua email',
-      recipients: ['recipient1@example.com', 'recipient2@example.com'], // Địa chỉ email người nhận, có thể là mảng các địa chỉ email
-    };
-
-    try {
-      const result = await Share.open(shareOptions);
-      console.log('Kết quả chia sẻ:', result);
-    } catch (error: any) {
-      console.log('Lỗi khi chia sẻ:', error.message);
-    }
-  };
 
   return (
     <ScreenContainer>
