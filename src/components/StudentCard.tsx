@@ -24,8 +24,8 @@ const StudentCard = () => {
           ) : (
             <QRCode
               logo={AppIcons.poly}
-              logoSize={30}
-              logoBackgroundColor="transparent"
+              logoSize={20}
+              logoBackgroundColor="white"
               value="https://www.facebook.com/luvmbdev/"
             />
           )}
