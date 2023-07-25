@@ -7,13 +7,14 @@ import {
   StyleSheet,
 } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
-import Share, {ShareOptions} from 'react-native-share';
-import {AppIcons} from '../constant/AppAsset';
+import Share, { ShareOptions } from 'react-native-share';
+import { AppIcons } from '../constant/AppAsset';
 type ContactInfoItemProps = {
   name: string;
   info: string;
 };
-const ContactInfoItem = ({info, name}: ContactInfoItemProps) => {
+import { PoppinsText } from './text/StyledText';
+const ContactInfoItem = ({ info, name }: ContactInfoItemProps) => {
   const CoppyToClipBoard = () => {
     Clipboard.setString(info);
     ToastAndroid.show('Đã sao chép thông tin liên hệ', ToastAndroid.SHORT);
@@ -31,10 +32,10 @@ const ContactInfoItem = ({info, name}: ContactInfoItemProps) => {
     }
   };
   return (
-    <View style={{marginVertical: 10}}>
-      <Text style={[styles.textInfo, {color: 'black'}]}>{name} :</Text>
+    <View style={{ marginVertical: 10 }}>
+      <PoppinsText style={[styles.textInfo, { color: 'black' }]}>{name} :</PoppinsText>
       <View style={styles.container}>
-        <Text style={styles.textInfo}>{info}</Text>
+        <PoppinsText style={styles.textInfo}>{info}</PoppinsText>
         <TouchableOpacity onPress={CoppyToClipBoard}>
           <Image style={styles.iconClipbroad} source={AppIcons.clipBroad} />
         </TouchableOpacity>

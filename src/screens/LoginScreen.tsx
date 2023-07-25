@@ -1,15 +1,17 @@
-import {Image, Text, View, ImageStyle, StyleSheet} from 'react-native';
+import { Image, Text, View, ImageStyle, StyleSheet } from 'react-native';
 import LoginGoogleButton from '../components/buttons/LoginGooglen';
 import ShowModalSelectFacilityButton from '../components/buttons/ShowModalSelectFacility';
-import {useCallback, useEffect, useState} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import SelectFacilityModal from '../modal/SelectFacility';
-import {Facility} from '../types/Facility';
-import {AppImages} from '../constant/AppAsset';
+import { Facility } from '../types/Facility';
+import { AppImages } from '../constant/AppAsset';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AsyncStorageKey} from '../constant/AsyncStorageKey';
-import {loginWithGoogle} from '../service/LoginWithGoogle';
-import {useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../navigation/AppNavigator';
+import { AsyncStorageKey } from '../constant/AsyncStorageKey';
+import { loginWithGoogle } from '../service/LoginWithGoogle';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProp } from '../navigation/AppNavigator';
+import { PoppinsText } from '../components/text/StyledText';
+
 const LoginScreen = () => {
   const appNavigation = useNavigation<AppNavigationProp>();
   const [facility, setFacility] = useState<Facility>();
@@ -34,16 +36,16 @@ const LoginScreen = () => {
     setLoading(false);
     appNavigation.reset({
       index: 0, // chỉ định vị trí màn hình muốn reset
-      routes: [{name: 'Main'}], // chỉ định tên màn hình mà bạn muốn reset đến
+      routes: [{ name: 'Main' }], // chỉ định tên màn hình mà bạn muốn reset đến
     });
   }, []);
   useEffect(() => {
     getFacilityFromStorage();
   }, []);
   return (
-    <View style={{flex: 1, padding: 24}}>
+    <View style={{ flex: 1, padding: 24 }}>
       <View style={styles.container}>
-        <Text>Thong tin gi do moi</Text>
+        <PoppinsText>Thong tin gi do moi</PoppinsText>
       </View>
       <ShowModalSelectFacilityButton
         label={facility ? facility.name : ''}

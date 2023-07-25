@@ -1,20 +1,21 @@
 import ScreenContainer from '../components/ScreenContainer';
 import ScreenToolBar from '../components/ScreenToolBar';
-import {Text, StyleSheet, View, Image, StatusBar} from 'react-native';
-import {AppIcons, AppImages} from '../constant/AppAsset';
+import { Text, StyleSheet, View, Image, StatusBar } from 'react-native';
+import { AppIcons, AppImages } from '../constant/AppAsset';
 import moment from 'moment';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
-import {useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../navigation/AppNavigator';
-import {BlurView} from '@react-native-community/blur';
-import {Color} from '../constant/Colors';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProp } from '../navigation/AppNavigator';
+import { BlurView } from '@react-native-community/blur';
+import { Color } from '../constant/Colors';
+import { PoppinsText } from '../components/text/StyledText';
 const DetailNewsScreen = () => {
   const navigation = useNavigation<AppNavigationProp>();
   const datetime = moment('2023-07-18T17:21:19.791Z', 'YYYYMMDD');
   // Tùy chỉnh ngôn ngữ thành tiếng Việt
   datetime.locale('vi');
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <StatusBar translucent backgroundColor="transparent" />
 
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -41,11 +42,11 @@ const DetailNewsScreen = () => {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <Text style={{fontWeight: 'bold', fontSize: 17, color: 'white'}}>
+            <PoppinsText style={{ fontWeight: 'bold', fontSize: 17, color: 'white' }}>
               Học tập
-            </Text>
+            </PoppinsText>
           </View>
-          <Text style={styles.title}>Bí quyết thành công trong học tập</Text>
+          <PoppinsText style={styles.title}>Bí quyết thành công trong học tập</PoppinsText>
 
           <View
             style={{
@@ -55,13 +56,13 @@ const DetailNewsScreen = () => {
             }}>
             <View style={styles.authorContainer}>
               <Image style={styles.image} source={AppIcons.admin} />
-              <Text style={styles.nameText}>Hoàng Văn Thành</Text>
+              <PoppinsText style={styles.nameText}>Hoàng Văn Thành</PoppinsText>
             </View>
-            <Text style={styles.nameText}>
+            <PoppinsText style={styles.nameText}>
               {datetime.format('Do MMM  YYYY')}
-            </Text>
+            </PoppinsText>
           </View>
-          <Text style={styles.contentText}>
+          <PoppinsText style={styles.contentText}>
             Phòng Đào Tạo thông báo yêu cầu các bạn sinh viên đang thiếu bằng
             tốt nghiệp THPT vui lòng bổ sung đầy đủ hồ sơ. Nộp bản sao/photo
             công chứng bằng THPT là yêu cầu bắt buộc để lưu trữ hồ sơ sinh viên
@@ -78,7 +79,7 @@ const DetailNewsScreen = () => {
             truy cập TẠI ĐÂY để kiểm tra thông tin cá nhân cũng như thông tin
             nộp bằng THPT (sinh viên chưa bổ sung bằng THPT sẽ được ghi chú
             "Chưa nộp bằng THPT") Trân trọng, Phòng TC&QLDT.
-          </Text>
+          </PoppinsText>
         </View>
         <Image
           style={{

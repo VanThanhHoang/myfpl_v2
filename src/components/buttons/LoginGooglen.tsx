@@ -1,17 +1,18 @@
-import {Image, Text, TouchableOpacity} from 'react-native';
-import {AppAnimations, AppIcons} from '../../constant/AppAsset';
-import {buttonGeneralStyle} from './GenaralStyles';
+import { Image, Text, TouchableOpacity } from 'react-native';
+import { AppAnimations, AppIcons } from '../../constant/AppAsset';
+import { buttonGeneralStyle } from './GenaralStyles';
+import { PoppinsText } from '../text/StyledText';
 
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {ApiKey} from '../../constant/ApiKey';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { ApiKey } from '../../constant/ApiKey';
 
 import AnimatedLottieView from 'lottie-react-native';
-import {memo} from 'react';
+import { memo } from 'react';
 type LoginGoogleButtonProps = {
   isLoading: boolean;
   onPress: Function;
 };
-const LoginGoogleButton = ({isLoading, onPress}: LoginGoogleButtonProps) => {
+const LoginGoogleButton = ({ isLoading, onPress }: LoginGoogleButtonProps) => {
   GoogleSignin.configure({
     webClientId: ApiKey.googleClientId,
   });
@@ -39,7 +40,7 @@ const LoginGoogleButton = ({isLoading, onPress}: LoginGoogleButtonProps) => {
       ) : (
         <>
           <Image style={buttonGeneralStyle.icon} source={AppIcons.google} />
-          <Text style={buttonGeneralStyle.text}>Đăng nhập với Google</Text>
+          <PoppinsText style={buttonGeneralStyle.text}>Đăng nhập với Google</PoppinsText>
         </>
       )}
     </TouchableOpacity>

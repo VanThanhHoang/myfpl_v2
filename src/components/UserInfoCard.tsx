@@ -1,13 +1,14 @@
-import {View, StyleSheet, Text} from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
+import { PoppinsText } from './text/StyledText';
 type UserInfoCardProps = {
   infoLabel: string;
   info: string;
 };
-const UserInfoCard = ({info, infoLabel}: UserInfoCardProps) => {
+const UserInfoCard = ({ info, infoLabel }: UserInfoCardProps) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.infoLabel}>{infoLabel}</Text>
-      <Text style={styles.info}>{info}</Text>
+      <PoppinsText style={styles.infoLabel}>{infoLabel}</PoppinsText>
+      <PoppinsText style={styles.info}>{info}</PoppinsText>
     </View>
   );
 };

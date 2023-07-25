@@ -1,19 +1,20 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {AppIcons, AppImages} from '../constant/AppAsset';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { AppIcons, AppImages } from '../constant/AppAsset';
 import QRCode from 'react-native-qrcode-svg';
-import {useState} from 'react';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { useState } from 'react';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { PoppinsText } from './text/StyledText';
 const StudentCard = () => {
   const [showQr, setShowQr] = useState<boolean>(false);
   return (
     <View style={styles.container}>
       <Header />
-      <View style={{flexDirection: 'row'}}>
+      <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity
           onPress={() => {
             setShowQr(!showQr);
           }}
-          style={{width: 100}}>
+          style={{ width: 100 }}>
           {!showQr ? (
             <Image
               style={[styles.avatar]}
@@ -28,25 +29,25 @@ const StudentCard = () => {
             />
           )}
 
-          <Text style={{fontSize: 12, fontWeight: '700'}}>
+          <PoppinsText style={{ fontSize: 12, fontWeight: '700' }}>
             {!showQr
               ? 'Chạm để hiển thị mã QR'
               : 'Chạm để hiển thị ảnh sinh viên'}
-          </Text>
+          </PoppinsText>
         </TouchableOpacity>
-        <View style={{marginLeft: 30}}>
+        <View style={{ marginLeft: 30 }}>
           <NameView />
           <InfoView infoType="MSSV/StudentId" value="PS25812" />
           <InfoView infoType="Giá trị đến/Valid to" value="12/2024" />
           <View style={styles.webSchoolContainer}>
-            <Text
+            <PoppinsText
               style={{
                 fontWeight: '500',
                 color: 'white',
                 textAlign: 'center',
               }}>
               Caodang.fpt.edu.vn
-            </Text>
+            </PoppinsText>
           </View>
         </View>
       </View>
@@ -67,8 +68,8 @@ const StudentCard = () => {
 const NameView = () => {
   return (
     <View>
-      <Text style={styles.infoTypeLabel}>Họ và tên/Name</Text>
-      <Text style={{color: '#f27126', fontWeight: '900'}}>HOÀNG VĂN THÀNH</Text>
+      <PoppinsText style={styles.infoTypeLabel}>Họ và tên/Name</PoppinsText>
+      <PoppinsText style={{ color: '#f27126', fontWeight: '900' }}>HOÀNG VĂN THÀNH</PoppinsText>
     </View>
   );
 };
@@ -76,11 +77,11 @@ type InfoViewProp = {
   infoType: string;
   value: string;
 };
-const InfoView = ({infoType, value}: InfoViewProp): React.JSX.Element => {
+const InfoView = ({ infoType, value }: InfoViewProp): React.JSX.Element => {
   return (
     <View>
-      <Text style={styles.infoTypeLabel}>{infoType}</Text>
-      <Text style={{color: 'black', fontWeight: '700'}}>{value}</Text>
+      <PoppinsText style={styles.infoTypeLabel}>{infoType}</PoppinsText>
+      <PoppinsText style={{ color: 'black', fontWeight: '700' }}>{value}</PoppinsText>
     </View>
   );
 };
@@ -89,17 +90,17 @@ const Header = () => {
     <View style={styles.headerContainer}>
       <Image style={styles.polyImage} source={AppImages.poly} />
       <View style={styles.schoolInfoContainer}>
-        <Text style={styles.schoolName}>Trường Cao đẳng FPT Polytechnic</Text>
+        <PoppinsText style={styles.schoolName}>Trường Cao đẳng FPT Polytechnic</PoppinsText>
         <View style={styles.cardNameContainer}>
-          <Text style={styles.cardName}>THẺ SINH VIÊN</Text>
+          <PoppinsText style={styles.cardName}>THẺ SINH VIÊN</PoppinsText>
         </View>
-        <Text style={[styles.schoolName]}>StudentCard</Text>
+        <PoppinsText style={[styles.schoolName]}>StudentCard</PoppinsText>
       </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
-  infoTypeLabel: {color: 'black', fontWeight: '400'},
+  infoTypeLabel: { color: 'black', fontWeight: '400' },
   webSchoolContainer: {
     height: 25,
     fontWeigh: '400',
