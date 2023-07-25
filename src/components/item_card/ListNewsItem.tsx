@@ -1,12 +1,12 @@
-import React, { memo } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
-import { AppIcons } from '../../constant/AppAsset';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import React, {memo} from 'react';
+import {View, StyleSheet, Text, Image} from 'react-native';
+import {AppIcons} from '../../constant/AppAsset';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import 'moment/locale/vi';
 import moment from 'moment';
-import { useNavigation } from '@react-navigation/native';
-import { AppNavigationProp } from '../../navigation/AppNavigator';
-import { PoppinsText } from '../text/StyledText';
+import {useNavigation} from '@react-navigation/native';
+import {AppNavigationProp} from '../../navigation/AppNavigator';
+import {PoppinsText} from '../text/StyledText';
 type ListNewsItemProps = {
   name: string;
   timePushlish: string;
@@ -31,7 +31,10 @@ const ListNewsItem: React.FC<ListNewsItemProps> = ({
         navigation.navigate('DetailNews');
       }}
       style={styles.container}>
-      <PoppinsText numberOfLines={2} lineBreakMode="middle" style={[styles.title]}>
+      <PoppinsText
+        numberOfLines={2}
+        lineBreakMode="middle"
+        style={[styles.title]}>
         {title}
       </PoppinsText>
       <PoppinsText numberOfLines={3} style={styles.content}>
@@ -39,6 +42,7 @@ const ListNewsItem: React.FC<ListNewsItemProps> = ({
       </PoppinsText>
       <View
         style={{
+          flexWrap: 'wrap',
           justifyContent: 'space-between',
           flexDirection: 'row',
           alignItems: 'center',
@@ -52,13 +56,16 @@ const ListNewsItem: React.FC<ListNewsItemProps> = ({
           }}>
           <Image
             resizeMode="contain"
-            style={{ width: 12, height: 12 }}
+            style={{width: 12, height: 12}}
             source={AppIcons.time}
           />
-          <PoppinsText style={styles.timeText}>{datetime.fromNow()}</PoppinsText>
+          <PoppinsText style={styles.timeText}>
+            {datetime.fromNow()}
+          </PoppinsText>
         </View>
         <View style={styles.newsTypeContainer}>
-          <PoppinsText style={{ fontSize: 12, fontWeight: '700', color: 'white' }}>
+          <PoppinsText
+            style={{fontSize: 12, fontWeight: '700', color: 'white'}}>
             {newsType}
           </PoppinsText>
         </View>
@@ -66,7 +73,7 @@ const ListNewsItem: React.FC<ListNewsItemProps> = ({
     </TouchableOpacity>
   );
 };
-const AuthorView: React.FC<{ name: string }> = ({ name }) => {
+const AuthorView: React.FC<{name: string}> = ({name}) => {
   const authorstyles = StyleSheet.create({
     container: {
       marginVertical: 10,
@@ -88,7 +95,7 @@ const AuthorView: React.FC<{ name: string }> = ({ name }) => {
   );
 };
 const styles = StyleSheet.create({
-  content: { fontSize: 14, color: '#8b9cab', fontWeight: '500' },
+  content: {fontSize: 14, color: '#8b9cab', fontWeight: '500'},
   newsTypeContainer: {
     width: 60,
     alignItems: 'center',
@@ -111,7 +118,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '95%',
     alignSelf: 'center',
-    height: 120,
+    height: 160,
     flexDirection: 'column',
     paddingHorizontal: 30,
     justifyContent: 'center',
