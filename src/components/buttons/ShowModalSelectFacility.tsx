@@ -1,6 +1,7 @@
-import {Image, Text, TouchableOpacity} from 'react-native';
-import {AppIcons} from '../../constant/AppAsset';
-import {buttonGeneralStyle} from './GenaralStyles';
+import { Image, Text, TouchableOpacity } from 'react-native';
+import { AppIcons } from '../../constant/AppAsset';
+import { buttonGeneralStyle } from './GenaralStyles';
+import { PoppinsText } from '../text/StyledText';
 interface ShowModalSelectFacilityButtonProps {
   onPress: Function;
   label: string;
@@ -16,9 +17,9 @@ const ShowModalSelectFacilityButton = ({
       }}
       style={buttonGeneralStyle.container}>
       <Image style={buttonGeneralStyle.icon} source={AppIcons.poly} />
-      <Text style={buttonGeneralStyle.text}>
+      <PoppinsText style={buttonGeneralStyle.text}>
         {label ? label : 'Chọn cơ sở đào tạo'}
-      </Text>
+      </PoppinsText>
     </TouchableOpacity>
   );
 };

@@ -1,11 +1,12 @@
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import {AppIcons} from '../../constant/AppAsset';
-import {useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../../navigation/AppNavigator';
-import {Logout} from '../../service/Logout';
-import {useDispatch} from 'react-redux';
-import {AppDispatch} from '../../redux/store';
-import {showLoadingModal} from '../../helper/showLoadingModal';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { AppIcons } from '../../constant/AppAsset';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProp } from '../../navigation/AppNavigator';
+import { Logout } from '../../service/Logout';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../redux/store';
+import { showLoadingModal } from '../../helper/showLoadingModal';
+import { PoppinsText } from '../text/StyledText';
 
 const LogoutButton = () => {
   const appNavigation = useNavigation<AppNavigationProp>();
@@ -17,12 +18,12 @@ const LogoutButton = () => {
         await Logout();
         appNavigation.reset({
           index: 0, // chỉ định vị trí màn hình muốn reset
-          routes: [{name: 'Login'}], // chỉ định tên màn hình mà bạn muốn reset đến
+          routes: [{ name: 'Login' }], // chỉ định tên màn hình mà bạn muốn reset đến
         });
         showLoadingModal(dishpatch, false);
       }}
       style={styles.container}>
-      <Text style={styles.label}>Đăng xuất</Text>
+      <PoppinsText style={styles.label}>Đăng xuất</PoppinsText>
       <Image style={styles.icon} source={AppIcons.logOut} />
     </TouchableOpacity>
   );

@@ -1,14 +1,15 @@
-import {Text} from 'react-native';
+import { Text } from 'react-native';
 import ScreenContainer from '../components/ScreenContainer';
-import {getData} from '../service/test.callapi';
-import {useEffect} from 'react';
+import { getData } from '../service/test.callapi';
+import { useEffect } from 'react';
+import { PoppinsText } from '../components/text/StyledText';
 const EmailScreen = () => {
   useEffect(() => {
     getData();
   }, []);
   return (
     <ScreenContainer>
-      <Text>mail</Text>
+      <PoppinsText>mail</PoppinsText>
     </ScreenContainer>
   );
 };

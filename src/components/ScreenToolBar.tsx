@@ -1,13 +1,14 @@
-import {View, StyleSheet, Text, Image} from 'react-native';
-import {Color} from '../constant/Colors';
-import {AppIcons} from '../constant/AppAsset';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { View, StyleSheet, Text, Image } from 'react-native';
+import { Color } from '../constant/Colors';
+import { AppIcons } from '../constant/AppAsset';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { PoppinsText } from './text/StyledText';
 
 type ScreenToolBar = {
   title: string;
   onButtonBackPress: Function;
 };
-const ScreenToolBar = ({title, onButtonBackPress}: ScreenToolBar) => {
+const ScreenToolBar = ({ title, onButtonBackPress }: ScreenToolBar) => {
   return (
     <View style={styles.tabContainer}>
       <View style={styles.buttonContainer}>
@@ -18,7 +19,7 @@ const ScreenToolBar = ({title, onButtonBackPress}: ScreenToolBar) => {
           <Image style={styles.icon} source={AppIcons.back} />
         </TouchableOpacity>
       </View>
-      <Text style={styles.tabBarTitle}>{title}</Text>
+      <PoppinsText style={styles.tabBarTitle}>{title}</PoppinsText>
     </View>
   );
 };

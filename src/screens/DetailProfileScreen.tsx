@@ -1,15 +1,16 @@
-import {View, StatusBar, Image, StyleSheet, Text} from 'react-native';
-import {AppIcons, AppImages} from '../constant/AppAsset';
+import { View, StatusBar, Image, StyleSheet, Text } from 'react-native';
+import { AppIcons, AppImages } from '../constant/AppAsset';
 import UserInfoCard from '../components/UserInfoCard';
-import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
-import {useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../navigation/AppNavigator';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProp } from '../navigation/AppNavigator';
+import { PoppinsText } from '../components/text/StyledText';
 
 const DetailProFile = () => {
   const navigation = useNavigation<AppNavigationProp>();
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
-      <View style={{elevation: 3}}>
+    <View style={{ flex: 1, backgroundColor: 'white' }}>
+      <View style={{ elevation: 3 }}>
         <Image
           style={styles.banner}
           source={require('../assets/img/bannerFpoly.png')}
@@ -24,7 +25,7 @@ const DetailProFile = () => {
               navigation.goBack();
             }}>
             <Image
-              style={{tintColor: 'white', width: 24, height: 24}}
+              style={{ tintColor: 'white', width: 24, height: 24 }}
               source={AppIcons.back}
             />
           </TouchableOpacity>
@@ -32,7 +33,7 @@ const DetailProFile = () => {
       </View>
       <ScrollView
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{justifyContent: 'flex-start', padding: 24}}>
+        contentContainerStyle={{ justifyContent: 'flex-start', padding: 24 }}>
         <UserInfoCard infoLabel="Mã số sinh viên" info="VIET69812" />
         <UserInfoCard infoLabel="Giới tính" info="Nam" />
         <UserInfoCard infoLabel="Ngày sinh" info="05-06-2002" />
@@ -56,10 +57,10 @@ const NameAndAvatarContainer = () => {
         }}
       />
 
-      <Text style={styles.name}>Hoàng Văn Thành</Text>
-      <Text style={[styles.name, {fontSize: 14}]}>
-        Thanhhvps25812@fpt.edu.vn
-      </Text>
+      <PoppinsText style={styles.name}>Hoàng Văn Thành</PoppinsText>
+      <PoppinsText style={[styles.name, { fontSize: 14 }]}>
+        thanhhvps25812@fpt.edu.vn
+      </PoppinsText>
     </View>
   );
 };

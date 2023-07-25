@@ -1,4 +1,5 @@
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { PoppinsText } from './text/StyledText';
 
 type NewsTabItem = {
   isSelected: boolean;
@@ -6,14 +7,14 @@ type NewsTabItem = {
   onPress: Function;
 };
 
-export const NewsTabItem = ({name, isSelected, onPress}: NewsTabItem) => {
+export const NewsTabItem = ({ name, isSelected, onPress }: NewsTabItem) => {
   return (
     <TouchableOpacity
       onPress={() => {
         onPress();
       }}
-      style={[styles.container, isSelected && {backgroundColor: '#04b14a'}]}>
-      <Text style={[styles.label, isSelected && {color: 'white'}]}>{name}</Text>
+      style={[styles.container, isSelected && { backgroundColor: '#04b14a' }]}>
+      <PoppinsText style={[styles.label, isSelected && { color: 'white' }]}>{name}</PoppinsText>
     </TouchableOpacity>
   );
 };

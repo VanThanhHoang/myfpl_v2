@@ -1,20 +1,22 @@
-import React, {memo} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import React, { memo } from 'react';
+import { StyleSheet, View, Image } from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
-import {Alert} from 'react-native';
-import {AppIcons} from '../constant/AppAsset';
-import {fakeSchedule} from '../modal/FakeData';
-import {ClassInfo} from '../types/ClassInfo';
-import {convertHourAndMinuesToString} from '../helper/convertHourAndMinute';
+import { Alert } from 'react-native';
+import { AppIcons } from '../constant/AppAsset';
+import { fakeSchedule } from '../modal/FakeData';
+import { ClassInfo } from '../types/ClassInfo';
+import { convertHourAndMinuesToString } from '../helper/convertHourAndMinute';
 import moment from 'moment';
+import { PoppinsText } from '../components/text/StyledText';
+
 const ScheduleTimes: React.FC = () => {
   const renderDetail = (classInfo: ClassInfo): JSX.Element => {
     return (
-      <View style={{flex: 1}}>
-        <Text
+      <View style={{ flex: 1 }}>
+        <PoppinsText
           style={[
             styles.rowTitle,
-          ]}>{`${classInfo.subject.name} (${classInfo.subject.code})`}</Text>
+          ]}>{`${classInfo.subject.name} (${classInfo.subject.code})`}</PoppinsText>
         <View style={styles.descriptionContainer}>
           <View
             style={{
@@ -23,9 +25,9 @@ const ScheduleTimes: React.FC = () => {
               justifyContent: 'flex-start',
             }}>
             <Image style={styles.icon} source={AppIcons.des}></Image>
-            <Text style={[styles.textDescriptionStyle]}>
+            <PoppinsText style={[styles.textDescriptionStyle]}>
               {classInfo.description}
-            </Text>
+            </PoppinsText>
           </View>
           <View
             style={{
@@ -34,26 +36,26 @@ const ScheduleTimes: React.FC = () => {
               justifyContent: 'flex-start',
             }}>
             <Image style={styles.icon} source={AppIcons.place}></Image>
-            <Text style={[styles.textDescriptionStyle]}>
+            <PoppinsText style={[styles.textDescriptionStyle]}>
               {classInfo.clsasAddress.room +
                 '* Tòa nhà ' +
                 classInfo.clsasAddress.buiding}
-            </Text>
+            </PoppinsText>
           </View>
 
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
             <Image
-              source={{uri: classInfo.teacher.photo}}
+              source={{ uri: classInfo.teacher.photo }}
               style={styles.imageStyle}
             />
-            <Text
+            <PoppinsText
               style={{
                 fontWeight: '500',
                 marginHorizontal: 5,
                 color: 'black',
               }}>
               {`${classInfo.teacher.name} (${classInfo.teacher.code})`}
-            </Text>
+            </PoppinsText>
           </View>
         </View>
       </View>
@@ -62,29 +64,29 @@ const ScheduleTimes: React.FC = () => {
 
   const renderTime = (classInfo: ClassInfo): JSX.Element => {
     return (
-      <View style={{width: 80, backgroundColor: '#ffffff'}}>
-        <Text
+      <View style={{ width: 80, backgroundColor: '#ffffff' }}>
+        <PoppinsText
           style={{
             fontSize: 14,
             color: '#327ab8',
             fontWeight: '700',
           }}>
           {moment(classInfo.date).subtract(10, 'days').calendar()}
-        </Text>
-        <Text
+        </PoppinsText>
+        <PoppinsText
           style={{
             fontSize: 13,
             color: 'black',
             fontWeight: '700',
           }}>
           {convertHourAndMinuesToString(classInfo.slot.startTime)}
-        </Text>
-        <Text
+        </PoppinsText>
+        <PoppinsText
           style={{
             color: '#BCC1CD',
           }}>
           {convertHourAndMinuesToString(classInfo.slot.endTime)}
-        </Text>
+        </PoppinsText>
       </View>
     );
   };
@@ -101,7 +103,7 @@ const ScheduleTimes: React.FC = () => {
           padding: 5,
           borderRadius: 13,
         }}
-        descriptionStyle={{color: 'white', fontWeight: '400'}}
+        descriptionStyle={{ color: 'white', fontWeight: '400' }}
         detailContainerStyle={{
           padding: 10,
           width: '98%',
