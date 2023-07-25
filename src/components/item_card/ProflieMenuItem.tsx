@@ -1,7 +1,7 @@
-import { Image, ImageSourcePropType, StyleSheet, Text, View } from 'react-native';
+import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AppIcons, AppImages } from '../../constant/AppAsset';
-import { PoppinsText } from '../text/StyledText';
+import { Text } from '../text/StyledText';
 type ProfileMenuItemsProps = {
   label: string;
   icon: ImageSourcePropType;
@@ -20,7 +20,7 @@ const ProfileMenuItem = ({ label, icon, onPress }: ProfileMenuItemsProps) => {
           }}
           style={styles.container}>
           <Image style={styles.icon} source={icon} />
-          <PoppinsText style={styles.label}>{label}</PoppinsText>
+          <Text style={styles.label}>{label}</Text>
         </TouchableOpacity>
         {/* <View style={styles.line} /> */}
       </View>

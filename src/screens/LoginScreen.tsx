@@ -1,4 +1,4 @@
-import { Image, Text, View, ImageStyle, StyleSheet } from 'react-native';
+import { Image, View, ImageStyle, StyleSheet } from 'react-native';
 import LoginGoogleButton from '../components/buttons/LoginGooglen';
 import ShowModalSelectFacilityButton from '../components/buttons/ShowModalSelectFacility';
 import { useCallback, useEffect, useState } from 'react';
@@ -10,7 +10,7 @@ import { AsyncStorageKey } from '../constant/AsyncStorageKey';
 import { loginWithGoogle } from '../service/LoginWithGoogle';
 import { useNavigation } from '@react-navigation/native';
 import { AppNavigationProp } from '../navigation/AppNavigator';
-import { PoppinsText } from '../components/text/StyledText';
+import { Text } from '../components/text/StyledText';
 
 const LoginScreen = () => {
   const appNavigation = useNavigation<AppNavigationProp>();
@@ -45,7 +45,7 @@ const LoginScreen = () => {
   return (
     <View style={{ flex: 1, padding: 24 }}>
       <View style={styles.container}>
-        <PoppinsText>Thong tin gi do moi</PoppinsText>
+        <Text>Thong tin gi do moi</Text>
       </View>
       <ShowModalSelectFacilityButton
         label={facility ? facility.name : ''}

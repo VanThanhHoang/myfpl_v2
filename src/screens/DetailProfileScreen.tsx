@@ -1,10 +1,10 @@
-import { View, StatusBar, Image, StyleSheet, Text } from 'react-native';
+import { View, StatusBar, Image, StyleSheet } from 'react-native';
 import { AppIcons, AppImages } from '../constant/AppAsset';
 import UserInfoCard from '../components/UserInfoCard';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { AppNavigationProp } from '../navigation/AppNavigator';
-import { PoppinsText } from '../components/text/StyledText';
+import { Text } from '../components/text/StyledText';
 
 const DetailProFile = () => {
   const navigation = useNavigation<AppNavigationProp>();
@@ -57,10 +57,10 @@ const NameAndAvatarContainer = () => {
         }}
       />
 
-      <PoppinsText style={styles.name}>Hoàng Văn Thành</PoppinsText>
-      <PoppinsText style={[styles.name, { fontSize: 14 }]}>
+      <Text style={styles.name}>Hoàng Văn Thành</Text>
+      <Text style={[styles.name, { fontSize: 14 }]}>
         thanhhvps25812@fpt.edu.vn
-      </PoppinsText>
+      </Text>
     </View>
   );
 };

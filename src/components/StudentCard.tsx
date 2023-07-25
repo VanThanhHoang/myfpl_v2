@@ -1,9 +1,9 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { AppIcons, AppImages } from '../constant/AppAsset';
 import QRCode from 'react-native-qrcode-svg';
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { PoppinsText } from './text/StyledText';
+import { Text } from './text/StyledText';
 const StudentCard = () => {
   const [showQr, setShowQr] = useState<boolean>(false);
   return (
@@ -29,25 +29,25 @@ const StudentCard = () => {
             />
           )}
 
-          <PoppinsText style={{ fontSize: 12, fontWeight: '700' }}>
+          <Text style={{ fontSize: 12, fontWeight: '700' }}>
             {!showQr
               ? 'Chạm để hiển thị mã QR'
               : 'Chạm để hiển thị ảnh sinh viên'}
-          </PoppinsText>
+          </Text>
         </TouchableOpacity>
         <View style={{ marginLeft: 30 }}>
           <NameView />
           <InfoView infoType="MSSV/StudentId" value="PS25812" />
           <InfoView infoType="Giá trị đến/Valid to" value="12/2024" />
           <View style={styles.webSchoolContainer}>
-            <PoppinsText
+            <Text
               style={{
                 fontWeight: '500',
                 color: 'white',
                 textAlign: 'center',
               }}>
               Caodang.fpt.edu.vn
-            </PoppinsText>
+            </Text>
           </View>
         </View>
       </View>
@@ -68,8 +68,8 @@ const StudentCard = () => {
 const NameView = () => {
   return (
     <View>
-      <PoppinsText style={styles.infoTypeLabel}>Họ và tên/Name</PoppinsText>
-      <PoppinsText style={{ color: '#f27126', fontWeight: '900' }}>HOÀNG VĂN THÀNH</PoppinsText>
+      <Text style={styles.infoTypeLabel}>Họ và tên/Name</Text>
+      <Text style={{ color: '#f27126', fontWeight: '900' }}>HOÀNG VĂN THÀNH</Text>
     </View>
   );
 };
@@ -80,8 +80,8 @@ type InfoViewProp = {
 const InfoView = ({ infoType, value }: InfoViewProp): React.JSX.Element => {
   return (
     <View>
-      <PoppinsText style={styles.infoTypeLabel}>{infoType}</PoppinsText>
-      <PoppinsText style={{ color: 'black', fontWeight: '700' }}>{value}</PoppinsText>
+      <Text style={styles.infoTypeLabel}>{infoType}</Text>
+      <Text style={{ color: 'black', fontWeight: '700' }}>{value}</Text>
     </View>
   );
 };
@@ -90,11 +90,11 @@ const Header = () => {
     <View style={styles.headerContainer}>
       <Image style={styles.polyImage} source={AppImages.poly} />
       <View style={styles.schoolInfoContainer}>
-        <PoppinsText style={styles.schoolName}>Trường Cao đẳng FPT Polytechnic</PoppinsText>
+        <Text style={styles.schoolName}>Trường Cao đẳng FPT Polytechnic</Text>
         <View style={styles.cardNameContainer}>
-          <PoppinsText style={styles.cardName}>THẺ SINH VIÊN</PoppinsText>
+          <Text style={styles.cardName}>THẺ SINH VIÊN</Text>
         </View>
-        <PoppinsText style={[styles.schoolName]}>StudentCard</PoppinsText>
+        <Text style={[styles.schoolName]}>StudentCard</Text>
       </View>
     </View>
   );

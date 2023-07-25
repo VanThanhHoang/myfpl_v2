@@ -1,5 +1,5 @@
 import ScreenContainer from '../components/ScreenContainer';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import ScreenToolBar from '../components/ScreenToolBar';
 import { View, Image, Linking } from 'react-native';
 import ContactInfoItem from '../components/ContactInfoItem';
@@ -8,7 +8,7 @@ import { AppIcons, AppImages } from '../constant/AppAsset';
 import { useNavigation } from '@react-navigation/native';
 import { AppNavigationProp } from '../navigation/AppNavigator';
 import Share from 'react-native-share';
-import { PoppinsText } from '../components/text/StyledText';
+import { Text } from '../components/text/StyledText';
 const ContactInfos = [
   {
     name: 'Phòng Dịch vụ sinh viên',
@@ -73,7 +73,7 @@ const ContactScreen = () => {
           }
         }}
         style={styles.buttonFacebook}>
-        <PoppinsText style={styles.label}>Fanpage CTSV FOLY HCM</PoppinsText>
+        <Text style={styles.label}>Fanpage CTSV FOLY HCM</Text>
         <Image
           style={{
             width: 30,

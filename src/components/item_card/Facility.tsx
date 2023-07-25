@@ -1,6 +1,6 @@
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { AppIcons } from '../../constant/AppAsset';
-import { PoppinsText } from '../text/StyledText';
+import { Text } from '../text/StyledText';
 interface FacilityCard {
   name: string;
   isSelected: boolean;
@@ -20,9 +20,9 @@ const FacilityCard = ({
         styles.container,
         isSelected && { borderColor: '#f27125', borderWidth: 0.5 },
       ]}>
-      <PoppinsText style={[styles.text, isSelected && { color: '#f27125' }]}>
+      <Text style={[styles.text, isSelected && { color: '#f27125' }]}>
         {name}
-      </PoppinsText>
+      </Text>
       {isSelected && <Image style={styles.icon} source={AppIcons.poly} />}
     </TouchableOpacity>
   );

@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { AppIcons } from '../constant/AppAsset';
 import { Color } from '../constant/Colors';
 import { useNavigation } from '@react-navigation/native';
 import { EmailNavigationProp } from '../navigation/AppNavigator';
-import { PoppinsText } from './text/StyledText';
+import { Text } from './text/StyledText';
 const AppToolBar: React.FC = () => {
   const navigation = useNavigation<EmailNavigationProp>();
   return (
@@ -15,7 +15,7 @@ const AppToolBar: React.FC = () => {
         }}
         style={styles.profileImage}
       />
-      <PoppinsText style={styles.nameText}>{'cc'}</PoppinsText>
+      <Text style={styles.nameText}>{'cc'}</Text>
       <View style={styles.qrNotificationContainer}>
         <TouchableOpacity>
           <Image source={AppIcons.qr} style={styles.qrImage} />

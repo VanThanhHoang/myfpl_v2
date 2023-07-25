@@ -1,8 +1,8 @@
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { Color } from '../constant/Colors';
 import { AppIcons } from '../constant/AppAsset';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { PoppinsText } from './text/StyledText';
+import { Text } from './text/StyledText';
 
 type ScreenToolBar = {
   title: string;
@@ -19,7 +19,7 @@ const ScreenToolBar = ({ title, onButtonBackPress }: ScreenToolBar) => {
           <Image style={styles.icon} source={AppIcons.back} />
         </TouchableOpacity>
       </View>
-      <PoppinsText style={styles.tabBarTitle}>{title}</PoppinsText>
+      <Text style={styles.tabBarTitle}>{title}</Text>
     </View>
   );
 };

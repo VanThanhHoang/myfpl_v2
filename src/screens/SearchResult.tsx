@@ -2,17 +2,19 @@ import ScreenContainer from '../components/ScreenContainer';
 import DashBoard from './NewsList';
 import SearchBar from '../components/SearchBar';
 import ScreenToolBar from '../components/ScreenToolBar';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import {
   AppNavigationProp,
   SearchResultScreenProps,
 } from '../navigation/AppNavigator';
-import {StyleSheet, Text, View} from 'react-native';
-import {Color} from '../constant/Colors';
+import { StyleSheet, View } from 'react-native';
+import { Color } from '../constant/Colors';
 import FakeNews from '../modal/FakeData';
-import {useEffect, useState} from 'react';
-import {News} from '../types/News';
+import { useEffect, useState } from 'react';
+import { News } from '../types/News';
 import NoResultView from '../components/NoResult';
+import { Text } from '../components/text/StyledText';
+
 const SearchResultScreen = () => {
   const navigation = useNavigation<AppNavigationProp>();
   const searchKey =
@@ -38,15 +40,15 @@ const SearchResultScreen = () => {
       <SearchBar searchKeyPassed={searchKey} />
 
       {data.length == 0 ? (
-        <View style={{paddingHorizontal: 24}}>
-          <Text style={{fontWeight: 'bold', fontSize: 17, marginVertical: 20}}>
+        <View style={{ paddingHorizontal: 24 }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 17, marginVertical: 20 }}>
             Xin lỗi, không có bài viết nào phù hợp với tìm kiếm của bạn !
           </Text>
           <NoResultView />
         </View>
       ) : (
         <>
-          <View style={{flexDirection: 'row', paddingHorizontal: 24}}>
+          <View style={{ flexDirection: 'row', paddingHorizontal: 24 }}>
             <Text style={styles.searchText}>Kết quả tìm kiếm cho</Text>
             <Text style={styles.searchKey}>{searchKey}</Text>
           </View>
