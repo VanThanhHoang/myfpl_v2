@@ -38,8 +38,10 @@ const Transcript: React.FC = () => {
     const average = parseFloat(calculateAverage(grades));
     return average >= 5.0 ? 'Passed' : 'Failed';
   };
-
-  const tableFooter = (grades: GradeItem[]) => (
+  type TableFooterProps = {
+    grades: GradeItem[];
+  };
+  const TableFooter = ({grades}: TableFooterProps) => (
     <View style={styles.tableFooter}>
       <Text style={styles.footerText}>
         Average Score: {calculateAverage(grades)}
@@ -194,7 +196,6 @@ const Transcript: React.FC = () => {
         style={{width: '90%'}}
         keyExtractor={(_, index) => index.toString()}
         ListHeaderComponent={tableHeader}
-        ListFooterComponent={() => tableFooter(transcript.grades)}
         stickyHeaderIndices={[0]}
         renderItem={({item, index}) => {
           const formattedMark = item.result.toFixed(1);
@@ -213,6 +214,7 @@ const Transcript: React.FC = () => {
           );
         }}
       />
+      <TableFooter grades={transcript.grades} />
     </View>
   );
 };
@@ -221,11 +223,10 @@ export default Transcript;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: '100%',
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: '10%',
   },
   tableHeader: {
     flexDirection: 'row',
@@ -264,6 +265,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   tableFooter: {
+    width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',

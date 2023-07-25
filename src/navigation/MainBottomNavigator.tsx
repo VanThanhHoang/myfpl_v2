@@ -6,6 +6,7 @@ import IconBottomTab from '../components/IconBottomTab';
 import {Color} from '../constant/Colors';
 import ProfileScreen from '../screens/ProfileScreen';
 import ScheduleScreen from '../screens/ScheduleScreen';
+import MarskScreen from '../screens/MarskScreen';
 
 const Tab = createBottomTabNavigator();
 const ScreenTabs = [
@@ -22,7 +23,7 @@ const ScreenTabs = [
   {
     name: 'Bảng điểm',
     icon: AppIcons.mark,
-    component: HomeScreen,
+    component: MarskScreen,
   },
   {
     name: 'Cá nhân',
@@ -68,8 +69,6 @@ const bottomTabContainerStyle: ViewStyle = {
   width: '100%',
   backgroundColor: 'white',
   alignSelf: 'center',
-  position: 'absolute',
-  borderTopRightRadius: 20,
   borderTopLeftRadius: 20,
   elevation: 5,
   height: 65,
