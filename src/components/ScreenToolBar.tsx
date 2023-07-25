@@ -1,14 +1,13 @@
-import { View, StyleSheet, Image } from 'react-native';
-import { Color } from '../constant/Colors';
-import { AppIcons } from '../constant/AppAsset';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Text } from './text/StyledText';
-
+import {View, StyleSheet, Image} from 'react-native';
+import {Color} from '../constant/Colors';
+import {AppIcons} from '../constant/AppAsset';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {Text} from './text/StyledText';
 type ScreenToolBar = {
   title: string;
   onButtonBackPress: Function;
 };
-const ScreenToolBar = ({ title, onButtonBackPress }: ScreenToolBar) => {
+const ScreenToolBar = ({title, onButtonBackPress}: ScreenToolBar) => {
   return (
     <View style={styles.tabContainer}>
       <View style={styles.buttonContainer}>
@@ -25,9 +24,9 @@ const ScreenToolBar = ({ title, onButtonBackPress }: ScreenToolBar) => {
 };
 const styles = StyleSheet.create({
   icon: {
-    width: 40,
-    height: 40,
-    resizeMode: 'center',
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
     tintColor: 'white',
   },
   tabBarTitle: {

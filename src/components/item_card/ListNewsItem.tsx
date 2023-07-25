@@ -89,7 +89,7 @@ const AuthorView: React.FC<{name: string}> = ({name}) => {
   );
 };
 const styles = StyleSheet.create({
-  content: {fontSize: 14, color: '#8b9cab', fontWeight: '500'},
+  content: {fontSize: 15, color: '#8b9cab', fontWeight: '500'},
   newsTypeContainer: {
     width: 60,
     alignItems: 'center',
@@ -120,9 +120,9 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#0e3656',
-    fontSize: 16,
+    fontSize: 17,
     marginRight: 10,
-    marginVertical: 2,
+    marginVertical: 5,
     width: '100%',
     fontWeight: '700',
   },

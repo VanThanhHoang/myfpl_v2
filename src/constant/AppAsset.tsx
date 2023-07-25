@@ -2,6 +2,7 @@ export const AppAnimations = {
   loadingAnm: require('../assets/animations/anm_loading.json'),
   ggLoadingAnm: require('../assets/animations/anm_gg_loading2.json'),
   noResult: require('../assets/animations/anm_no_result.json'),
+  eror: require('../assets/animations/anm_error.json'),
 };
 export const AppIcons = {
   google: require('../assets/icon/ic_gg.png'),
@@ -39,7 +40,7 @@ export const AppIcons = {
   clear: require('../assets/icon/ic_clear.png'),
   sendEmail: require('../assets/icon/ic_send_mail.png'),
   time: require('../assets/icon/ic_time.png'),
-
+  warring: require('../assets/icon/ic_warring.png'),
   //Transcript sort icon
   asc: require('../assets/icon/up_arrow.png'),
   desc: require('../assets/icon/down_arrow.png'),

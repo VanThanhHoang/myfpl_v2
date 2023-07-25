@@ -56,6 +56,11 @@ const Transcript: React.FC = () => {
     subjectCode: 'COM108',
     grades: [
       {
+        name: 'Lab 1',
+        weight: 3.5,
+        result: 7.5,
+      },
+      {
         name: 'Lab 2',
         weight: 3.5,
         result: 7.5,
@@ -101,10 +106,11 @@ const Transcript: React.FC = () => {
         result: 8.2,
       },
       {
-        name: 'Quiz 3',
+        name: 'Quiz 7',
         weight: 1.5,
         result: 9.1,
       },
+      {name: 'Quiz 3', weight: 1.5, result: 9.1},
       {
         name: 'Quiz 4',
         weight: 1.5,
