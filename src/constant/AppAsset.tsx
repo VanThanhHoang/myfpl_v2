@@ -38,6 +38,7 @@ export const AppIcons = {
   search: require('../assets/icon/ic_search.png'),
   clear: require('../assets/icon/ic_clear.png'),
   sendEmail: require('../assets/icon/ic_send_mail.png'),
+  time: require('../assets/icon/ic_time.png'),
 };
 export const AppImages = {
   poly: require('../assets/img/img_poly.png'),

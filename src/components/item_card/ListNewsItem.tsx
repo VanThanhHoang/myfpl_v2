@@ -31,7 +31,7 @@ const ListNewsItem: React.FC<ListNewsItemProps> = ({
       <Text numberOfLines={2} lineBreakMode="middle" style={[styles.title]}>
         {title}
       </Text>
-      <Text numberOfLines={3} style={{fontSize: 13}}>
+      <Text numberOfLines={3} style={{fontSize: 14, color: '#7b90a0'}}>
         {content}
       </Text>
       <View
@@ -80,19 +80,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '95%',
     alignSelf: 'center',
+    height: 120,
     flexDirection: 'column',
-    paddingHorizontal: 24,
+    paddingHorizontal: 30,
     justifyContent: 'center',
     marginBottom: 10,
   },
   title: {
-    color: '#323f53',
+    color: '#11324e ',
     fontSize: 16,
     marginRight: 10,
     marginVertical: 2,
     width: '100%',
     fontWeight: '700',
-    marginTop: 10,
   },
   nameText: {
     color: '#0063ac',

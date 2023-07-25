@@ -1,4 +1,3 @@
-
 import {View, StatusBar, Image, StyleSheet, Text} from 'react-native';
 import {AppIcons, AppImages} from '../constant/AppAsset';
 import UserInfoCard from '../components/UserInfoCard';
@@ -111,10 +110,11 @@ const styles = StyleSheet.create({
     bottom: 50,
   },
   backButton: {
+    top: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 100,
-    height: 100,
+    width: 50,
+    height: 50,
     position: 'absolute',
   },
 });

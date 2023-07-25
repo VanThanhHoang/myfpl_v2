@@ -1,7 +1,7 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
 import {AppIcons} from '../constant/AppAsset';
-import {ViewStyle} from 'react-native';
+import {ViewStyle, View} from 'react-native';
 import IconBottomTab from '../components/IconBottomTab';
 import {Color} from '../constant/Colors';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -33,6 +33,7 @@ const ScreenTabs = [
 const MainBottomNavigatior = () => {
   return (
     <Tab.Navigator
+      backBehavior="history"
       screenOptions={{
         tabBarStyle: bottomTabContainerStyle,
         headerShown: false,
@@ -63,15 +64,11 @@ const MainBottomNavigatior = () => {
   );
 };
 const bottomTabContainerStyle: ViewStyle = {
-  margin: 10,
-  marginTop: 0,
-  padding: 0,
-  width: '94%',
+  width: '100%',
   backgroundColor: 'white',
   alignSelf: 'center',
-  borderRadius: 20,
-  borderColor: 'white',
-  elevation: 2.5,
+  elevation: 5,
   height: 65,
+  marginTop: 0,
 };
 export default MainBottomNavigatior;

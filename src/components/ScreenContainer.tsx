@@ -14,7 +14,7 @@ const ScreenContainer = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#f4f9f8',
   },
 });
 export default ScreenContainer;

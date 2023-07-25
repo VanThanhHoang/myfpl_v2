@@ -8,7 +8,6 @@ import {AppIcons} from '../constant/AppAsset';
 import {View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {AppNavigationProp} from '../navigation/AppNavigator';
-
 const ProfileScreen = () => {
   const navigation = useNavigation<AppNavigationProp>();
   const menuItems = [
