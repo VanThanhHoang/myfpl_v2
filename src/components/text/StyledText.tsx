@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleProp, StyleSheet, Text, TextStyle } from 'react-native';
+import { StyleProp, StyleSheet, Text as RNText, TextStyle } from 'react-native';
 
 const PoppinsFont = {
     normal: 'medium',
@@ -20,13 +20,13 @@ const disableStyles: StyleProp<TextStyle> = {
     fontWeight: 'normal',
 };
 
-type TextProps = Text['props'];
+type TextProps = RNText['props'];
 
-export function PoppinsText(props: TextProps) {
+export function Text(props: TextProps) {
     const { fontWeight = '400', fontStyle } = StyleSheet.flatten(props.style || {});
 
     const fontFamily = `roboto_${PoppinsFont[fontWeight]}${fontStyle === 'italic' ? '_italic' : ''
         }`;
-    return <Text {...props} style={[props.style, { fontFamily }, disableStyles]} />;
+    return <RNText {...props} style={[props.style, { fontFamily }, disableStyles]} />;
 }
 

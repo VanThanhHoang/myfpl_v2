@@ -1,6 +1,5 @@
 import {
   TouchableOpacity,
-  Text,
   ToastAndroid,
   Image,
   View,
@@ -13,7 +12,7 @@ type ContactInfoItemProps = {
   name: string;
   info: string;
 };
-import { PoppinsText } from './text/StyledText';
+import { Text } from './text/StyledText';
 const ContactInfoItem = ({ info, name }: ContactInfoItemProps) => {
   const CoppyToClipBoard = () => {
     Clipboard.setString(info);
@@ -33,9 +32,9 @@ const ContactInfoItem = ({ info, name }: ContactInfoItemProps) => {
   };
   return (
     <View style={{ marginVertical: 10 }}>
-      <PoppinsText style={[styles.textInfo, { color: 'black' }]}>{name} :</PoppinsText>
+      <Text style={[styles.textInfo, { color: 'black' }]}>{name} :</Text>
       <View style={styles.container}>
-        <PoppinsText style={styles.textInfo}>{info}</PoppinsText>
+        <Text style={styles.textInfo}>{info}</Text>
         <TouchableOpacity onPress={CoppyToClipBoard}>
           <Image style={styles.iconClipbroad} source={AppIcons.clipBroad} />
         </TouchableOpacity>

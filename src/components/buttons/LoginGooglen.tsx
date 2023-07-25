@@ -1,7 +1,7 @@
-import { Image, Text, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 import { AppAnimations, AppIcons } from '../../constant/AppAsset';
 import { buttonGeneralStyle } from './GenaralStyles';
-import { PoppinsText } from '../text/StyledText';
+import { Text } from '../text/StyledText';
 
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { ApiKey } from '../../constant/ApiKey';
@@ -40,7 +40,7 @@ const LoginGoogleButton = ({ isLoading, onPress }: LoginGoogleButtonProps) => {
       ) : (
         <>
           <Image style={buttonGeneralStyle.icon} source={AppIcons.google} />
-          <PoppinsText style={buttonGeneralStyle.text}>Đăng nhập với Google</PoppinsText>
+          <Text style={buttonGeneralStyle.text}>Đăng nhập với Google</Text>
         </>
       )}
     </TouchableOpacity>
