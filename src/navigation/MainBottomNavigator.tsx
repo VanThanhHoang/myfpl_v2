@@ -37,6 +37,7 @@ const MainBottomNavigatior = () => {
       screenOptions={{
         tabBarStyle: bottomTabContainerStyle,
         headerShown: false,
+        tabBarHideOnKeyboard: true,
         tabBarShowLabel: false,
         tabBarActiveTintColor: Color.MAINCOLOR,
         tabBarInactiveTintColor: 'black',
@@ -67,6 +68,9 @@ const bottomTabContainerStyle: ViewStyle = {
   width: '100%',
   backgroundColor: 'white',
   alignSelf: 'center',
+  position: 'absolute',
+  borderTopRightRadius: 20,
+  borderTopLeftRadius: 20,
   elevation: 5,
   height: 65,
   marginTop: 0,
