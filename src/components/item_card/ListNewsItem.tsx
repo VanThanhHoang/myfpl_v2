@@ -11,12 +11,14 @@ type ListNewsItemProps = {
   timePushlish: string;
   title: string;
   content: string;
+  newsType: string;
 };
 const ListNewsItem: React.FC<ListNewsItemProps> = ({
   name,
   timePushlish,
   title,
   content,
+  newsType,
 }) => {
   const navigation = useNavigation<AppNavigationProp>();
   const datetime = moment(timePushlish, 'YYYYMMDD');
@@ -31,16 +33,34 @@ const ListNewsItem: React.FC<ListNewsItemProps> = ({
       <Text numberOfLines={2} lineBreakMode="middle" style={[styles.title]}>
         {title}
       </Text>
-      <Text numberOfLines={3} style={{fontSize: 14, color: '#7b90a0'}}>
+      <Text numberOfLines={3} style={styles.content}>
         {content}
       </Text>
       <View
         style={{
+          justifyContent: 'space-between',
           flexDirection: 'row',
           alignItems: 'center',
         }}>
         <AuthorView name={name} />
-        <Text style={styles.timeText}>{datetime.fromNow()}</Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Image
+            resizeMode="contain"
+            style={{width: 12, height: 12}}
+            source={AppIcons.time}
+          />
+          <Text style={styles.timeText}>{datetime.fromNow()}</Text>
+        </View>
+        <View style={styles.newsTypeContainer}>
+          <Text style={{fontSize: 12, fontWeight: '700', color: 'white'}}>
+            {newsType}
+          </Text>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -67,10 +87,20 @@ const AuthorView: React.FC<{name: string}> = ({name}) => {
   );
 };
 const styles = StyleSheet.create({
+  content: {fontSize: 14, color: '#8b9cab', fontWeight: '500'},
+  newsTypeContainer: {
+    width: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+    height: 20,
+    elevation: 2,
+    backgroundColor: '#0b85e5',
+  },
   timeText: {
     marginLeft: 10,
     fontWeight: '600',
-    color: '#a9aeb6',
+    color: '#7c8b98',
   },
   container: {
     overflow: 'scroll',
@@ -87,7 +117,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   title: {
-    color: '#11324e ',
+    color: '#0e3656',
     fontSize: 16,
     marginRight: 10,
     marginVertical: 2,

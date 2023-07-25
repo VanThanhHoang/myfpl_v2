@@ -54,6 +54,7 @@ const DashBoard = ({newsData, setData}: DashBoardProps): React.JSX.Element => {
   const RenderItemNews: ListRenderItem<News> = ({item}) => {
     return (
       <ListNewsItem
+        newsType={item.type}
         content={item.content}
         name={'Hoang Van Thanh'}
         title={item.title}
