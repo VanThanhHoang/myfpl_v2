@@ -1,12 +1,19 @@
-import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
-import { AppIcons } from '../constant/AppAsset';
-import { Color } from '../constant/Colors';
-import { useNavigation } from '@react-navigation/native';
-import { EmailNavigationProp } from '../navigation/AppNavigator';
-import { Text } from './text/StyledText';
+import {AppIcons} from '../constant/AppAsset';
+import {Color} from '../constant/Colors';
+import {useNavigation} from '@react-navigation/native';
+import {Text} from './text/StyledText';
+import {AppNavigationProp} from '../navigation/AppNavigator';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux/store';
+import {User} from '../types/User';
 const AppToolBar: React.FC = () => {
-  const navigation = useNavigation<EmailNavigationProp>();
+  const navigation = useNavigation<AppNavigationProp>();
+  const userInfo = useSelector(
+    (state: RootState) => state.userReducer.userInfo,
+  );
+  console.log(userInfo);
   return (
     <View style={styles.container}>
       <Image
@@ -15,7 +22,9 @@ const AppToolBar: React.FC = () => {
         }}
         style={styles.profileImage}
       />
-      <Text style={styles.nameText}>{'cc'}</Text>
+      <Text style={styles.nameText}>
+        {userInfo?.fullName || 'Anonymous user'}
+      </Text>
       <View style={styles.qrNotificationContainer}>
         <TouchableOpacity>
           <Image source={AppIcons.qr} style={styles.qrImage} />
@@ -30,7 +39,7 @@ const AppToolBar: React.FC = () => {
           onPress={() => {
             navigation.navigate('Email');
           }}
-          style={{ marginLeft: 10 }}>
+          style={{marginLeft: 10}}>
           <Image source={AppIcons.mail} style={styles.notificationImage} />
         </TouchableOpacity>
       </View>

@@ -6,35 +6,26 @@ import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
 import {AppNavigationProp} from '../../navigation/AppNavigator';
 import {Text} from '../text/StyledText';
+import {News} from '../../types/News';
 type ListNewsItemProps = {
-  name: string;
-  timePushlish: string;
-  title: string;
-  content: string;
-  newsType: string;
+  news: News;
 };
-const ListNewsItem: React.FC<ListNewsItemProps> = ({
-  name,
-  timePushlish,
-  title,
-  content,
-  newsType,
-}) => {
+const ListNewsItem: React.FC<ListNewsItemProps> = ({news}) => {
   const navigation = useNavigation<AppNavigationProp>();
-  const datetime = moment(timePushlish, 'YYYYMMDD');
+  const datetime = moment(news.publishedAt, 'YYYYMMDD');
   // Tùy chỉnh ngôn ngữ thành tiếng Việt
   datetime.locale('vi');
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('DetailNews');
+        navigation.navigate('DetailNews', {newId: news._id});
       }}
       style={styles.container}>
       <Text numberOfLines={2} lineBreakMode="middle" style={[styles.title]}>
-        {title}
+        {news.title}
       </Text>
       <Text numberOfLines={3} style={styles.content}>
-        {content}
+        {news.content}
       </Text>
       <View
         style={{
@@ -43,7 +34,7 @@ const ListNewsItem: React.FC<ListNewsItemProps> = ({
           flexDirection: 'row',
           alignItems: 'center',
         }}>
-        <AuthorView name={name} />
+        <AuthorView name={news.title} />
         <View
           style={{
             flexDirection: 'row',
@@ -59,7 +50,7 @@ const ListNewsItem: React.FC<ListNewsItemProps> = ({
         </View>
         <View style={styles.newsTypeContainer}>
           <Text style={{fontSize: 12, fontWeight: '700', color: 'white'}}>
-            {newsType}
+            {news.type}
           </Text>
         </View>
       </View>

@@ -1,22 +1,29 @@
-import React, { memo } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import React, {memo, useEffect, useState} from 'react';
+import {StyleSheet, View, Image} from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
-import { Alert } from 'react-native';
-import { AppIcons } from '../constant/AppAsset';
-import { fakeSchedule } from '../modal/FakeData';
-import { ClassInfo } from '../types/ClassInfo';
-import { convertHourAndMinuesToString } from '../helper/convertHourAndMinute';
+import {Alert} from 'react-native';
+import {AppIcons} from '../constant/AppAsset';
+import {fakeSchedule} from '../modal/FakeData';
+import {ClassInfo} from '../types/ClassInfo';
+import {convertHourAndMinuesToString} from '../helper/convertHourAndMinute';
 import moment from 'moment';
-import { Text } from '../components/text/StyledText';
-
+import {Text} from '../components/text/StyledText';
+import AxiosInstance from '../helper/axiosInstance';
 const ScheduleTimes: React.FC = () => {
+  const [schedule, setSchedule] = useState();
+  const getSchedule = async () => {
+    const res = await AxiosInstance().get('/schedule');
+    setSchedule(res.data);
+  };
+  useEffect(() => {
+    getSchedule();
+  }, []);
   const renderDetail = (classInfo: ClassInfo): JSX.Element => {
     return (
-      <View style={{ flex: 1 }}>
-        <Text
-          style={[
-            styles.rowTitle,
-          ]}>{`${classInfo.subject.name} (${classInfo.subject.code})`}</Text>
+      <View style={{flex: 1}}>
+        <Text style={[styles.rowTitle]}>
+          {`${classInfo.subject.name} (${classInfo.subject.code})`}
+        </Text>
         <View style={styles.descriptionContainer}>
           <View
             style={{
@@ -43,9 +50,9 @@ const ScheduleTimes: React.FC = () => {
             </Text>
           </View>
 
-          <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+          <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
             <Image
-              source={{ uri: classInfo.teacher.photo }}
+              source={{uri: classInfo.teacher.photo}}
               style={styles.imageStyle}
             />
             <Text
@@ -64,7 +71,7 @@ const ScheduleTimes: React.FC = () => {
 
   const renderTime = (classInfo: ClassInfo): JSX.Element => {
     return (
-      <View style={{ width: 80, backgroundColor: '#ffffff' }}>
+      <View style={{width: 80, backgroundColor: '#ffffff'}}>
         <Text
           style={{
             fontSize: 14,
@@ -93,7 +100,7 @@ const ScheduleTimes: React.FC = () => {
   return (
     <View style={styles.container}>
       <Timeline
-        data={fakeSchedule}
+        data={schedule}
         circleSize={20}
         circleColor="rgba(0,0,0,0)"
         lineColor="#BCC1CD"
@@ -103,7 +110,7 @@ const ScheduleTimes: React.FC = () => {
           padding: 5,
           borderRadius: 13,
         }}
-        descriptionStyle={{ color: 'white', fontWeight: '400' }}
+        descriptionStyle={{color: 'white', fontWeight: '400'}}
         detailContainerStyle={{
           padding: 10,
           width: '98%',

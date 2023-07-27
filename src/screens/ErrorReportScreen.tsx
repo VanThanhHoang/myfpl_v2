@@ -1,14 +1,14 @@
 import ScreenContainer from '../components/ScreenContainer';
-import { Text } from '../components/text/StyledText';
+import {Text} from '../components/text/StyledText';
 import ScreenToolBar from '../components/ScreenToolBar';
-import { useNavigation } from '@react-navigation/native';
-import { AppNavigationProp } from '../navigation/AppNavigator';
-import { StyleSheet, View } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {AppNavigationProp} from '../navigation/AppNavigator';
+import {StyleSheet, View} from 'react-native';
 import AnimatedLottieView from 'lottie-react-native';
-import { AppAnimations, AppIcons } from '../constant/AppAsset';
-import { ScrollView, TextInput, TouchableOpacity } from 'react-native';
-import { Color } from '../constant/Colors';
-import { Image } from 'react-native';
+import {AppAnimations, AppIcons} from '../constant/AppAsset';
+import {ScrollView, TextInput, TouchableOpacity} from 'react-native';
+import {Color} from '../constant/Colors';
+import {Image} from 'react-native';
 import ImageAdded from '../components/ImageAdded';
 import {
   launchCamera,
@@ -17,7 +17,7 @@ import {
   Asset,
   ImagePickerResponse,
 } from 'react-native-image-picker';
-import { useCallback, useState } from 'react';
+import {useCallback, useState} from 'react';
 import SelectImageModal from '../modal/SelectImageModal';
 const ErorReportScreen = () => {
   const launchOptions: CameraOptions = {
@@ -41,7 +41,10 @@ const ErorReportScreen = () => {
     setImages(newImages);
   };
   const onOpenLibrary = useCallback(async () => {
-    const response = await launchImageLibrary({ ...launchOptions, selectionLimit: 0 });
+    const response = await launchImageLibrary({
+      ...launchOptions,
+      selectionLimit: 0,
+    });
     setShowModalSelectImage(false);
     if (!response.assets) return;
     setImages([...images, ...response.assets]);
@@ -62,8 +65,8 @@ const ErorReportScreen = () => {
         }}
         title="Báo lỗi ứng dụng"
       />
-      <View style={{ flex: 1, padding: 20 }}>
-        <ScrollView showsHorizontalScrollIndicator={false}>
+      <View style={{flex: 1, padding: 20}}>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View
             style={{
               width: '100%',
@@ -119,7 +122,7 @@ const ErorReportScreen = () => {
 type ChoseImageButtonProps = {
   onPress: Function;
 };
-const ChoseImageButton = ({ onPress }: ChoseImageButtonProps) => {
+const ChoseImageButton = ({onPress}: ChoseImageButtonProps) => {
   return (
     <TouchableOpacity
       onPress={() => {

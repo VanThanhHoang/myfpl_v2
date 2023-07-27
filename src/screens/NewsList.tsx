@@ -7,6 +7,7 @@ import ListNewsItem from '../components/item_card/ListNewsItem';
 import {RefreshControl} from 'react-native-gesture-handler';
 import {News} from '../types/News';
 import {NewsType} from '../types/NewType';
+import AxiosInstance from '../helper/axiosInstance';
 const Tabs = [
   {
     name: 'Tất cả',
@@ -27,7 +28,7 @@ const Tabs = [
   },
 ];
 export type DashBoardProps = {
-  newsData: News[];
+  newsData?: News[];
   setData: Function;
 };
 const DashBoard = ({newsData, setData}: DashBoardProps): React.JSX.Element => {
@@ -42,6 +43,7 @@ const DashBoard = ({newsData, setData}: DashBoardProps): React.JSX.Element => {
   const onTabPress = (newsType: NewsType | string) => {
     setTab(newsType);
   };
+
   const onListNewsRefesh = () => {
     setListNewRefesh(true);
     setTimeout(() => {
@@ -52,15 +54,7 @@ const DashBoard = ({newsData, setData}: DashBoardProps): React.JSX.Element => {
     filterDataByType();
   }, [tabSelected]);
   const RenderItemNews: ListRenderItem<News> = ({item}) => {
-    return (
-      <ListNewsItem
-        newsType={item.type}
-        content={item.content}
-        name={'Hoang Van Thanh'}
-        title={item.title}
-        timePushlish={item.publishedAt}
-      />
-    );
+    return <ListNewsItem news={item} />;
   };
   return (
     <>
@@ -90,20 +84,22 @@ const DashBoard = ({newsData, setData}: DashBoardProps): React.JSX.Element => {
           ))}
         </ScrollView>
       </View>
-      <FlatList
-        refreshControl={
-          <RefreshControl
-            refreshing={isListNewRefesh}
-            onRefresh={() => {
-              onListNewsRefesh();
-            }}
-          />
-        }
-        showsVerticalScrollIndicator={false}
-        style={{height: 100}}
-        data={newsData}
-        renderItem={RenderItemNews}
-      />
+      {newsData && (
+        <FlatList
+          refreshControl={
+            <RefreshControl
+              refreshing={isListNewRefesh}
+              onRefresh={() => {
+                onListNewsRefesh();
+              }}
+            />
+          }
+          showsVerticalScrollIndicator={false}
+          style={{height: 100}}
+          data={newsData}
+          renderItem={RenderItemNews}
+        />
+      )}
     </>
   );
 };

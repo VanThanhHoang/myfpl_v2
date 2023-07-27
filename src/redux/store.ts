@@ -1,8 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
 import showLoadingModalReducer from './loadingSlice';
+import userReducer from './userSlice';
+
 const store = configureStore({
   reducer: {
     showLoadingModalReducer,
+    userReducer,
   },
 });
 export default store;

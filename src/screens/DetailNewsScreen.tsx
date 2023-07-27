@@ -8,16 +8,29 @@ import {
 } from 'react-native';
 import {AppIcons, AppImages} from '../constant/AppAsset';
 import moment from 'moment';
-import {useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../navigation/AppNavigator';
-import {BlurView} from '@react-native-community/blur';
-import {Color} from '../constant/Colors';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {
+  AppNavigationProp,
+  DetialNewsScreenProps,
+} from '../navigation/AppNavigator';
+import {useState, useEffect} from 'react';
 import {Text} from '../components/text/StyledText';
+import {News} from '../types/News';
+import AxiosInstance from '../helper/axiosInstance';
 const DetailNewsScreen = () => {
   const navigation = useNavigation<AppNavigationProp>();
-  const datetime = moment('2023-07-18T17:21:19.791Z', 'YYYYMMDD');
+  const newId = useRoute<DetialNewsScreenProps['route']>().params.newId;
+  const [news, setNews] = useState<News>();
+  const getDetailNews = async () => {
+    const res = await AxiosInstance().get(`news/${newId}`);
+    setNews(res.data);
+  };
+  useEffect(() => {
+    getDetailNews();
+  }, []);
+
   // Tùy chỉnh ngôn ngữ thành tiếng Việt
-  datetime.locale('vi');
+
   return (
     <View style={{flex: 1}}>
       <StatusBar translucent backgroundColor="transparent" />
@@ -47,10 +60,10 @@ const DetailNewsScreen = () => {
               justifyContent: 'center',
             }}>
             <Text style={{fontWeight: 'bold', fontSize: 17, color: 'white'}}>
-              Học tập
+              {news?.type}
             </Text>
           </View>
-          <Text style={styles.title}>Bí quyết thành công trong học tập</Text>
+          <Text style={styles.title}>{news?.title}</Text>
 
           <View
             style={{
@@ -63,27 +76,15 @@ const DetailNewsScreen = () => {
               <Text style={styles.nameText}>Hoàng Văn Thành</Text>
             </View>
             <Text style={styles.nameText}>
-              {datetime.format('Do MMM  YYYY')}
+              {moment(
+                news?.publishedAt || '2023-07-18T17:21:19.791Z',
+                'YYYYMMDD',
+              )
+                .locale('vi')
+                .format('Do MMM  YYYY')}
             </Text>
           </View>
-          <Text style={styles.contentText}>
-            Phòng Đào Tạo thông báo yêu cầu các bạn sinh viên đang thiếu bằng
-            tốt nghiệp THPT vui lòng bổ sung đầy đủ hồ sơ. Nộp bản sao/photo
-            công chứng bằng THPT là yêu cầu bắt buộc để lưu trữ hồ sơ sinh viên
-            trong suốt quá trình học tập đến khi được xét tốt nghiệp. Sau thời
-            hạn bổ sung bên dưới, sinh viên chưa bổ sung bằng THPT sẽ bị đình
-            chỉ học tập mức cao nhất: BUỘC THÔI HỌC Hồ sơ nộp: 1 bản sao hoặc
-            photo công chứng (trong vòng 6 tháng) bằng THPT. Trường hợp sinh
-            viên học trung cấp thì có thể nộp bản sao hoặc photo công chứng
-            (trong vòng 6 tháng) bằng tốt nghiệp trung cấp. Địa điểm nộp: - Cơ
-            sở Nguyễn Kiệm: Phòng Đào Tạo - Tầng 1 - 778/B1 Nguyễn Kiệm, Phường
-            4, Quận Phú Nhuận, TP.HCM. - Cơ sở Quang Trung: Phòng Đào Tạo - Tầng
-            trệt Tòa nhà T (QTSC9) - Công viên phần mềm Quang Trung, Phường Tân
-            Chánh Hiệp, Quận 12, TP.HCM. Hạn nộp:31/07/2023 Sinh viên có thể
-            truy cập TẠI ĐÂY để kiểm tra thông tin cá nhân cũng như thông tin
-            nộp bằng THPT (sinh viên chưa bổ sung bằng THPT sẽ được ghi chú
-            "Chưa nộp bằng THPT") Trân trọng, Phòng TC&QLDT.
-          </Text>
+          <Text style={styles.contentText}>{news?.content}</Text>
         </View>
         <Image
           style={{

@@ -24,7 +24,7 @@ type RootStackParamList = {
   Main: undefined;
   Email: undefined;
   Contact: undefined;
-  DetailNews: undefined;
+  DetailNews: {newId: string};
   DetailProfile: undefined;
   SearchResultScreen: {searchKey: string};
   ErorReport: undefined;
@@ -34,6 +34,10 @@ export type AppNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 export type SearchResultScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'SearchResultScreen'
+>;
+export type DetialNewsScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  'DetailNews'
 >;
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();

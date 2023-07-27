@@ -16,21 +16,20 @@ export const loginWithGoogle = async () => {
     );
     // Sign-in the user with the credential
     await auth().signInWithCredential(googleCredential);
-    const resSeverLogin: any = await AxiosInstance().post('/auth/logingoogle', {
-      webClientId: ApiKey.googleClientId,
-      idToken: resGoogleLogin.idToken,
+    const resSeverLogin: any = await AxiosInstance().post('auth/logingoogle', {
+      tokenId: resGoogleLogin.idToken,
     });
-    console.log(resGoogleLogin);
+    console.log({resSeverLogin});
     // res data.accessToken
     await AsyncStorage.setItem(
       AsyncStorageKey.AccessTokenKey,
-      resSeverLogin.accessToken,
+      resSeverLogin.data.accessToken,
     );
     await AsyncStorage.setItem(
       AsyncStorageKey.RefeshTokenKey,
-      resSeverLogin.refeshToken,
+      resSeverLogin.data.refeshToken,
     );
   } catch (err) {
-    console.log(err);
+    console.log('loi login', {err});
   }
 };
