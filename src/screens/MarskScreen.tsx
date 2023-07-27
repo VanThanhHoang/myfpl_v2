@@ -1,11 +1,15 @@
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaView, View, Text} from 'react-native';
 import Transcript from '../components/Transcript';
+import MarksTopTab from '../navigation/MarksTopTab';
+import ScreenToolBar from '../components/ScreenToolBar';
+import AppToolBar from '../components/AppToolBar';
 
 const MarskScreen = () => {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <Transcript />
-    </SafeAreaView>
+    <>
+      <AppToolBar />
+      <MarksTopTab />
+    </>
   );
 };
 export default MarskScreen;

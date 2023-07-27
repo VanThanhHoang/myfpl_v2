@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import _ from 'lodash';
 import {AppIcons} from '../constant/AppAsset';
+import {Color} from '../constant/Colors';
 
 interface GradeItem {
   name: string;
@@ -44,7 +45,8 @@ const Transcript: React.FC = () => {
   const TableFooter = ({grades}: TableFooterProps) => (
     <View style={styles.tableFooter}>
       <Text style={styles.footerText}>
-        Average Score: {calculateAverage(grades)}
+        Average Score:
+        <Text style={{fontWeight: '900'}}>{calculateAverage(grades)}</Text>
       </Text>
       <Text style={styles.footerText}>Status: {getStatus(grades)}</Text>
     </View>
@@ -199,7 +201,7 @@ const Transcript: React.FC = () => {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={transcript.grades}
-        style={{width: '90%'}}
+        style={{width: '100%'}}
         keyExtractor={(_, index) => index.toString()}
         ListHeaderComponent={tableHeader}
         stickyHeaderIndices={[0]}
@@ -209,7 +211,7 @@ const Transcript: React.FC = () => {
             <View
               style={{
                 ...styles.tableRow,
-                backgroundColor: index % 2 === 1 ? '#faf1e6' : 'white',
+                backgroundColor: index % 2 != 0 ? '#faf1e6' : 'white',
               }}>
               <Text style={{...styles.columnRowTxt, fontWeight: 'bold'}}>
                 {item.name}
@@ -238,7 +240,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    backgroundColor: '#f5ad53',
+    backgroundColor: Color.MAINCOLOR,
     borderTopEndRadius: 10,
     borderTopStartRadius: 10,
     height: 50,
@@ -258,6 +260,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   columnRowTxt: {
+    color: 'black',
     width: '33%',
     textAlign: 'center',
   },
@@ -271,11 +274,11 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   tableFooter: {
-    width: '90%',
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    backgroundColor: '#f5ad53',
+    backgroundColor: Color.MAINCOLOR,
     borderBottomEndRadius: 10,
     borderBottomStartRadius: 10,
     height: 50,

@@ -7,6 +7,7 @@ import {Color} from '../constant/Colors';
 import ProfileScreen from '../screens/ProfileScreen';
 import ScheduleScreen from '../screens/ScheduleScreen';
 import MarskScreen from '../screens/MarskScreen';
+import MarksTopTab from './MarksTopTab';
 
 const Tab = createBottomTabNavigator();
 const ScreenTabs = [
