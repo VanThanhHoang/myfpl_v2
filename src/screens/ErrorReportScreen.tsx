@@ -1,14 +1,14 @@
 import ScreenContainer from '../components/ScreenContainer';
-import {Text} from '../components/text/StyledText';
+import { Text } from '../components/text/StyledText';
 import ScreenToolBar from '../components/ScreenToolBar';
-import {useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../navigation/AppNavigator';
-import {StyleSheet, View} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProp } from '../navigation/AppNavigator';
+import { StyleSheet, View } from 'react-native';
 import AnimatedLottieView from 'lottie-react-native';
-import {AppAnimations, AppIcons} from '../constant/AppAsset';
-import {ScrollView, TextInput, TouchableOpacity} from 'react-native';
-import {Color} from '../constant/Colors';
-import {Image} from 'react-native';
+import { AppAnimations, AppIcons } from '../constant/AppAsset';
+import { ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { Color } from '../constant/Colors';
+import { Image } from 'react-native';
 import ImageAdded from '../components/ImageAdded';
 import {
   launchCamera,
@@ -17,7 +17,7 @@ import {
   Asset,
   ImagePickerResponse,
 } from 'react-native-image-picker';
-import {useCallback, useState} from 'react';
+import { useCallback, useState } from 'react';
 import SelectImageModal from '../modal/SelectImageModal';
 const ErorReportScreen = () => {
   const launchOptions: CameraOptions = {
@@ -32,8 +32,8 @@ const ErorReportScreen = () => {
     const response = await launchCamera(launchOptions);
     setShowModalSelectImage(false);
     if (!response.assets) return;
-    if (response.assets[0].uri) {
-      setImages([...images, response.assets[0]]);
+    if (response.assets) {
+      setImages([...images, ...response.assets]);
     }
   }, [images]);
   const deleteImage = (uri: string) => {
@@ -41,13 +41,12 @@ const ErorReportScreen = () => {
     setImages(newImages);
   };
   const onOpenLibrary = useCallback(async () => {
-    const response = await launchImageLibrary(launchOptions);
+    const response = await launchImageLibrary({ ...launchOptions, selectionLimit: 0 });
     setShowModalSelectImage(false);
     if (!response.assets) return;
-    if (response.assets[0].uri) {
-      setImages([...images, response.assets[0]]);
-    }
+    setImages([...images, ...response.assets]);
   }, [images]);
+
   const navigation = useNavigation<AppNavigationProp>();
 
   const [isShowModalSelectImage, setShowModalSelectImage] =
@@ -63,7 +62,7 @@ const ErorReportScreen = () => {
         }}
         title="Báo lỗi ứng dụng"
       />
-      <View style={{flex: 1, padding: 20}}>
+      <View style={{ flex: 1, padding: 20 }}>
         <ScrollView showsHorizontalScrollIndicator={false}>
           <View
             style={{
@@ -120,7 +119,7 @@ const ErorReportScreen = () => {
 type ChoseImageButtonProps = {
   onPress: Function;
 };
-const ChoseImageButton = ({onPress}: ChoseImageButtonProps) => {
+const ChoseImageButton = ({ onPress }: ChoseImageButtonProps) => {
   return (
     <TouchableOpacity
       onPress={() => {
