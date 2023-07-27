@@ -1,21 +1,25 @@
-import ScreenContainer from '../components/ScreenContainer';
-import ScreenToolBar from '../components/ScreenToolBar';
-import { StyleSheet, View, Image, StatusBar } from 'react-native';
-import { AppIcons, AppImages } from '../constant/AppAsset';
+import {
+  StyleSheet,
+  View,
+  Image,
+  StatusBar,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+import {AppIcons, AppImages} from '../constant/AppAsset';
 import moment from 'moment';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
-import { AppNavigationProp } from '../navigation/AppNavigator';
-import { BlurView } from '@react-native-community/blur';
-import { Color } from '../constant/Colors';
-import { Text } from '../components/text/StyledText';
+import {useNavigation} from '@react-navigation/native';
+import {AppNavigationProp} from '../navigation/AppNavigator';
+import {BlurView} from '@react-native-community/blur';
+import {Color} from '../constant/Colors';
+import {Text} from '../components/text/StyledText';
 const DetailNewsScreen = () => {
   const navigation = useNavigation<AppNavigationProp>();
   const datetime = moment('2023-07-18T17:21:19.791Z', 'YYYYMMDD');
   // Tùy chỉnh ngôn ngữ thành tiếng Việt
   datetime.locale('vi');
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <StatusBar translucent backgroundColor="transparent" />
 
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -42,7 +46,7 @@ const DetailNewsScreen = () => {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <Text style={{ fontWeight: 'bold', fontSize: 17, color: 'white' }}>
+            <Text style={{fontWeight: 'bold', fontSize: 17, color: 'white'}}>
               Học tập
             </Text>
           </View>

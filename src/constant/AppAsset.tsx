@@ -41,6 +41,10 @@ export const AppIcons = {
   sendEmail: require('../assets/icon/ic_send_mail.png'),
   time: require('../assets/icon/ic_time.png'),
   warring: require('../assets/icon/ic_warring.png'),
+  addImage: require('../assets/icon/ic_add_img.png'),
+  clear2: require('../assets/icon/ic_clear2.png'),
+  camera: require('../assets/icon/ic_camera.png'),
+  photo: require('../assets/icon/ic_photo.png'),
   //Transcript sort icon
   asc: require('../assets/icon/up_arrow.png'),
   desc: require('../assets/icon/down_arrow.png'),

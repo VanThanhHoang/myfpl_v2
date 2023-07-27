@@ -29,7 +29,7 @@ const ProfileScreen = () => {
       label: 'Cổng liên hệ',
       icon: AppIcons.contact,
       onPress: () => {
-        navigation.navigate('ErorReport');
+        navigation.navigate('Contact');
       },
     },
     {

@@ -1,13 +1,18 @@
-import { Image, ImageSourcePropType, StyleSheet, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { AppIcons, AppImages } from '../../constant/AppAsset';
-import { Text } from '../text/StyledText';
+import {
+  Image,
+  ImageSourcePropType,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+} from 'react-native';
+import {AppIcons} from '../../constant/AppAsset';
+import {Text} from '../text/StyledText';
 type ProfileMenuItemsProps = {
   label: string;
   icon: ImageSourcePropType;
   onPress: Function;
 };
-const ProfileMenuItem = ({ label, icon, onPress }: ProfileMenuItemsProps) => {
+const ProfileMenuItem = ({label, icon, onPress}: ProfileMenuItemsProps) => {
   return (
     <View style={styles.container}>
       <View

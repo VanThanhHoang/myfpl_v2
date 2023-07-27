@@ -1,7 +1,6 @@
 import React, {memo} from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {AppIcons} from '../../constant/AppAsset';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import 'moment/locale/vi';
 import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
