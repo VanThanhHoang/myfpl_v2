@@ -1,13 +1,13 @@
-import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
-import {AppIcons} from '../constant/AppAsset';
-import {Color} from '../constant/Colors';
-import {useNavigation} from '@react-navigation/native';
-import {Text} from './text/StyledText';
-import {AppNavigationProp} from '../navigation/AppNavigator';
-import {useSelector} from 'react-redux';
-import {RootState} from '../redux/store';
-import {User} from '../types/User';
+import { AppIcons } from '../constant/AppAsset';
+import { Color } from '../constant/Colors';
+import { useNavigation } from '@react-navigation/native';
+import { Text } from './text/StyledText';
+import { AppNavigationProp } from '../navigation/AppNavigator';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { User } from '../types/User';
 const AppToolBar: React.FC = () => {
   const navigation = useNavigation<AppNavigationProp>();
   const userInfo = useSelector(
@@ -29,7 +29,9 @@ const AppToolBar: React.FC = () => {
         <TouchableOpacity>
           <Image source={AppIcons.qr} style={styles.qrImage} />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+          navigation.navigate('Notification');
+        }}>
           <Image
             source={AppIcons.notification}
             style={styles.notificationImage}
@@ -39,7 +41,7 @@ const AppToolBar: React.FC = () => {
           onPress={() => {
             navigation.navigate('Email');
           }}
-          style={{marginLeft: 10}}>
+          style={{ marginLeft: 10 }}>
           <Image source={AppIcons.mail} style={styles.notificationImage} />
         </TouchableOpacity>
       </View>
