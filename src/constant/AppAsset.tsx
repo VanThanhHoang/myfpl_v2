@@ -48,13 +48,14 @@ export const AppIcons = {
   //Transcript sort icon
   asc: require('../assets/icon/up_arrow.png'),
   desc: require('../assets/icon/down_arrow.png'),
+
+  flex_mode: require('../assets/icon/ic_flexx_mode.png'),
   //Term
   java: require('../assets/icon/ic_java.png'),
   data: require('../assets/icon/ic_data.png'),
   sql: require('../assets/icon/ic_sql.png'),
   web: require('../assets/icon/ic_web.png'),
   mobile: require('../assets/icon/ic_mobile.png'),
-
 };
 export const AppImages = {
   poly: require('../assets/img/img_poly.png'),

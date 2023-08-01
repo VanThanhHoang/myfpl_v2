@@ -124,14 +124,6 @@ export const fakeNotification: TypeNotification[] = [
 
 export const fakeTerm: ItemTerm[] = [
   {
-    _id: '64b6ca0f9fda0eb930137a84',
-    subjectCode: 'COM108',
-    subjectName: 'Lập trình hướng đối tượng',
-    status: 'passed',
-    mark: 9,
-    icon: AppIcons.java,
-  },
-  {
     _id: '64b6ca0f9fda0eb930137a85',
     subjectCode: 'COM109',
     subjectName: 'Cấu trúc dữ liệu và giải thuật',
@@ -144,7 +136,7 @@ export const fakeTerm: ItemTerm[] = [
     subjectCode: 'COM110',
     subjectName: 'Cơ sở dữ liệu',
     status: 'studying',
-    mark: 0,
+    mark: 1.5,
     icon: AppIcons.sql,
   },
   {
