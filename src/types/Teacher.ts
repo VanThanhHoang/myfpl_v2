@@ -1,5 +1,5 @@
 export interface Teacher {
-  code: string;
-  name: string;
+  username: string;
+  fullName: string;
   photo: string;
 }

@@ -10,7 +10,7 @@ export interface ClassInfo {
   date: string;
   link: string;
   description: string;
-  clsasAddress: ClassAdress;
+  classAddress: ClassAdress;
   slot: TimeSlot;
   note: string;
   status: string;
