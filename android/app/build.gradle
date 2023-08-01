@@ -79,6 +79,7 @@ android {
         missingDimensionStrategy "RNNotifications.reactNativeVersion", "reactNative60" // See note below!
         versionCode 1
         versionName "1.0"
+        missingDimensionStrategy 'react-native-camera', 'general'
     }
     signingConfigs {
         debug {
