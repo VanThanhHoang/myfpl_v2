@@ -1,10 +1,87 @@
-import {ClassInfo} from '../types/ClassInfo';
-import {NewsType} from '../types/NewType';
-import {News} from '../types/News';
-import {ItemTerm} from '../types/ItemTerm';
-import {AppIcons} from '../constant/AppAsset';
-import {TypeNotification} from '../types/Notification';
-import {User} from '../types/User';
+import { ClassInfo } from '../types/ClassInfo';
+import { NewsType } from '../types/NewType';
+import { News } from '../types/News';
+import { ItemTerm } from '../types/ItemTerm';
+import { AppIcons } from '../constant/AppAsset';
+import { TypeNotification } from '../types/Notification';
+import { User } from '../types/User';
+import { IAttandances } from '../types/Attandances';
+import { AttandancesType } from '../types/AttandancesType';
+
+export const fakeAttandances: IAttandances[] = [
+  {
+    id: '1',
+    status: 'Rejected',
+    reason: 'Fuck dog',
+    approver: 'khoanda',
+    date: '2021-05-01',
+  },
+  {
+    id: '2',
+    status: 'Rejected',
+    reason: 'Be a slug',
+    approver: 'hiennt',
+    date: '2021-05-02',
+  },
+  {
+    id: '3',
+    status: 'Rejected',
+    reason: 'Masturbation',
+    approver: 'channn',
+    date: '2021-05-03',
+  },
+  {
+    id: '4',
+    status: 'Rejected',
+    reason: 'Masturbation',
+    approver: 'channn',
+    date: '2021-05-03',
+  },
+  {
+    id: '5',
+    status: 'Rejected',
+    reason: 'Masturbation',
+    approver: 'channn',
+    date: '2021-05-03',
+  }]
+
+export const fakeAttandancesType: AttandancesType[] = [
+  {
+    _id: '64b6ca0f9fda0eb930137a84',
+    subjectCode: 'COM108',
+    subjectName: 'Lập trình HĐT',
+    nos: '14/21',
+    icon: AppIcons.java,
+  },
+  {
+    _id: '64b6ca0f9fda0eb930137a85',
+    subjectCode: 'COM109',
+    subjectName: 'Cấu trúc dữ liệu và giải thuật',
+    nos: '14/21',
+    icon: AppIcons.data,
+  },
+  {
+    _id: '64b6ca0f9fda0eb930137a86',
+    subjectCode: 'COM110',
+    subjectName: 'Cơ sở dữ liệu',
+    nos: '21/21',
+    icon: AppIcons.sql,
+  },
+  {
+    _id: '64b6ca0f9fda0eb930137a87',
+    subjectCode: 'COM111',
+    subjectName: 'Lập trình web',
+    nos: '14/21',
+    icon: AppIcons.web,
+  },
+  {
+    _id: '64b6ca0f9fda0eb930137a88',
+    subjectCode: 'COM112',
+    subjectName: 'Lập trình di động',
+    nos: '14/21',
+    icon: AppIcons.mobile,
+  }
+];
 
 export const fakeNotification: TypeNotification[] = [
   {
@@ -20,6 +97,8 @@ export const fakeNotification: TypeNotification[] = [
       classCode: 'CTT12CDT01',
       facility: 'Công nghệ thông tin',
       phone: '0123456789',
+      studentId: 'CTT000000',
+      graduationTime: '2023-07-18T17:21:19.791Z',
     },
     type: 'homework',
     createdAt: '2023-07-18T17:21:19.791Z',
@@ -38,6 +117,8 @@ export const fakeNotification: TypeNotification[] = [
       classCode: 'CTT12CDT01',
       facility: 'Công nghệ thông tin',
       phone: '0123456789',
+      studentId: 'CTT000000',
+      graduationTime: '2023-07-18T17:21:19.791Z',
     },
     type: 'homework',
     createdAt: '2023-07-18T17:21:19.791Z',
@@ -57,6 +138,8 @@ export const fakeNotification: TypeNotification[] = [
       classCode: 'CTT12CDT01',
       facility: 'Công nghệ thông tin',
       phone: '0123456789',
+      studentId: 'CTT000000',
+      graduationTime: '2023-07-18T17:21:19.791Z',
     },
     type: 'homework',
     createdAt: '2023-07-18T17:21:19.791Z',
@@ -76,6 +159,8 @@ export const fakeNotification: TypeNotification[] = [
       classCode: 'CTT12CDT01',
       facility: 'Công nghệ thông tin',
       phone: '0123456789',
+      studentId: 'CTT000000',
+      graduationTime: '2023-07-18T17:21:19.791Z',
     },
     type: 'homework',
     createdAt: '2023-07-18T17:21:19.791Z',
@@ -95,6 +180,8 @@ export const fakeNotification: TypeNotification[] = [
       classCode: 'CTT12CDT01',
       facility: 'Công nghệ thông tin',
       phone: '0123456789',
+      studentId: 'CTT000000',
+      graduationTime: '2023-07-18T17:21:19.791Z',
     },
     type: 'homework',
     createdAt: '2023-07-18T17:21:19.791Z',
@@ -115,6 +202,8 @@ export const fakeNotification: TypeNotification[] = [
       classCode: 'CTT12CDT01',
       facility: 'Công nghệ thông tin',
       phone: '0123456789',
+      studentId: 'CTT000000',
+      graduationTime: '2023-07-18T17:21:19.791Z',
     },
     type: 'homework',
     createdAt: '2023-07-18T17:21:19.791Z',

@@ -86,6 +86,7 @@ export const Term2 = ({item, onPress}: Props) => {
 export default memo(Term);
 
 const styles = StyleSheet.create({
+<<<<<<< HEAD
   container: {
     margin: 10,
   },
@@ -143,4 +144,46 @@ const styles = StyleSheet.create({
     textTransform: 'capitalize',
     marginRight: 15,
   },
+=======
+    container: {
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+    },
+    card: {
+        borderWidth: 1,
+        borderColor: '#e9e9e9',
+        borderRadius: 10,
+        backgroundColor: 'white',
+        elevation: 5,
+    },
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 10,
+    },
+    textContainer: {
+        flex: 1,
+        justifyContent: 'space-between',
+    },
+    subjectName: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'black',
+    },
+    mark: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'black',
+    },
+    subjectCode: {
+        fontSize: 13,
+        fontWeight: 'bold',
+    },
+    status: {
+        fontSize: 13,
+        fontWeight: 'bold',
+        textTransform: 'capitalize',
+        marginRight: 10,
+    },
+>>>>>>> fb521ab1d88df5b232eb0a0eef2bff8d9afe7aa3
 });

@@ -50,6 +50,8 @@
 
     "carousel-with-pagination-rn": "^1.1.8",
 
+    "deprecated-react-native-prop-types": "^4.2.1",
+
     "google-auth-library": "^8.9.0",
 
     "googleapis": "^122.0.0",
@@ -66,11 +68,15 @@
 
     "npm": "^9.8.0",
 
+    "patch-package": "^8.0.0",
+
     "react": "18.2.0",
 
     "react-native": "0.72.3",
 
     "react-native-calendar-picker": "^7.1.4",
+
+    "react-native-camera": "^4.2.1",
 
     "react-native-circular-progress-indicator": "^4.4.2",
 
@@ -85,6 +91,10 @@
     "react-native-linear-gradient": "^2.7.3",
 
     "react-native-pager-view": "^6.2.0",
+
+    "react-native-permissions": "^3.8.4",
+
+    "react-native-qrcode-scanner": "^1.5.5",
 
     "react-native-qrcode-svg": "^6.2.0",
 
