@@ -17,6 +17,7 @@ import {useState, useEffect} from 'react';
 import {Text} from '../components/text/StyledText';
 import {News} from '../types/News';
 import AxiosInstance from '../helper/axiosInstance';
+import {changeTypeNews} from '../types/NewType';
 const DetailNewsScreen = () => {
   const navigation = useNavigation<AppNavigationProp>();
   const newId = useRoute<DetialNewsScreenProps['route']>().params.newId;
@@ -60,7 +61,7 @@ const DetailNewsScreen = () => {
               justifyContent: 'center',
             }}>
             <Text style={{fontWeight: 'bold', fontSize: 17, color: 'white'}}>
-              {news?.type}
+              {changeTypeNews(news?.type || '')}
             </Text>
           </View>
           <Text style={styles.title}>{news?.title}</Text>

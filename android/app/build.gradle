@@ -69,10 +69,8 @@ def enableProguardInReleaseBuilds = false
 def jscFlavor = 'org.webkit:android-jsc:+'
 
 android {
-    ndkVersion rootProject.ext.ndkVersion
-
+    ndkVersion '23.1.7779620'
     compileSdkVersion rootProject.ext.compileSdkVersion
-
     namespace "com.myfpl_v2"
     defaultConfig {
         applicationId "com.myfpl_v2"

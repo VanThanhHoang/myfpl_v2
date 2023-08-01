@@ -1,20 +1,26 @@
-import { Image, StyleSheet, View } from 'react-native';
-import { AppIcons, AppImages } from '../constant/AppAsset';
+import {Image, StyleSheet, View} from 'react-native';
+import {AppIcons, AppImages} from '../constant/AppAsset';
 import QRCode from 'react-native-qrcode-svg';
-import { useState } from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Text } from './text/StyledText';
+import {useState} from 'react';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {Text} from './text/StyledText';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux/store';
+import moment from 'moment';
 const StudentCard = () => {
+  const userInfo = useSelector(
+    (state: RootState) => state.userReducer.userInfo,
+  );
   const [showQr, setShowQr] = useState<boolean>(false);
   return (
     <View style={styles.container}>
       <Header />
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{flexDirection: 'row'}}>
         <TouchableOpacity
           onPress={() => {
             setShowQr(!showQr);
           }}
-          style={{ width: 100 }}>
+          style={{width: 100}}>
           {!showQr ? (
             <Image
               style={[styles.avatar]}
@@ -29,16 +35,22 @@ const StudentCard = () => {
             />
           )}
 
-          <Text style={{ fontSize: 12, fontWeight: '700' }}>
+          <Text style={{fontSize: 12, fontWeight: '700'}}>
             {!showQr
               ? 'Chạm để hiển thị mã QR'
               : 'Chạm để hiển thị ảnh sinh viên'}
           </Text>
         </TouchableOpacity>
-        <View style={{ marginLeft: 30 }}>
-          <NameView />
-          <InfoView infoType="MSSV/StudentId" value="PS25812" />
-          <InfoView infoType="Giá trị đến/Valid to" value="12/2024" />
+        <View style={{marginLeft: 30}}>
+          <NameView userName={userInfo?.fullName || ' '} />
+          <InfoView
+            infoType="MSSV/StudentId"
+            value={userInfo?.studentId || ''}
+          />
+          <InfoView
+            infoType="Giá trị đến/Valid to"
+            value={moment(userInfo?.graduationTime).format('MM/YYYY') || ''}
+          />
           <View style={styles.webSchoolContainer}>
             <Text
               style={{
@@ -65,11 +77,13 @@ const StudentCard = () => {
     </View>
   );
 };
-const NameView = () => {
+const NameView: React.FC<{userName: string}> = ({userName}) => {
   return (
     <View>
       <Text style={styles.infoTypeLabel}>Họ và tên/Name</Text>
-      <Text style={{ color: '#f27126', fontWeight: '900' }}>HOÀNG VĂN THÀNH</Text>
+      <Text style={{color: '#f27126', fontWeight: '900'}}>
+        {userName || ''}
+      </Text>
     </View>
   );
 };
@@ -77,11 +91,11 @@ type InfoViewProp = {
   infoType: string;
   value: string;
 };
-const InfoView = ({ infoType, value }: InfoViewProp): React.JSX.Element => {
+const InfoView = ({infoType, value}: InfoViewProp): React.JSX.Element => {
   return (
     <View>
       <Text style={styles.infoTypeLabel}>{infoType}</Text>
-      <Text style={{ color: 'black', fontWeight: '700' }}>{value}</Text>
+      <Text style={{color: 'black', fontWeight: '700'}}>{value}</Text>
     </View>
   );
 };
@@ -100,7 +114,7 @@ const Header = () => {
   );
 };
 const styles = StyleSheet.create({
-  infoTypeLabel: { color: 'black', fontWeight: '400' },
+  infoTypeLabel: {color: 'black', fontWeight: '400'},
   webSchoolContainer: {
     height: 25,
     fontWeigh: '400',

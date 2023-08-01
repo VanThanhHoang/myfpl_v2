@@ -58,7 +58,7 @@ const ScheduleScreen = () => {
         </ScrollView>
       </View>
       <ScrollTimeStudy />
-      <ScheduleTimes />
+      {/* <ScheduleTimes /> */}
     </ScreenContainer>
   );
 };

@@ -6,6 +6,16 @@ Content-Type: application/json
 }
 
 ###
+
+GET http://myfpl.ddns.net/news/search/phí
+
+Content-Type: application/json
+
+{
+}
+
+
+###
 POST http://localhost:9000/auth/login
 Content-Type: application/json
 

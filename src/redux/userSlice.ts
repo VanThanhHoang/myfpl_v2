@@ -11,7 +11,9 @@ export const getUserInfo = createAsyncThunk(
       console.log(userInfo);
 
       return {
-        fullName: userInfo.name,
+        graduationTime: userInfo.graduationTime,
+        studentId: userInfo.studentID,
+        fullName: userInfo.fullName,
         email: userInfo.email,
         picture: userInfo.picture,
         facility: userInfo.facility,

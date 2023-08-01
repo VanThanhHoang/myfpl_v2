@@ -7,13 +7,11 @@ import { Text } from './text/StyledText';
 import { AppNavigationProp } from '../navigation/AppNavigator';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
-import { User } from '../types/User';
 const AppToolBar: React.FC = () => {
   const navigation = useNavigation<AppNavigationProp>();
   const userInfo = useSelector(
     (state: RootState) => state.userReducer.userInfo,
   );
-  console.log(userInfo);
   return (
     <View style={styles.container}>
       <Image

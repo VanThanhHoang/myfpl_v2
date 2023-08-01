@@ -5,7 +5,6 @@ import {useEffect, useState} from 'react';
 import AppToolBar from '../components/AppToolBar';
 import {getEmail} from '../service/GetEmail';
 import SearchBar from '../components/SearchBar';
-import FakeNews from '../modal/FakeData';
 import AxiosInstance from '../helper/axiosInstance';
 import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../redux/store';

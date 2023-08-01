@@ -19,7 +19,6 @@ export const loginWithGoogle = async () => {
     const resSeverLogin: any = await AxiosInstance().post('auth/logingoogle', {
       tokenId: resGoogleLogin.idToken,
     });
-    console.log({resSeverLogin});
     // res data.accessToken
     await AsyncStorage.setItem(
       AsyncStorageKey.AccessTokenKey,

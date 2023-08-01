@@ -15,15 +15,17 @@ import {
   launchImageLibrary,
   CameraOptions,
   Asset,
-  ImagePickerResponse,
 } from 'react-native-image-picker';
 import {useCallback, useState} from 'react';
 import SelectImageModal from '../modal/SelectImageModal';
 const ErorReportScreen = () => {
+  // state
+  const [images, setImages] = useState<Asset[]>([]);
+  const [errMess, setErrMess] = useState<string>('');
   const launchOptions: CameraOptions = {
     mediaType: 'photo',
   };
-  const [images, setImages] = useState<Asset[]>([]);
+
   const imageUrls: string[] = [];
   const onUpdateComplete = (url: string) => {
     imageUrls.push(url);
@@ -81,7 +83,14 @@ const ErorReportScreen = () => {
             nhất. Cảm ơn.
           </Text>
           <Text style={styles.label}>Phản hồi của bạn về ứng dụng :</Text>
-          <TextInput multiline style={styles.textInput} />
+          <TextInput
+            value={errMess}
+            onChangeText={text => {
+              setErrMess(text);
+            }}
+            multiline
+            style={styles.textInput}
+          />
           <Text style={styles.label}>
             Gửi cho chúng tôi ảnh chụp màn hình lỗi bạn gặp phải (nếu có):
           </Text>
