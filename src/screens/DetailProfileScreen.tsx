@@ -11,9 +11,15 @@ import UserInfoCard from '../components/UserInfoCard';
 import {useNavigation} from '@react-navigation/native';
 import {AppNavigationProp} from '../navigation/AppNavigator';
 import {Text} from '../components/text/StyledText';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux/store';
+import moment from 'moment';
 
 const DetailProFile = () => {
   const navigation = useNavigation<AppNavigationProp>();
+  const userInfo = useSelector(
+    (state: RootState) => state.userReducer.userInfo,
+  );
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <View style={{elevation: 3}}>
@@ -24,7 +30,10 @@ const DetailProFile = () => {
         <View style={styles.backGround}></View>
 
         <Image style={styles.logo} source={AppImages.poly} />
-        <NameAndAvatarContainer />
+        <NameAndAvatarContainer
+          name={userInfo?.fullName || ''}
+          email={userInfo?.email || ''}
+        />
         <View style={styles.backButton}>
           <TouchableOpacity
             onPress={() => {
@@ -40,20 +49,26 @@ const DetailProFile = () => {
       <ScrollView
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{justifyContent: 'flex-start', padding: 24}}>
-        <UserInfoCard infoLabel="Mã số sinh viên" info="VIET69812" />
-        <UserInfoCard infoLabel="Giới tính" info="Nam" />
-        <UserInfoCard infoLabel="Ngày sinh" info="05-06-2002" />
         <UserInfoCard
-          infoLabel="Địa chỉ"
-          info="Nhà số 10C đường 73A xã Tân Phú Trung huyện Củ Chi"
+          infoLabel="Mã số sinh viên"
+          info={userInfo?.studentID || ''}
         />
-        <UserInfoCard infoLabel="Chuyên ngành" info="Lập trình mobile" />
+        <UserInfoCard infoLabel="Giới tính" info={userInfo?.gender || ''} />
+        <UserInfoCard
+          infoLabel="Ngày sinh"
+          info={moment(userInfo?.birthday).format('DD/MM/YYYY') || ''}
+        />
+        <UserInfoCard infoLabel="Địa chỉ" info={userInfo?.address || ''} />
+        <UserInfoCard infoLabel="Chuyên ngành" info={userInfo?.major || ''} />
       </ScrollView>
       <StatusBar translucent backgroundColor="transparent" />
     </View>
   );
 };
-const NameAndAvatarContainer = () => {
+const NameAndAvatarContainer: React.FC<{name: string; email: string}> = ({
+  name,
+  email,
+}) => {
   return (
     <View style={styles.nameContainer}>
       <Image
@@ -63,10 +78,8 @@ const NameAndAvatarContainer = () => {
         }}
       />
 
-      <Text style={styles.name}>Hoàng Văn Thành</Text>
-      <Text style={[styles.name, {fontSize: 14}]}>
-        thanhhvps25812@fpt.edu.vn
-      </Text>
+      <Text style={styles.name}>{name}</Text>
+      <Text style={[styles.name, {fontSize: 14}]}>{email}</Text>
     </View>
   );
 };

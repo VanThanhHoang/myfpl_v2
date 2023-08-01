@@ -4,14 +4,14 @@ import {
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/LoginScreen';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AsyncStorageKey } from '../constant/AsyncStorageKey';
-import { View } from 'react-native';
+import {AsyncStorageKey} from '../constant/AsyncStorageKey';
+import {View} from 'react-native';
 import AnimatedLottieView from 'lottie-react-native';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { AppAnimations } from '../constant/AppAsset';
-import { ApiKey } from '../constant/ApiKey';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {AppAnimations} from '../constant/AppAsset';
+import {ApiKey} from '../constant/ApiKey';
 import MainBottomNavigatior from './MainBottomNavigator';
 import EmailScreen from '../screens/GmailScreen';
 import ContactScreen from '../screens/ContactsScreen';
@@ -26,9 +26,9 @@ type RootStackParamList = {
   Main: undefined;
   Email: undefined;
   Contact: undefined;
-  DetailNews: { newId: string };
+  DetailNews: {newId: string};
   DetailProfile: undefined;
-  SearchResultScreen: { searchKey: string };
+  SearchResultScreen: {searchKey: string};
   ErorReport: undefined;
   Notification: undefined;
   Attendances: undefined;
@@ -68,7 +68,7 @@ const AppNavigator = () => {
   return isCheckLogin ? (
     <>
       <RootStack.Navigator
-        screenOptions={{ headerShown: false }}
+        screenOptions={{headerShown: false}}
         initialRouteName={initialRouteName}>
         <RootStack.Screen name="Login" component={LoginScreen} />
         <RootStack.Screen name="Main" component={MainBottomNavigatior} />
@@ -86,7 +86,7 @@ const AppNavigator = () => {
       </RootStack.Navigator>
     </>
   ) : (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <AnimatedLottieView source={AppAnimations.loadingAnm} autoPlay loop />
     </View>
   );

@@ -3,16 +3,16 @@ import React, {useState} from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {AppIcons} from '../constant/AppAsset';
 import {Color} from '../constant/Colors';
-const ScrollTimeTerm: React.FC<{width?: DimensionValue}> = ({width}) => {
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux/store';
+import {Semester} from '../types/Semester';
+const ScrollTimeTerm: React.FC<{
+  width?: DimensionValue;
+  semesters: Semester[];
+  semesterId: string;
+  setSemesterId: Function;
+}> = ({width, semesters, semesterId, setSemesterId}) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('Spring 2023');
-  const [items, setItems] = useState([
-    {label: 'Fall 2023', value: 'Fall 2023'},
-    {label: 'Summer 2023', value: 'Summer 2023'},
-    {label: 'Spring 2023', value: 'Spring 2023'},
-    {label: 'Fall 2022', value: 'Fall 2022'},
-    {label: 'Summer 2022', value: 'Summer 2022'},
-  ]);
   return (
     <View
       style={{
@@ -49,12 +49,20 @@ const ScrollTimeTerm: React.FC<{width?: DimensionValue}> = ({width}) => {
         selectedItemContainerStyle={{
           backgroundColor: '#e3e2ff',
         }}
+        onChangeValue={value => {
+          console.log(value);
+          setSemesterId(value);
+        }}
         open={open}
-        value={value}
-        items={items}
+        value={semesterId}
+        items={semesters.map(semester => ({
+          label: semester.name,
+          value: semester._id,
+        }))}
         setOpen={setOpen}
-        setValue={setValue}
-        setItems={setItems}
+        setValue={value => {
+          setSemesterId(value);
+        }}
       />
     </View>
   );

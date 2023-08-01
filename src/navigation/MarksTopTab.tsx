@@ -1,9 +1,7 @@
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import TermScreen from '../screens/TermScreen';
 import Transcript from '../components/Transcript';
-
 const Tab = createMaterialTopTabNavigator();
-
 const MarksTopTab = () => {
   return (
     <Tab.Navigator

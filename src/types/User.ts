@@ -1,10 +1,14 @@
 export interface User {
-  studentId:string;
+  studentID: string;
   fullName: string;
   email: string;
   picture: string;
   facility: string;
   phone: string;
   classCode: string;
-  graduationTime:string;
+  gender: string;
+  graduationTime: string;
+  birthday: string;
+  major: string;
+  address: string;
 }

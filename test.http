@@ -1,4 +1,4 @@
-POST http://myfpl.ddns.net/auth/logingoogle
+GET  http://myfpl.ddns.net/transcript?termId=64c7ef329e591ed5ecdc7696
 Content-Type: application/json
 
 {

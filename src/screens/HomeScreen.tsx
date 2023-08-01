@@ -9,17 +9,24 @@ import AxiosInstance from '../helper/axiosInstance';
 import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../redux/store';
 import {getUserInfo} from '../redux/userSlice';
+import {getSemester} from '../redux/SemesterSlice';
 const HomeScreen = () => {
   const disPatch = useDispatch<AppDispatch>();
   useEffect(() => {
     disPatch(getUserInfo());
   }, []);
   useEffect(() => {
+    disPatch(getSemester());
+  }, []);
+
+  useEffect(() => {
     getData();
     getEmail();
   }, []);
+
   const [data, setData] = useState(undefined);
   const getNews = async () => {
+    ///
     const res = await AxiosInstance().get('/news');
     setData(res.data);
   };

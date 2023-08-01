@@ -45,7 +45,7 @@ const StudentCard = () => {
           <NameView userName={userInfo?.fullName || ' '} />
           <InfoView
             infoType="MSSV/StudentId"
-            value={userInfo?.studentId || ''}
+            value={userInfo?.studentID || ''}
           />
           <InfoView
             infoType="Giá trị đến/Valid to"

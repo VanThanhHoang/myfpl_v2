@@ -7,19 +7,9 @@ export const getUserInfo = createAsyncThunk(
   async () => {
     try {
       const response = await AxiosInstance().get('users');
-      const userInfo = response.data;
-      console.log(userInfo);
+      console.log(response.data);
 
-      return {
-        graduationTime: userInfo.graduationTime,
-        studentId: userInfo.studentID,
-        fullName: userInfo.fullName,
-        email: userInfo.email,
-        picture: userInfo.picture,
-        facility: userInfo.facility,
-        phone: userInfo.phone,
-        classCode: userInfo.classCode,
-      };
+      return response.data;
       // Inferred return type: Promise<MyData>
     } catch (err) {
       console.log(err);

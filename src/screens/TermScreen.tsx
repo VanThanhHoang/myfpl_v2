@@ -1,20 +1,53 @@
 import ScreenContainer from '../components/ScreenContainer';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {View, TouchableOpacity, FlatList, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Term, {Term2} from '../components/Term';
 import ScrollTimeTerm from '../components/ScrollTimeTerm';
-import {fakeTerm} from '../modal/FakeData';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import {Color} from '../constant/Colors';
 import {AppIcons, AppImages} from '../constant/AppAsset';
 import {Text} from '../components/text/StyledText';
+import AxiosInstance from '../helper/axiosInstance';
+import {Transcript} from '../types/Grades';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux/store';
 const TermScreen = () => {
   const navigation = useNavigation();
-  const [data, setData] = useState(fakeTerm);
-  const [data2, setData2] = useState(fakeTerm);
-
+  const semesters = useSelector(
+    (state: RootState) => state.semesterSliceReducer.semesters,
+  );
+  const [semesterId, setSemesterId] = useState(semesters[0]._id);
+  const [gpa, setGpa] = useState(0);
   const [isFlexMode, setflexMode] = useState(false);
+  const [transcripts, setTranscripts] = useState<Transcript[]>([]);
+  const getTranscript = async () => {
+    const res = await AxiosInstance().get(`transcript?termId=${semesterId}`);
+    setTranscripts(res.data);
+    getGpa(res.data);
+  };
+  const getGpa = (transcripts: Transcript[]) => {
+    let totalWeightedSum = 0;
+    for (let i = 0; i < transcripts.length; i++) {
+      const weightedSum = transcripts[i].grades.reduce(
+        (sum, item) => sum + item.result * item.weight,
+        0,
+      );
+      console.log(weightedSum);
+      totalWeightedSum += weightedSum / 100;
+    }
+
+    if (transcripts.length !== 0) {
+      const gpa = totalWeightedSum / transcripts.length;
+      setGpa(gpa);
+    } else {
+      // Handle the case when the transcripts array is empty
+      console.log('Transcripts array is empty.');
+    }
+  };
+  useEffect(() => {
+    getTranscript();
+  }, [semesterId]);
   return (
     <ScreenContainer>
       <View
@@ -24,7 +57,12 @@ const TermScreen = () => {
           marginBottom: 10,
           marginHorizontal: 20,
         }}>
-        <ScrollTimeTerm width={'80%'} />
+        <ScrollTimeTerm
+          semesterId={semesterId}
+          setSemesterId={setSemesterId}
+          semesters={semesters}
+          width={'80%'}
+        />
         <View
           style={{
             alignSelf: 'flex-end',
@@ -65,7 +103,7 @@ const TermScreen = () => {
           <CircularProgress
             activeStrokeWidth={25}
             inActiveStrokeWidth={25}
-            value={9.0}
+            value={gpa}
             radius={70}
             duration={1200}
             activeStrokeColor={Color.MAINCOLOR}
@@ -104,35 +142,40 @@ const TermScreen = () => {
           />
         </View>
       )}
-      <View style={{flex: 1, backgroundColor: '#f4f9f8', paddingVertical: 10}}>
-        {data.length !== 0 &&
-          (isFlexMode ? (
-            <FlatList
-              key={'_'}
-              numColumns={2}
-              data={data2}
-              renderItem={({item}) => (
-                <Term2
-                  item={item}
-                  onPress={() => navigation.navigate('Bảng điểm 2')}
-                />
-              )}
-              keyExtractor={item => item._id}
-            />
-          ) : (
-            <FlatList
-              key={'_#'}
-              data={data}
-              renderItem={({item}) => (
-                <Term
-                  item={item}
-                  onPress={() => navigation.navigate('Bảng điểm 2')}
-                />
-              )}
-              keyExtractor={item => item._id}
-            />
-          ))}
-      </View>
+      {transcripts && (
+        <View
+          style={{flex: 1, backgroundColor: '#f4f9f8', paddingVertical: 10}}>
+          {transcripts.length !== 0 &&
+            (isFlexMode ? (
+              <FlatList
+                showsVerticalScrollIndicator={false}
+                key={'_'}
+                numColumns={2}
+                data={transcripts}
+                renderItem={({item}) => (
+                  <Term2
+                    item={item}
+                    onPress={() => navigation.navigate('Bảng điểm 2')}
+                  />
+                )}
+                keyExtractor={item => item.subject.code}
+              />
+            ) : (
+              <FlatList
+                showsVerticalScrollIndicator={false}
+                key={'_#'}
+                data={transcripts}
+                renderItem={({item}) => (
+                  <Term
+                    item={item}
+                    onPress={() => navigation.navigate('Bảng điểm 2')}
+                  />
+                )}
+                keyExtractor={item => item.subject.code}
+              />
+            ))}
+        </View>
+      )}
     </ScreenContainer>
   );
 };
