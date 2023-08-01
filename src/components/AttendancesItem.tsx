@@ -1,16 +1,23 @@
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import React, { memo } from 'react';
-import { ItemTerm } from '../types/ItemTerm';
+import { AttandancesType } from '../types/AttandancesType';
 import { Text } from './text/StyledText';
 
-interface Props {
-    item: ItemTerm;
+interface AttandancesItemProps {
+    item: AttandancesType;
     onPress: () => void;
 }
 
-const Term = ({ item, onPress }: Props) => {
+const getNumberFromString = (str: string) => {
+    return parseInt(str.split('/')[0], 10);
+}
+
+const AttendancesItem = ({ item, onPress }: AttandancesItemProps) => {
+    const totalDay = 21;
+    const passed = getNumberFromString(item.nos) === totalDay;
     return (
         <TouchableOpacity onPress={onPress} style={styles.container}>
+
             <View style={styles.card}>
                 <View style={styles.row}>
                     <Image style={{ width: 60, height: 60 }} source={item.icon} />
@@ -18,7 +25,6 @@ const Term = ({ item, onPress }: Props) => {
                     <View style={styles.textContainer}>
                         <View style={[styles.row, { justifyContent: 'space-between' }]}>
                             <Text style={styles.subjectName}>{item.subjectName}</Text>
-                            <Text style={styles.mark}>{item.mark.toFixed(1)}</Text>
                         </View>
                         <View style={[styles.row, { justifyContent: 'space-between' }]}>
                             <Text style={styles.subjectCode}>{item.subjectCode}</Text>
@@ -26,16 +32,11 @@ const Term = ({ item, onPress }: Props) => {
                                 style={[
                                     styles.status,
                                     {
-                                        color:
-                                            item.status === 'passed'
-                                                ? '#2bc246'
-                                                : item.status === 'failed'
-                                                    ? '#e90000'
-                                                    : '#ffb330',
+                                        color: passed ? '#4caf50' : '#f44336',
                                     },
                                 ]}
                             >
-                                {item.status}
+                                {item.nos}
                             </Text>
                         </View>
                     </View>
@@ -45,7 +46,7 @@ const Term = ({ item, onPress }: Props) => {
     );
 };
 
-export default memo(Term);
+export default memo(AttendancesItem);
 
 const styles = StyleSheet.create({
     container: {
