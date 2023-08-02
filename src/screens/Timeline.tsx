@@ -1,27 +1,34 @@
-import React, {memo, useEffect, useState} from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import React, { memo, useEffect, useState } from 'react';
+import { StyleSheet, View, Image } from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
-import {Alert} from 'react-native';
-import {AppIcons} from '../constant/AppAsset';
-import {ClassInfo} from '../types/ClassInfo';
-import {convertHourAndMinuesToString} from '../helper/convertHourAndMinute';
+import { Alert } from 'react-native';
+import { AppIcons } from '../constant/AppAsset';
+import { ClassInfo } from '../types/ClassInfo';
+import { convertHourAndMinuesToString } from '../helper/convertHourAndMinute';
 import moment from 'moment';
-import {Text} from '../components/text/StyledText';
+import { Text } from '../components/text/StyledText';
 import AxiosInstance from '../helper/axiosInstance';
-const ScheduleTimes: React.FC = () => {
+import { Color } from '../constant/Colors';
+
+interface ScheduleTimesProps {
+  selectedTabQuery: string | undefined;
+}
+
+const ScheduleTimes: React.FC<ScheduleTimesProps> = ({ selectedTabQuery }) => {
   const [schedule, setSchedule] = useState();
   const getSchedule = async () => {
-    const res = await AxiosInstance().get('/schedule');
+    const res = await AxiosInstance().get(`/schedule?${selectedTabQuery}`);
     setSchedule(res.data);
   };
   useEffect(() => {
     getSchedule();
-  }, []);
-  const renderDetail = (classInfo: ClassInfo): JSX.Element => {
+  }, [selectedTabQuery]);
+
+  const renderDetail = (data: ClassInfo): JSX.Element => {
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <Text style={[styles.rowTitle]}>
-          {`${classInfo.subject.name} (${classInfo.subject.code})`}
+          {`${data.classInfo.subject.name} (${data.classInfo.subject.code})`}
         </Text>
         <View style={styles.descriptionContainer}>
           <View
@@ -32,7 +39,7 @@ const ScheduleTimes: React.FC = () => {
             }}>
             <Image style={styles.icon} source={AppIcons.des}></Image>
             <Text style={[styles.textDescriptionStyle]}>
-              {classInfo.description}
+              {data.description}
             </Text>
           </View>
           <View
@@ -42,25 +49,25 @@ const ScheduleTimes: React.FC = () => {
               justifyContent: 'flex-start',
             }}>
             <Image style={styles.icon} source={AppIcons.place}></Image>
-            <Text style={[styles.textDescriptionStyle]}>
-              {classInfo.clsasAddress.room +
+            {/* <Text style={[styles.textDescriptionStyle]}>
+              {data.classInfo.clsasAddress.room +
                 '* Tòa nhà ' +
-                classInfo.clsasAddress.buiding}
-            </Text>
+                data.classInfo.clsasAddress.buiding}
+            </Text> */}
           </View>
 
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
-            <Image
-              source={{uri: classInfo.teacher.photo}}
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+            {/* <Image
+              source={{ uri: data.classInfo.teacher.photo }}
               style={styles.imageStyle}
-            />
+            /> */}
             <Text
               style={{
                 fontWeight: '500',
                 marginHorizontal: 5,
                 color: 'black',
               }}>
-              {`${classInfo.teacher.name} (${classInfo.teacher.code})`}
+              {`${data.classInfo.teacher.fullName} (${data.classInfo.teacher.username})`}
             </Text>
           </View>
         </View>
@@ -68,16 +75,16 @@ const ScheduleTimes: React.FC = () => {
     );
   };
 
-  const renderTime = (classInfo: ClassInfo): JSX.Element => {
+  const renderTime = (data: ClassInfo): JSX.Element => {
     return (
-      <View style={{width: 80, backgroundColor: '#ffffff'}}>
+      <View style={{ width: 80, backgroundColor: '#ffffff' }}>
         <Text
           style={{
             fontSize: 14,
             color: '#327ab8',
             fontWeight: '700',
           }}>
-          {moment(classInfo.date).subtract(10, 'days').calendar()}
+          {moment(data.date).subtract(10, 'days').calendar()}
         </Text>
         <Text
           style={{
@@ -85,14 +92,14 @@ const ScheduleTimes: React.FC = () => {
             color: 'black',
             fontWeight: '700',
           }}>
-          {convertHourAndMinuesToString(classInfo.slot.startTime)}
+          {/* {convertHourAndMinuesToString(classInfo.slot.startTime)} */}
           {/* {classInfo.slot.startTime} */}
         </Text>
         <Text
           style={{
             color: '#BCC1CD',
           }}>
-          {convertHourAndMinuesToString(classInfo.slot.endTime)}
+          {/* {convertHourAndMinuesToString(classInfo.slot.endTime)} */}
         </Text>
       </View>
     );
@@ -110,13 +117,15 @@ const ScheduleTimes: React.FC = () => {
           padding: 5,
           borderRadius: 13,
         }}
-        descriptionStyle={{color: 'white', fontWeight: '400'}}
+        descriptionStyle={{ color: 'white', fontWeight: '400' }}
         detailContainerStyle={{
           padding: 10,
           width: '98%',
           marginBottom: 20,
           elevation: 2,
-          backgroundColor: '#fffbe8',
+          backgroundColor: '#fafdf5',
+          borderWidth: 1,
+          borderColor: '#ff7f74',
           borderRadius: 15,
         }}
         onEventPress={(item: any) =>

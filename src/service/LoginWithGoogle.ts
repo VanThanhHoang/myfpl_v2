@@ -25,6 +25,10 @@ export const loginWithGoogle = async () => {
       AsyncStorageKey.AccessTokenKey,
       resSeverLogin.data.accessToken,
     );
+    console.log(
+      'resSeverLogin.data.accessToken',
+      resSeverLogin.data.accessToken,
+    );
     await AsyncStorage.setItem(
       AsyncStorageKey.RefeshTokenKey,
       resSeverLogin.data.refreshToken,
