@@ -12,8 +12,9 @@ import AxiosInstance from '../helper/axiosInstance';
 import {Transcript} from '../types/Grades';
 import {useSelector} from 'react-redux';
 import {RootState} from '../redux/store';
+import {AppNavigationProp} from '../navigation/AppNavigator';
 const TermScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<AppNavigationProp>();
   const semesters = useSelector(
     (state: RootState) => state.semesterSliceReducer.semesters,
   );
@@ -155,7 +156,11 @@ const TermScreen = () => {
                 renderItem={({item}) => (
                   <Term2
                     item={item}
-                    onPress={() => navigation.navigate('Bảng điểm 2')}
+                    onPress={() =>
+                      navigation.navigate('Transcript', {
+                        transcript: item,
+                      })
+                    }
                   />
                 )}
                 keyExtractor={item => item.subject.code}
@@ -168,7 +173,11 @@ const TermScreen = () => {
                 renderItem={({item}) => (
                   <Term
                     item={item}
-                    onPress={() => navigation.navigate('Bảng điểm 2')}
+                    onPress={() =>
+                      navigation.navigate('Transcript', {
+                        transcript: item,
+                      })
+                    }
                   />
                 )}
                 keyExtractor={item => item.subject.code}

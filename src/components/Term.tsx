@@ -1,15 +1,16 @@
 import {StyleSheet, View, TouchableOpacity, Image} from 'react-native';
 import React, {memo, useEffect, useState} from 'react';
-import {ItemTerm} from '../types/ItemTerm';
 import {Text} from './text/StyledText';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import {Transcript} from '../types/Grades';
-import {AppIcons} from '../constant/AppAsset';
+import {useNavigation} from '@react-navigation/native';
+import {AppNavigationProp} from '../navigation/AppNavigator';
 interface Props {
   item: Transcript;
   onPress: () => void;
 }
 const Term = ({item, onPress}: Props) => {
+  const navigation = useNavigation<AppNavigationProp>();
   const [weightedAverage, setWeightedAverage] = useState<number>(0);
   useEffect(() => {
     const weightedSum = item.grades.reduce(
@@ -63,6 +64,7 @@ const Term = ({item, onPress}: Props) => {
 };
 
 export const Term2 = ({item, onPress}: Props) => {
+  const navigation = useNavigation<AppNavigationProp>();
   const [weightedAverage, setWeightedAverage] = useState<number>(0);
   useEffect(() => {
     const weightedSum = item.grades.reduce(

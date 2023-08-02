@@ -17,11 +17,11 @@ const MarksTopTab = () => {
         component={TermScreen}
       />
       {/* <Tab.Screen name="Lịch sử học" component={ProfileScreen} /> */}
-      <Tab.Screen
+      {/* <Tab.Screen
         options={{title: 'Bảng điểm'}}
         name="Bảng điểm 2"
         component={Transcript}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };

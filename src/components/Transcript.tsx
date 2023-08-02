@@ -10,147 +10,54 @@ import {
 import _ from 'lodash';
 import {AppIcons} from '../constant/AppAsset';
 import {Color} from '../constant/Colors';
-
-interface GradeItem {
-  name: string;
-  weight: number;
-  result: number;
-}
-
-interface TranscriptItem {
-  subjectCode: string;
-  grades: GradeItem[];
-  _id: string;
-}
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {
+  AppNavigationProp,
+  TranscriptScreenProps,
+} from '../navigation/AppNavigator';
+import {Transcript as TranscriptType} from '../types/Grades';
+import ScreenToolBar from './ScreenToolBar';
 
 const Transcript: React.FC = () => {
+  const navigation = useNavigation<AppNavigationProp>();
+  const transcriptRoute =
+    useRoute<TranscriptScreenProps['route']>().params.transcript;
+
   const [columns, setColumns] = useState<string[]>([
     'Tên đầu điểm',
     'Trọng số',
     'Điểm',
   ]);
 
-  const calculateAverage = (grades: GradeItem[]) => {
-    const totalMarks = grades.reduce((acc, item) => acc + item.result, 0);
-    return (totalMarks / grades.length).toFixed(2);
+  const calculateAverage = (transcripts: TranscriptType) => {
+    const weightedSum = transcripts.grades.reduce(
+      (sum, item) => sum + item.result * item.weight,
+      0,
+    );
+    return weightedSum / 100 + '';
   };
 
-  const getStatus = (grades: GradeItem[]) => {
-    const average = parseFloat(calculateAverage(grades));
+  const getStatus = (transcripts: TranscriptType) => {
+    const average = parseFloat(calculateAverage(transcripts));
     return average >= 5.0 ? 'Passed' : 'Failed';
   };
   type TableFooterProps = {
-    grades: GradeItem[];
+    transcripts: TranscriptType;
   };
-  const TableFooter = ({grades}: TableFooterProps) => (
+  const TableFooter = ({transcripts}: TableFooterProps) => (
     <View style={styles.tableFooter}>
       <Text style={styles.footerText}>
         Average Score:
-        <Text style={{fontWeight: '900'}}>{calculateAverage(grades)}</Text>
+        <Text style={{fontWeight: '900'}}>{calculateAverage(transcripts)}</Text>
       </Text>
-      <Text style={styles.footerText}>Status: {getStatus(grades)}</Text>
+      <Text style={styles.footerText}>Status: {getStatus(transcripts)}</Text>
     </View>
   );
 
   const [direction, setDirection] = useState<string | null>(null);
   const [selectedColumn, setSelectedColumn] = useState<string | null>(null);
-  const [transcript, setTranscripts] = useState<TranscriptItem>({
-    subjectCode: 'COM108',
-    grades: [
-      {
-        name: 'Lab 1',
-        weight: 3.5,
-        result: 7.5,
-      },
-      {
-        name: 'Lab 2',
-        weight: 3.5,
-        result: 7.5,
-      },
-      {
-        name: 'Lab 3',
-        weight: 3.5,
-        result: 9,
-      },
-      {
-        name: 'Lab 4',
-        weight: 3.5,
-        result: 8.8,
-      },
-      {
-        name: 'Lab 5',
-        weight: 3.5,
-        result: 9.2,
-      },
-      {
-        name: 'Lab 6',
-        weight: 3.5,
-        result: 7.9,
-      },
-      {
-        name: 'Lab 7',
-        weight: 3.5,
-        result: 8.7,
-      },
-      {
-        name: 'Lab 8',
-        weight: 3.5,
-        result: 9.5,
-      },
-      {
-        name: 'Quiz 1',
-        weight: 1.5,
-        result: 7.8,
-      },
-      {
-        name: 'Quiz 2',
-        weight: 1.5,
-        result: 8.2,
-      },
-      {
-        name: 'Quiz 7',
-        weight: 1.5,
-        result: 9.1,
-      },
-      {name: 'Quiz 3', weight: 1.5, result: 9.1},
-      {
-        name: 'Quiz 4',
-        weight: 1.5,
-        result: 8.5,
-      },
-      {
-        name: 'Quiz 5',
-        weight: 1.5,
-        result: 9.5,
-      },
-      {
-        name: 'Quiz 6',
-        weight: 1.5,
-        result: 8.9,
-      },
-      {
-        name: 'Quiz 8',
-        weight: 1.5,
-        result: 9.8,
-      },
-      {
-        name: 'Assignment GĐ1',
-        weight: 10,
-        result: 10,
-      },
-      {
-        name: 'Assignment GĐ2',
-        weight: 10,
-        result: 9,
-      },
-      {
-        name: 'Bảo vệ Assignment',
-        weight: 40,
-        result: 9,
-      },
-    ],
-    _id: '64bd43269f4201da8a2dd84b',
-  });
+  const [transcript, setTranscripts] =
+    useState<TranscriptType>(transcriptRoute);
 
   const sortTable = (column: string) => {
     const newDirection = direction === 'desc' ? 'asc' : 'desc';
@@ -194,35 +101,59 @@ const Transcript: React.FC = () => {
   );
 
   return (
-    <View style={styles.container}>
-      <Text style={{fontSize: 20, fontWeight: 'bold'}}>
-        {transcript.subjectCode}
-      </Text>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={transcript.grades}
-        style={{width: '100%'}}
-        keyExtractor={(_, index) => index.toString()}
-        ListHeaderComponent={tableHeader}
-        stickyHeaderIndices={[0]}
-        renderItem={({item, index}) => {
-          const formattedMark = item.result.toFixed(1);
-          return (
-            <View
-              style={{
-                ...styles.tableRow,
-                backgroundColor: index % 2 != 0 ? '#faf1e6' : 'white',
-              }}>
-              <Text style={{...styles.columnRowTxt, fontWeight: 'bold'}}>
-                {item.name}
-              </Text>
-              <Text style={styles.columnRowTxt}>{item.weight}</Text>
-              <Text style={styles.columnRowTxt}>{formattedMark}</Text>
-            </View>
-          );
+    <View style={{flex: 1}}>
+      <ScreenToolBar
+        onButtonBackPress={() => {
+          navigation.goBack();
         }}
+        title={'Bảng điểm'}
       />
-      <TableFooter grades={transcript.grades} />
+
+      <View style={styles.container}>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: 'bold',
+            marginVertical: 5,
+            color: 'black',
+          }}>
+          {transcript.subject.name}
+        </Text>
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: 'bold',
+            marginVertical: 5,
+            color: 'black',
+          }}>
+          {transcript.subject.code}
+        </Text>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={transcript.grades}
+          style={{width: '100%'}}
+          keyExtractor={(_, index) => index.toString()}
+          ListHeaderComponent={tableHeader}
+          stickyHeaderIndices={[0]}
+          renderItem={({item, index}) => {
+            const formattedMark = item.result.toFixed(1);
+            return (
+              <View
+                style={{
+                  ...styles.tableRow,
+                  backgroundColor: index % 2 != 0 ? '#faf1e6' : 'white',
+                }}>
+                <Text style={{...styles.columnRowTxt, fontWeight: 'bold'}}>
+                  {item.name}
+                </Text>
+                <Text style={styles.columnRowTxt}>{item.weight}</Text>
+                <Text style={styles.columnRowTxt}>{formattedMark}</Text>
+              </View>
+            );
+          }}
+        />
+        <TableFooter transcripts={transcript} />
+      </View>
     </View>
   );
 };
@@ -231,7 +162,8 @@ export default Transcript;
 
 const styles = StyleSheet.create({
   container: {
-    height: '100%',
+    flex: 1,
+    padding: 20,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',

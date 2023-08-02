@@ -21,6 +21,8 @@ import SearchResultScreen from '../screens/SearchResult';
 import ErorReportScreen from '../screens/ErrorReportScreen';
 import Notification from '../screens/Notification';
 import Attendances from '../screens/Attendances';
+import Transcript from '../components/Transcript';
+import {Transcript as TranscriptType} from '../types/Grades';
 type RootStackParamList = {
   Login: undefined;
   Main: undefined;
@@ -32,6 +34,9 @@ type RootStackParamList = {
   ErorReport: undefined;
   Notification: undefined;
   Attendances: undefined;
+  Transcript: {
+    transcript: TranscriptType;
+  };
 };
 
 export type AppNavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -44,6 +49,10 @@ export type DetialNewsScreenProps = NativeStackScreenProps<
   'DetailNews'
 >;
 
+export type TranscriptScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  'Transcript'
+>;
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator = () => {
   //google config
@@ -83,6 +92,7 @@ const AppNavigator = () => {
           name="SearchResultScreen"
           component={SearchResultScreen}
         />
+        <RootStack.Screen name="Transcript" component={Transcript} />
       </RootStack.Navigator>
     </>
   ) : (
