@@ -18,7 +18,6 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
     try {
       console.log(selectedTabQuery);
       const res = await AxiosInstance().get(`/schedule?${selectedTabQuery}`);
-      console.log(res);
       setSchedule(res.data);
     } catch (err) {
       console.log(err);
@@ -79,8 +78,8 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
     );
   };
 
-  const renderTime = (data: ClassInfo): JSX.Element => {
-    console.log(data.date);
+  const renderTime = (data: any): JSX.Element => {
+    console.log(data.slot.startTime);
     return (
       <View style={{width: 80, backgroundColor: '#f4f9f8'}}>
         <Text
@@ -93,18 +92,18 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
         </Text>
         <Text
           style={{
-            fontSize: 13,
+            marginTop: 20,
+            fontSize: 14,
             color: 'black',
             fontWeight: '700',
           }}>
-          {/* {convertHourAndMinuesToString(classInfo.slot.startTime)} */}
-          {/* {classInfo.slot.startTime} */}
+          {data.slot.startTime}
         </Text>
         <Text
           style={{
             color: '#BCC1CD',
           }}>
-          {/* {convertHourAndMinuesToString(classInfo.slot.endTime)} */}
+          {data.slot.endTime}
         </Text>
       </View>
     );

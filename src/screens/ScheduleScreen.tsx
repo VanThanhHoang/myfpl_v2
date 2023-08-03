@@ -1,5 +1,5 @@
 import ScreenContainer from '../components/ScreenContainer';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import AppToolBar from '../components/AppToolBar';
 import ScrollTimeStudy from '../components/ScorllTimeStudy';
 import ScheduleTimes from './Timeline';
@@ -7,7 +7,7 @@ import {View, FlatList} from 'react-native';
 import NewsTabItem from '../components/NewsTabItem';
 import {ScrollView} from 'react-native-gesture-handler';
 import {fakeAttandancesType} from '../modal/FakeData';
-import {TabActionType, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {AppNavigationProp} from '../navigation/AppNavigator';
 import AttandancesItem from '../components/AttendancesItem';
 type Scheduletab = {
