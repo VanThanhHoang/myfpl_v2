@@ -8,7 +8,6 @@ import {convertHourAndMinuesToString} from '../helper/convertHourAndMinute';
 import moment from 'moment';
 import {Text} from '../components/text/StyledText';
 import AxiosInstance from '../helper/axiosInstance';
-import {Color} from '../constant/Colors';
 
 interface ScheduleTimesProps {
   selectedTabQuery: string;
@@ -17,6 +16,7 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
   const [schedule, setSchedule] = useState();
   const getSchedule = async () => {
     try {
+      console.log(selectedTabQuery);
       const res = await AxiosInstance().get(`/schedule?${selectedTabQuery}`);
       setSchedule(res.data);
     } catch (err) {
@@ -127,8 +127,6 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
           marginBottom: 20,
           elevation: 2,
           backgroundColor: '#fafdf5',
-          borderWidth: 1,
-          borderColor: '#ff7f74',
           borderRadius: 15,
         }}
         onEventPress={(item: any) =>

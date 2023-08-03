@@ -8,8 +8,9 @@ import AnimatedLottieView from 'lottie-react-native';
 import {AppAnimations, AppIcons} from '../constant/AppAsset';
 import {ScrollView, TextInput, TouchableOpacity} from 'react-native';
 import {Color} from '../constant/Colors';
-import {Image} from 'react-native';
+import {Image, ToastAndroid} from 'react-native';
 import ImageAdded from '../components/ImageAdded';
+import {ErrorReport} from '../types/ErroReport';
 import {
   launchCamera,
   launchImageLibrary,
@@ -18,6 +19,7 @@ import {
 } from 'react-native-image-picker';
 import {useCallback, useState} from 'react';
 import SelectImageModal from '../modal/SelectImageModal';
+import AxiosInstance from '../helper/axiosInstance';
 const ErorReportScreen = () => {
   // state
   const [images, setImages] = useState<Asset[]>([]);
@@ -26,9 +28,11 @@ const ErorReportScreen = () => {
     mediaType: 'photo',
   };
 
-  const imageUrls: string[] = [];
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
+
   const onUpdateComplete = (url: string) => {
-    imageUrls.push(url);
+    console.log(imageUrls);
+    setImageUrls([...imageUrls, url]);
   };
   const onOpenCamera = async () => {
     try {
@@ -72,7 +76,19 @@ const ErorReportScreen = () => {
   }, [images]);
 
   const navigation = useNavigation<AppNavigationProp>();
-
+  const sendErroRp = async () => {
+    try {
+      const requestBody: ErrorReport = {
+        content: errMess,
+        images: imageUrls,
+      };
+      await AxiosInstance().post('report-bug', requestBody);
+      console.log('thanh cong');
+    } catch (err) {
+      console.log(err);
+    } finally {
+    }
+  };
   const [isShowModalSelectImage, setShowModalSelectImage] =
     useState<boolean>(false);
   const showModalSelectImage = () => {
@@ -135,8 +151,12 @@ const ErorReportScreen = () => {
         </ScrollView>
         <TouchableOpacity
           onPress={() => {
-            console.log(...imageUrls);
-            console.log(errMess);
+            sendErroRp();
+            navigation.goBack();
+            ToastAndroid.show(
+              'Cảm ơn bạn đã gửi phản hồi cho chúng tôi !',
+              ToastAndroid.SHORT,
+            );
           }}
           style={styles.button}>
           <Text style={styles.buttonLabel}>Gửi phản hồi</Text>

@@ -20,7 +20,7 @@ const Tabs: Scheduletab[] = [
   {
     name: 'Lịch học',
     scheduleType: 'All',
-    scheduleQuery: 'type=1&limit=20',
+    scheduleQuery: 'type=1&limit=1',
   },
   {
     name: ' Lịch thi',
