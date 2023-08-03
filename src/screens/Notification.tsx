@@ -1,52 +1,58 @@
-import React, {useState} from 'react';
-import {StyleSheet, TouchableOpacity, View, Image} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, TouchableOpacity, View, Image, ScrollView } from 'react-native';
 import moment from 'moment';
-import {fakeNotification} from '../modal/FakeData';
-import {TypeNotification} from '../types/Notification';
+import { fakeNotification } from '../modal/FakeData';
+import { TypeNotification } from '../types/Notification';
 import ScreenContainer from '../components/ScreenContainer';
-import {Text} from '../components/text/StyledText';
+import { Text } from '../components/text/StyledText';
 import AppToolBar from '../components/AppToolBar';
 import ScreenToolBar from '../components/ScreenToolBar';
-import {useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../navigation/AppNavigator';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProp } from '../navigation/AppNavigator';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Notification: React.FC = () => {
   const [data, setData] = useState<TypeNotification[]>(fakeNotification);
   const navigation = useNavigation<AppNavigationProp>();
   const handleItemPress = (itemId: string) => {
     const updatedData = data.map(item =>
-      item._id === itemId ? {...item, isRead: true} : item,
+      item._id === itemId ? { ...item, isRead: true } : item,
     );
     setData(updatedData);
   };
 
   const handleMarkAllAsRead = () => {
-    const updatedData = data.map(item => ({...item, isRead: true}));
+    const updatedData = data.map(item => ({ ...item, isRead: true }));
     setData(updatedData);
   };
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <ScreenToolBar
         onButtonBackPress={() => {
           navigation.goBack();
         }}
         title="Thông báo"
       />
-      <View style={{padding: 20}}>
+      <ScrollView style={{ padding: 20 }}>
         <TouchableOpacity
-          onPress={handleMarkAllAsRead}
-          style={styles.notificationContainer}>
+          style={{ marginBottom: 10 }}
+          onPress={handleMarkAllAsRead}>
           <Text style={styles.notificationContent}>
             Đánh dấu tất cả là đã đọc
           </Text>
         </TouchableOpacity>
         {data.map(item => (
-          <TouchableOpacity
-            key={item._id}
-            style={styles.notificationContainer}
-            onPress={() => handleItemPress(item._id)}>
-            <View style={[{backgroundColor: item.isRead ? 'gray' : 'white'}]}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View
+              style={[
+                styles.notificationDot,
+                { backgroundColor: item.isRead ? 'transparent' : 'red' },
+              ]}
+            />
+            <TouchableOpacity
+              key={item._id}
+              style={[styles.notificationContainer]}
+              onPress={() => handleItemPress(item._id)}>
               <Text style={styles.notificationContent}>{item.content}</Text>
               <Text style={styles.notificationDate}>
                 Với {item.user.fullName} vào{' '}
@@ -55,18 +61,26 @@ const Notification: React.FC = () => {
                 )}
               </Text>
               <Image
-                source={{uri: item.user.picture}}
+                source={{ uri: item.user.picture }}
                 style={styles.notificationImage}
               />
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+
         ))}
-      </View>
-    </SafeAreaView>
+      </ScrollView>
+    </SafeAreaView >
   );
 };
 
 const styles = StyleSheet.create({
+  notificationDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginRight: 10,
+    alignSelf: 'center',
+  },
   notificationContainer: {
     padding: 16,
     backgroundColor: 'white',
@@ -75,6 +89,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     elevation: 5,
     borderRadius: 10,
+    width: '93%',
   },
   notificationContent: {
     fontWeight: '700',
@@ -86,7 +101,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#B6C0C5',
     fontWeight: '400',
-    width: '80%',
+    maxWidth: '85%',
   },
   notificationImage: {
     width: 50,
