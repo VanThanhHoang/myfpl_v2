@@ -1,24 +1,18 @@
 import ScreenContainer from '../components/ScreenContainer';
-import { useEffect, useState } from 'react';
-import { View, TouchableOpacity, FlatList, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import Term, { Term2 } from '../components/Term';
+import {useEffect, useState} from 'react';
+import {View, TouchableOpacity, FlatList, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import Term, {Term2} from '../components/Term';
 import ScrollTimeTerm from '../components/ScrollTimeTerm';
 import CircularProgress from 'react-native-circular-progress-indicator';
-import { Color } from '../constant/Colors';
-import { AppIcons, AppImages } from '../constant/AppAsset';
-import { Text } from '../components/text/StyledText';
+import {Color} from '../constant/Colors';
+import {AppIcons, AppImages} from '../constant/AppAsset';
+import {Text} from '../components/text/StyledText';
 import AxiosInstance from '../helper/axiosInstance';
-<<<<<<< HEAD
 import {Transcript} from '../types/Grades';
 import {useSelector} from 'react-redux';
 import {RootState} from '../redux/store';
 import {AppNavigationProp} from '../navigation/AppNavigator';
-=======
-import { Transcript } from '../types/Grades';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
->>>>>>> 6cf74e6fa0087f8c08b5bc0547aa2aa02882e323
 const TermScreen = () => {
   const navigation = useNavigation<AppNavigationProp>();
   const semesters = useSelector(
@@ -117,10 +111,10 @@ const TermScreen = () => {
             inActiveStrokeColor={'#fceacc'}
             progressValueColor={Color.MAINCOLOR}
             maxValue={10}
-            progressValueStyle={{ fontSize: 40 }}
+            progressValueStyle={{fontSize: 40}}
             title={'Overall'}
             titleColor={'#ff9934'}
-            titleStyle={{ fontWeight: '900', fontSize: 15 }}
+            titleStyle={{fontWeight: '900', fontSize: 15}}
             progressFormatter={(value: number) => {
               'worklet';
 
@@ -151,7 +145,7 @@ const TermScreen = () => {
       )}
       {transcripts && (
         <View
-          style={{ flex: 1, backgroundColor: '#f4f9f8', paddingVertical: 10 }}>
+          style={{flex: 1, backgroundColor: '#f4f9f8', paddingVertical: 10}}>
           {transcripts.length !== 0 &&
             (isFlexMode ? (
               <FlatList
@@ -159,7 +153,7 @@ const TermScreen = () => {
                 key={'_'}
                 numColumns={2}
                 data={transcripts}
-                renderItem={({ item }) => (
+                renderItem={({item}) => (
                   <Term2
                     item={item}
                     onPress={() =>
@@ -176,7 +170,7 @@ const TermScreen = () => {
                 showsVerticalScrollIndicator={false}
                 key={'_#'}
                 data={transcripts}
-                renderItem={({ item }) => (
+                renderItem={({item}) => (
                   <Term
                     item={item}
                     onPress={() =>

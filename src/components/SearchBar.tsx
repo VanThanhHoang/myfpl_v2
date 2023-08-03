@@ -7,8 +7,9 @@ import {useNavigation} from '@react-navigation/native';
 import {AppNavigationProp} from '../navigation/AppNavigator';
 export type SearchBarProps = {
   searchKeyPassed: string;
+  setData?: Function;
 };
-const SearchBar = ({searchKeyPassed}: SearchBarProps) => {
+const SearchBar = ({searchKeyPassed, setData}: SearchBarProps) => {
   const navigation = useNavigation<AppNavigationProp>();
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [searchKey, setSearchKey] = useState<string>(searchKeyPassed);

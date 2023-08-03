@@ -8,7 +8,6 @@ export const loginWithGoogle = async () => {
   // Check if your device supports Google Play
   try {
     await GoogleSignin.signOut();
-    //login with gg
     await GoogleSignin.hasPlayServices();
     const resGoogleLogin = await GoogleSignin.signIn();
     const googleCredential = auth.GoogleAuthProvider.credential(

@@ -1,6 +1,5 @@
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import TermScreen from '../screens/TermScreen';
-import Transcript from '../components/Transcript';
 const Tab = createMaterialTopTabNavigator();
 const MarksTopTab = () => {
   return (
@@ -14,7 +13,7 @@ const MarksTopTab = () => {
       <Tab.Screen
         options={{title: 'Kì Học'}}
         name="Kì Học"
-        component={TermScreen}
+        component={TermScreen} 
       />
       {/* <Tab.Screen name="Lịch sử học" component={ProfileScreen} /> */}
       {/* <Tab.Screen

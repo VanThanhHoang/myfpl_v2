@@ -45,7 +45,6 @@ const SearchResultScreen = () => {
         title="Tìm kiếm bài viết "
       />
       <SearchBar searchKeyPassed={searchKey} />
-
       {isSearching || (data && data.length == 0) ? (
         <View style={{paddingHorizontal: 24}}>
           {!isSearching && (
