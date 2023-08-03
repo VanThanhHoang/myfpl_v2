@@ -19,6 +19,13 @@ const ProfileScreen = () => {
       },
     },
     {
+      label: 'Điểm danh',
+      icon: require('../assets/icon/ic_aa.png'),
+      onPress: () => {
+        navigation.navigate('Email');
+      },
+    },
+    {
       label: 'Khen thưởng - Kỷ luật',
       icon: AppIcons.prize,
       onPress: () => {

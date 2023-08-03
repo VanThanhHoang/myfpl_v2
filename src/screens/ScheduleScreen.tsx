@@ -10,7 +10,6 @@ import {fakeAttandancesType} from '../modal/FakeData';
 import {TabActionType, useNavigation} from '@react-navigation/native';
 import {AppNavigationProp} from '../navigation/AppNavigator';
 import AttandancesItem from '../components/AttendancesItem';
-import AxiosInstance from '../helper/axiosInstance';
 type Scheduletab = {
   name: string;
   scheduleType: string;
@@ -20,7 +19,7 @@ const Tabs: Scheduletab[] = [
   {
     name: 'Lịch học',
     scheduleType: 'All',
-    scheduleQuery: 'type=1&limit=1',
+    scheduleQuery: 'type=1&limit=0',
   },
   {
     name: ' Lịch thi',
@@ -64,7 +63,11 @@ const ScheduleScreen = () => {
       <ScrollTimeStudy />
       {tabSelected.name === 'Activity' ? (
         <View
-          style={{flex: 1, backgroundColor: '#f4f9f8', paddingVertical: 10}}>
+          style={{
+            flex: 1,
+            backgroundColor: '#f4f9f8',
+            paddingVertical: 10,
+          }}>
           {attandance.length !== 0 && (
             <FlatList
               data={attandance}
