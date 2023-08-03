@@ -3,21 +3,21 @@ import {StyleSheet, View, Image} from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
 import {Alert} from 'react-native';
 import {AppIcons} from '../constant/AppAsset';
-import {ClassInfo} from '../types/ClassInfo';
-import {convertHourAndMinuesToString} from '../helper/convertHourAndMinute';
 import moment from 'moment';
 import {Text} from '../components/text/StyledText';
 import AxiosInstance from '../helper/axiosInstance';
+import {ScheduleQuery} from './ScheduleScreen';
 
 interface ScheduleTimesProps {
-  selectedTabQuery: string;
+  selectedTabQuery: ScheduleQuery;
 }
 const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
   const [schedule, setSchedule] = useState();
   const getSchedule = async () => {
     try {
-      console.log(selectedTabQuery);
-      const res = await AxiosInstance().get(`/schedule?${selectedTabQuery}`);
+      const res = await AxiosInstance().get(
+        `/schedule?type=${selectedTabQuery.type}&limit=${selectedTabQuery.limit}`,
+      );
       setSchedule(res.data);
     } catch (err) {
       console.log(err);
@@ -52,11 +52,7 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
               justifyContent: 'flex-start',
             }}>
             <Image style={styles.icon} source={AppIcons.place}></Image>
-            {/* <Text style={[styles.textDescriptionStyle]}>
-              {data.classInfo.clsasAddress.room +
-                '* Tòa nhà ' +
-                data.classInfo.clsasAddress.buiding}
-            </Text> */}
+            <Text style={[styles.textDescriptionStyle]}>{data.room}</Text>
           </View>
 
           <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
@@ -89,6 +85,15 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
             fontWeight: '700',
           }}>
           {moment(data.date, 'YYYY-MM-DD').format('DD-MM-YYYY')}
+        </Text>
+        <Text
+          style={{
+            marginTop: 10,
+            fontSize: 14,
+            color: '#04b14a',
+            fontWeight: '700',
+          }}>
+          {data.slot.label}
         </Text>
         <Text
           style={{

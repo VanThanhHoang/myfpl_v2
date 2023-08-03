@@ -3,15 +3,17 @@ import {useState} from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {AppIcons} from '../constant/AppAsset';
 import {Color} from '../constant/Colors';
-const ScrollTimeStudy = () => {
+import {set} from 'lodash';
+import {ScheduleQuery} from '../screens/ScheduleScreen';
+const ScrollTimeStudy: React.FC<{setTabQuery: Function}> = ({setTabQuery}) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState('Hôm nay');
+  const [value, setValue] = useState('0');
   const [items, setItems] = useState([
-    {label: '15 ngày trước', value: '15 ngày trước'},
-    {label: '7 ngày trước', value: '7 ngày trước'},
-    {label: 'Hôm nay', value: 'Hôm nay'},
-    {label: '7 ngày tới', value: '7 ngày tới'},
-    {label: '15 ngày tới', value: '15 ngày tơi'},
+    {label: '15 ngày trước', value: '-15'},
+    {label: '7 ngày trước', value: '-7'},
+    {label: 'Hôm nay', value: '0'},
+    {label: '7 ngày tới', value: '7'},
+    {label: '15 ngày tới', value: '5'},
   ]);
   return (
     <View
@@ -48,6 +50,11 @@ const ScrollTimeStudy = () => {
         )}
         selectedItemContainerStyle={{
           backgroundColor: '#e3e2ff',
+        }}
+        onChangeValue={value => {
+          setTabQuery((prev: ScheduleQuery) => {
+            return {...prev, limit: value};
+          });
         }}
         open={open}
         value={value}

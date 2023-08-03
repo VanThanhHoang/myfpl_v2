@@ -7,30 +7,40 @@ import {View, FlatList} from 'react-native';
 import NewsTabItem from '../components/NewsTabItem';
 import {ScrollView} from 'react-native-gesture-handler';
 import {fakeAttandancesType} from '../modal/FakeData';
-import {useNavigation} from '@react-navigation/native';
+import {PreventRemoveContext, useNavigation} from '@react-navigation/native';
 import {AppNavigationProp} from '../navigation/AppNavigator';
 import AttandancesItem from '../components/AttendancesItem';
+import {TabBar} from 'react-native-tab-view';
 type Scheduletab = {
   name: string;
   scheduleType: string;
-  scheduleQuery: string;
 };
 const Tabs: Scheduletab[] = [
   {
     name: 'Lịch học',
-    scheduleType: 'All',
-    scheduleQuery: 'type=1&limit=0',
+    scheduleType: '1',
   },
   {
     name: ' Lịch thi',
-    scheduleType: 'Study',
-    scheduleQuery: 'type=2&limit=20',
+    scheduleType: '2',
   },
 ];
+export type ScheduleQuery = {
+  type: string;
+  limit: string;
+};
 const ScheduleScreen = () => {
+  const [scheduleQuery, setScheduleQuery] = useState<ScheduleQuery>({
+    type: '1',
+    limit: '0',
+  });
   const navigation = useNavigation<AppNavigationProp>();
   const [tabSelected, setTab] = useState<Scheduletab>(Tabs[0]);
   const onTabPress = (tab: Scheduletab) => {
+    setScheduleQuery(prev => {
+      console.log(prev);
+      return {...prev, type: tab.scheduleType};
+    });
     setTab(tab);
   };
   const [attandance, setAttendance] = useState(fakeAttandancesType);
@@ -60,7 +70,7 @@ const ScheduleScreen = () => {
           ))}
         </ScrollView>
       </View>
-      <ScrollTimeStudy />
+      <ScrollTimeStudy setTabQuery={setScheduleQuery} />
       {tabSelected.name === 'Activity' ? (
         <View
           style={{
@@ -84,7 +94,7 @@ const ScheduleScreen = () => {
           )}
         </View>
       ) : null}
-      <ScheduleTimes selectedTabQuery={tabSelected.scheduleQuery} />
+      <ScheduleTimes selectedTabQuery={scheduleQuery} />
     </ScreenContainer>
   );
 };
