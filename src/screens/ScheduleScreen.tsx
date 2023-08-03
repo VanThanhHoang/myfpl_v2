@@ -1,16 +1,18 @@
 import ScreenContainer from '../components/ScreenContainer';
-import {useState} from 'react';
+import { useEffect, useState } from 'react';
 import AppToolBar from '../components/AppToolBar';
 import ScrollTimeStudy from '../components/ScorllTimeStudy';
 import ScheduleTimes from './Timeline';
-import {View, FlatList} from 'react-native';
+import { View, FlatList } from 'react-native';
 import NewsTabItem from '../components/NewsTabItem';
-import {ScrollView} from 'react-native-gesture-handler';
-import {fakeAttandancesType} from '../modal/FakeData';
-import {PreventRemoveContext, useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../navigation/AppNavigator';
+import { ScrollView } from 'react-native-gesture-handler';
+import { fakeAttandancesType } from '../modal/FakeData';
+import { PreventRemoveContext, useNavigation } from '@react-navigation/native';
+import { AppNavigationProp } from '../navigation/AppNavigator';
 import AttandancesItem from '../components/AttendancesItem';
-import {TabBar} from 'react-native-tab-view';
+import { TabBar } from 'react-native-tab-view';
+import LoadingModal from '../modal/Loading';
+import { set } from 'lodash';
 type Scheduletab = {
   name: string;
   scheduleType: string;
@@ -36,18 +38,24 @@ const ScheduleScreen = () => {
   });
   const navigation = useNavigation<AppNavigationProp>();
   const [tabSelected, setTab] = useState<Scheduletab>(Tabs[0]);
+  const [isShowModal, setIsShowModal] = useState<boolean>(false);
+
   const onTabPress = (tab: Scheduletab) => {
+    setIsShowModal(true);
     setScheduleQuery(prev => {
-      console.log(prev);
-      return {...prev, type: tab.scheduleType};
+      return { ...prev, type: tab.scheduleType };
     });
     setTab(tab);
-  };
+  }
+
+
+
+
   const [attandance, setAttendance] = useState(fakeAttandancesType);
   return (
     <ScreenContainer>
       <AppToolBar />
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <ScrollView
           showsHorizontalScrollIndicator={false}
           horizontal
@@ -70,31 +78,8 @@ const ScheduleScreen = () => {
           ))}
         </ScrollView>
       </View>
-      <ScrollTimeStudy setTabQuery={setScheduleQuery} />
-      {tabSelected.name === 'Activity' ? (
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: '#f4f9f8',
-            paddingVertical: 10,
-          }}>
-          {attandance.length !== 0 && (
-            <FlatList
-              data={attandance}
-              renderItem={({item}) => (
-                <AttandancesItem
-                  item={item}
-                  onPress={() => {
-                    navigation.navigate('Attendances');
-                  }}
-                />
-              )}
-              keyExtractor={item => item._id}
-            />
-          )}
-        </View>
-      ) : null}
-      <ScheduleTimes selectedTabQuery={scheduleQuery} />
+      <ScrollTimeStudy setTabQuery={setScheduleQuery} isShowModal={isShowModal} />
+      <ScheduleTimes selectedTabQuery={scheduleQuery} isShowModal={isShowModal} />
     </ScreenContainer>
   );
 };

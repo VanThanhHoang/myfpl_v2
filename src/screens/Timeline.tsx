@@ -1,35 +1,46 @@
-import React, {memo, useEffect, useState} from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import React, { memo, useEffect, useState } from 'react';
+import { StyleSheet, View, Image } from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
-import {Alert} from 'react-native';
-import {AppIcons} from '../constant/AppAsset';
+import { Alert } from 'react-native';
+import { AppIcons } from '../constant/AppAsset';
 import moment from 'moment';
-import {Text} from '../components/text/StyledText';
+import { Text } from '../components/text/StyledText';
 import AxiosInstance from '../helper/axiosInstance';
-import {ScheduleQuery} from './ScheduleScreen';
-
+import { ScheduleQuery } from './ScheduleScreen';
+import { set } from 'lodash';
+import LoadingModal from '../modal/Loading';
 interface ScheduleTimesProps {
   selectedTabQuery: ScheduleQuery;
+  isShowModal: boolean;
 }
-const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
+const ScheduleTimes: React.FC<ScheduleTimesProps> = ({ selectedTabQuery, isShowModal }) => {
   const [schedule, setSchedule] = useState();
   const getSchedule = async () => {
     try {
+      isShowModal = true;
       const res = await AxiosInstance().get(
         `/schedule?type=${selectedTabQuery.type}&limit=${selectedTabQuery.limit}`,
       );
       setSchedule(res.data);
     } catch (err) {
       console.log(err);
+      isShowModal = false;
+    } finally {
+      isShowModal = false;
     }
   };
   useEffect(() => {
     getSchedule();
   }, [selectedTabQuery]);
 
+  useEffect(() => {
+    isShowModal = true;
+  }, [selectedTabQuery]);
+
   const renderDetail = (data: any): JSX.Element => {
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
+        {isShowModal && <LoadingModal isShowModal={isShowModal} />}
         <Text style={[styles.rowTitle]}>
           {`${data.classInfo.subject.name} (${data.classInfo.subject.code})`}
         </Text>
@@ -55,7 +66,7 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
             <Text style={[styles.textDescriptionStyle]}>{data.room}</Text>
           </View>
 
-          <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
             {/* <Image
               source={{ uri: data.classInfo.teacher.photo }}
               style={styles.imageStyle}
@@ -75,9 +86,8 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
   };
 
   const renderTime = (data: any): JSX.Element => {
-    console.log(data.slot.startTime);
     return (
-      <View style={{width: 80, backgroundColor: '#f4f9f8'}}>
+      <View style={{ width: 80, backgroundColor: '#f4f9f8' }}>
         <Text
           style={{
             fontSize: 14,
@@ -116,7 +126,7 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
   return (
     <View style={styles.container}>
       <Timeline
-        style={{backgroundColor: '#f4f9f8'}}
+        style={{ backgroundColor: '#f4f9f8' }}
         data={schedule}
         circleSize={20}
         circleColor="rgba(0,0,0,0)"
@@ -127,7 +137,7 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
           padding: 5,
           borderRadius: 13,
         }}
-        descriptionStyle={{color: 'white', fontWeight: '400'}}
+        descriptionStyle={{ color: 'white', fontWeight: '400' }}
         detailContainerStyle={{
           padding: 10,
           width: '98%',
