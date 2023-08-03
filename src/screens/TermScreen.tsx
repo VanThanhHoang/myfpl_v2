@@ -10,22 +10,43 @@ import {AppIcons, AppImages} from '../constant/AppAsset';
 import {Text} from '../components/text/StyledText';
 import AxiosInstance from '../helper/axiosInstance';
 import {Transcript} from '../types/Grades';
-import {useSelector} from 'react-redux';
-import {RootState} from '../redux/store';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppDispatch, RootState} from '../redux/store';
 import {AppNavigationProp} from '../navigation/AppNavigator';
+import {showLoadingModal} from '../helper/showLoadingModal';
+import {setShowLoadingModal} from '../redux/loadingSlice';
 const TermScreen = () => {
   const navigation = useNavigation<AppNavigationProp>();
   const semesters = useSelector(
     (state: RootState) => state.semesterSliceReducer.semesters,
   );
+  const isLoading = useSelector(
+    (state: RootState) => state.showLoadingModalReducer.isShowLoadingModal,
+  );
+  const appDispatch = useDispatch<AppDispatch>();
   const [semesterId, setSemesterId] = useState(semesters[0]._id);
   const [gpa, setGpa] = useState(0);
   const [isFlexMode, setflexMode] = useState(false);
   const [transcripts, setTranscripts] = useState<Transcript[]>([]);
   const getTranscript = async () => {
-    const res = await AxiosInstance().get(`transcript?termId=${semesterId}`);
-    setTranscripts(res.data);
-    getGpa(res.data);
+    try {
+      appDispatch(
+        setShowLoadingModal({
+          isShowLoadingModal: true,
+        }),
+      );
+      const res = await AxiosInstance().get(`transcript?termId=${semesterId}`);
+      setTranscripts(res.data);
+      getGpa(res.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      appDispatch(
+        setShowLoadingModal({
+          isShowLoadingModal: false,
+        }),
+      );
+    }
   };
   const getGpa = (transcripts: Transcript[]) => {
     let totalWeightedSum = 0;

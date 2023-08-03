@@ -1,32 +1,35 @@
-import React, { memo, useEffect, useState } from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import React, {memo, useEffect, useState} from 'react';
+import {StyleSheet, View, Image} from 'react-native';
 import Timeline from 'react-native-timeline-flatlist';
-import { Alert } from 'react-native';
-import { AppIcons } from '../constant/AppAsset';
-import { ClassInfo } from '../types/ClassInfo';
-import { convertHourAndMinuesToString } from '../helper/convertHourAndMinute';
+import {Alert} from 'react-native';
+import {AppIcons} from '../constant/AppAsset';
+import {ClassInfo} from '../types/ClassInfo';
+import {convertHourAndMinuesToString} from '../helper/convertHourAndMinute';
 import moment from 'moment';
-import { Text } from '../components/text/StyledText';
+import {Text} from '../components/text/StyledText';
 import AxiosInstance from '../helper/axiosInstance';
-import { Color } from '../constant/Colors';
+import {Color} from '../constant/Colors';
 
 interface ScheduleTimesProps {
-  selectedTabQuery: string | undefined;
+  selectedTabQuery: string;
 }
-
-const ScheduleTimes: React.FC<ScheduleTimesProps> = ({ selectedTabQuery }) => {
+const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
   const [schedule, setSchedule] = useState();
   const getSchedule = async () => {
-    const res = await AxiosInstance().get(`/schedule?${selectedTabQuery}`);
-    setSchedule(res.data);
+    try {
+      const res = await AxiosInstance().get(`/schedule?${selectedTabQuery}`);
+      setSchedule(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   };
   useEffect(() => {
     getSchedule();
   }, [selectedTabQuery]);
 
-  const renderDetail = (data: ClassInfo): JSX.Element => {
+  const renderDetail = (data: any): JSX.Element => {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{flex: 1}}>
         <Text style={[styles.rowTitle]}>
           {`${data.classInfo.subject.name} (${data.classInfo.subject.code})`}
         </Text>
@@ -56,7 +59,7 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({ selectedTabQuery }) => {
             </Text> */}
           </View>
 
-          <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+          <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
             {/* <Image
               source={{ uri: data.classInfo.teacher.photo }}
               style={styles.imageStyle}
@@ -77,7 +80,7 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({ selectedTabQuery }) => {
 
   const renderTime = (data: ClassInfo): JSX.Element => {
     return (
-      <View style={{ width: 80, backgroundColor: '#ffffff' }}>
+      <View style={{width: 80, backgroundColor: '#ffffff'}}>
         <Text
           style={{
             fontSize: 14,
@@ -117,7 +120,7 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({ selectedTabQuery }) => {
           padding: 5,
           borderRadius: 13,
         }}
-        descriptionStyle={{ color: 'white', fontWeight: '400' }}
+        descriptionStyle={{color: 'white', fontWeight: '400'}}
         detailContainerStyle={{
           padding: 10,
           width: '98%',

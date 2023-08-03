@@ -1,6 +1,5 @@
 import ScreenContainer from '../components/ScreenContainer';
 import DashBoard from './NewsList';
-import {getData} from '../service/test.callapi';
 import {useEffect, useState} from 'react';
 import AppToolBar from '../components/AppToolBar';
 import SearchBar from '../components/SearchBar';
@@ -21,10 +20,6 @@ const HomeScreen = () => {
   }, []);
   useEffect(() => {
     disPatch(getSemester());
-  }, []);
-
-  useEffect(() => {
-    getData();
   }, []);
 
   const [data, setData] = useState(undefined);

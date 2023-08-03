@@ -1,15 +1,11 @@
 import ScreenContainer from '../components/ScreenContainer';
-import { getData } from '../service/test.callapi';
-import { memo, useCallback, useEffect } from 'react';
-import { View } from 'react-native';
-import { Text } from '../components/text/StyledText';
+import {memo, useCallback, useEffect} from 'react';
+import {View} from 'react-native';
+import {Text} from '../components/text/StyledText';
 // cho luu data
 // vi tri o nho la 1
 const EmailScreen = () => {
-  const ham = useCallback(() => { }, []);
-  useEffect(() => {
-    getData();
-  }, []);
+  const ham = useCallback(() => {}, []);
 
   return (
     <ScreenContainer>
@@ -17,8 +13,7 @@ const EmailScreen = () => {
     </ScreenContainer>
   );
 };
-const Test: React.FC<{ cc: Function }> = ({ cc }) => {
-  return <View>
-  </View>;
+const Test: React.FC<{cc: Function}> = ({cc}) => {
+  return <View></View>;
 };
 export default memo(EmailScreen);

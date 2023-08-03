@@ -1,5 +1,4 @@
 import ScreenContainer from '../components/ScreenContainer';
-import {getData} from '../service/test.callapi';
 import {useEffect, useState} from 'react';
 import AppToolBar from '../components/AppToolBar';
 import ScrollTimeStudy from '../components/ScorllTimeStudy';
@@ -8,12 +7,16 @@ import {View, FlatList} from 'react-native';
 import NewsTabItem from '../components/NewsTabItem';
 import {ScrollView} from 'react-native-gesture-handler';
 import {fakeAttandancesType} from '../modal/FakeData';
-import {useNavigation} from '@react-navigation/native';
+import {TabActionType, useNavigation} from '@react-navigation/native';
 import {AppNavigationProp} from '../navigation/AppNavigator';
 import AttandancesItem from '../components/AttendancesItem';
 import AxiosInstance from '../helper/axiosInstance';
-
-const Tabs = [
+type Scheduletab = {
+  name: string;
+  scheduleType: string;
+  scheduleQuery: string;
+};
+const Tabs: Scheduletab[] = [
   {
     name: 'Lịch học',
     scheduleType: 'All',
@@ -24,40 +27,14 @@ const Tabs = [
     scheduleType: 'Study',
     scheduleQuery: 'type=2&limit=20',
   },
-  {
-    name: 'Điểm danh',
-    scheduleType: 'Activity',
-  },
 ];
 const ScheduleScreen = () => {
   const navigation = useNavigation<AppNavigationProp>();
-  useEffect(() => {
-    getData();
-  }, []);
-  const [tabSelected, setTab] = useState<string>(Tabs[0].scheduleType);
-  const onTabPress = (newsType: string) => {
-    setTab(newsType);
+  const [tabSelected, setTab] = useState<Scheduletab>(Tabs[0]);
+  const onTabPress = (tab: Scheduletab) => {
+    setTab(tab);
   };
   const [attandance, setAttendance] = useState(fakeAttandancesType);
-  const [data, setData] = useState(undefined);
-
-  const getSchedule = async () => {
-    const selectedTab = Tabs.find(tab => tab?.scheduleType === tabSelected);
-    console.log(selectedTab);
-    if (selectedTab) {
-      try {
-        const res = await AxiosInstance().get(
-          `/schedule?${selectedTab?.scheduleQuery}`,
-        );
-        setData(res?.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
-  useEffect(() => {
-    getSchedule();
-  }, [tabSelected]);
   return (
     <ScreenContainer>
       <AppToolBar />
@@ -75,18 +52,19 @@ const ScheduleScreen = () => {
           {Tabs.map(tab => (
             <NewsTabItem
               onPress={() => {
-                onTabPress(tab.scheduleType);
+                onTabPress(tab);
               }}
               key={tab.name}
               name={tab.name}
-              isSelected={tab.scheduleType === tabSelected}
+              isSelected={tab.name === tabSelected.name}
             />
           ))}
         </ScrollView>
       </View>
       <ScrollTimeStudy />
-      {tabSelected === 'Activity' ? (
-        <View style={{flex: 1, backgroundColor: '#fff', paddingVertical: 10}}>
+      {tabSelected.name === 'Activity' ? (
+        <View
+          style={{flex: 1, backgroundColor: '#f4f9f8', paddingVertical: 10}}>
           {attandance.length !== 0 && (
             <FlatList
               data={attandance}
@@ -103,13 +81,7 @@ const ScheduleScreen = () => {
           )}
         </View>
       ) : null}
-      {data && tabSelected !== 'Activity' && (
-        <ScheduleTimes
-          selectedTabQuery={
-            Tabs.find(tab => tab?.scheduleType === tabSelected)?.scheduleQuery
-          }
-        />
-      )}
+      <ScheduleTimes selectedTabQuery={tabSelected.scheduleQuery} />
     </ScreenContainer>
   );
 };
