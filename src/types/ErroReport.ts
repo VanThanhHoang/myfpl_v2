@@ -1,4 +1,4 @@
 export interface ErrorReport {
-  errMess: string;
-  imgUrls: string[];
+  content: string;
+  images: string[];
 }

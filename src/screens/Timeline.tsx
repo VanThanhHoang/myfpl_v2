@@ -8,7 +8,6 @@ import {convertHourAndMinuesToString} from '../helper/convertHourAndMinute';
 import moment from 'moment';
 import {Text} from '../components/text/StyledText';
 import AxiosInstance from '../helper/axiosInstance';
-import {Color} from '../constant/Colors';
 
 interface ScheduleTimesProps {
   selectedTabQuery: string;
@@ -17,6 +16,7 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
   const [schedule, setSchedule] = useState();
   const getSchedule = async () => {
     try {
+      console.log(selectedTabQuery);
       const res = await AxiosInstance().get(`/schedule?${selectedTabQuery}`);
       setSchedule(res.data);
     } catch (err) {
@@ -78,31 +78,32 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
     );
   };
 
-  const renderTime = (data: ClassInfo): JSX.Element => {
+  const renderTime = (data: any): JSX.Element => {
+    console.log(data.slot.startTime);
     return (
-      <View style={{width: 80, backgroundColor: '#ffffff'}}>
+      <View style={{width: 80, backgroundColor: '#f4f9f8'}}>
         <Text
           style={{
             fontSize: 14,
             color: '#327ab8',
             fontWeight: '700',
           }}>
-          {moment(data.date).subtract(10, 'days').calendar()}
+          {moment(data.date, 'YYYY-MM-DD').format('DD-MM-YYYY')}
         </Text>
         <Text
           style={{
-            fontSize: 13,
+            marginTop: 20,
+            fontSize: 14,
             color: 'black',
             fontWeight: '700',
           }}>
-          {/* {convertHourAndMinuesToString(classInfo.slot.startTime)} */}
-          {/* {classInfo.slot.startTime} */}
+          {data.slot.startTime}
         </Text>
         <Text
           style={{
             color: '#BCC1CD',
           }}>
-          {/* {convertHourAndMinuesToString(classInfo.slot.endTime)} */}
+          {data.slot.endTime}
         </Text>
       </View>
     );
@@ -110,6 +111,7 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
   return (
     <View style={styles.container}>
       <Timeline
+        style={{backgroundColor: '#f4f9f8'}}
         data={schedule}
         circleSize={20}
         circleColor="rgba(0,0,0,0)"
@@ -127,8 +129,6 @@ const ScheduleTimes: React.FC<ScheduleTimesProps> = ({selectedTabQuery}) => {
           marginBottom: 20,
           elevation: 2,
           backgroundColor: '#fafdf5',
-          borderWidth: 1,
-          borderColor: '#ff7f74',
           borderRadius: 15,
         }}
         onEventPress={(item: any) =>
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 15,
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#f4f9f8',
     marginTop: 10,
   },
   title: {
