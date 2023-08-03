@@ -10,6 +10,7 @@ import ScreenToolBar from '../components/ScreenToolBar';
 import { useNavigation } from '@react-navigation/native';
 import { AppNavigationProp } from '../navigation/AppNavigator';
 import { SafeAreaView } from 'react-native-safe-area-context';
+// dasdasda
 
 const Notification: React.FC = () => {
   const [data, setData] = useState<TypeNotification[]>(fakeNotification);
