@@ -11,6 +11,7 @@ const NoResultView = () => {
 };
 const styles = StyleSheet.create({
   container: {
+    marginTop: 50,
     justifyContent: 'center',
     alignItems: 'center',
     height: 250,

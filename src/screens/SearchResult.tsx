@@ -24,6 +24,7 @@ const SearchResultScreen = () => {
     try {
       setSearching(true);
       const res = await AxiosInstance().get('/news/search/' + searchKey);
+      console.log(res);
       setData(res.data);
     } catch (err) {
       console.log(err);
@@ -45,25 +46,44 @@ const SearchResultScreen = () => {
         title="Tìm kiếm bài viết "
       />
       <SearchBar searchKeyPassed={searchKey} />
-      {isSearching || (data && data.length == 0) ? (
-        <View style={{paddingHorizontal: 24}}>
-          {!isSearching && (
-            <Text
-              style={{fontWeight: 'bold', fontSize: 17, marginVertical: 20}}>
-              Xin lỗi, không có bài viết nào phù hợp với tìm kiếm của bạn !
-            </Text>
-          )}
-          <NoResultView />
-        </View>
-      ) : (
+      {data && data.length != 0 && (
         <>
           <View style={{flexDirection: 'row', paddingHorizontal: 24}}>
             <Text style={styles.searchText}>Kết quả tìm kiếm cho</Text>
             <Text style={styles.searchKey}>{searchKey}</Text>
           </View>
-          <DashBoard setData={setData} newsData={data} />
         </>
       )}
+      <View>
+        <DashBoard
+          isSearch={true}
+          keyword={searchKey}
+          setData={setData}
+          newsData={data}
+        />
+        {data && data.length == 0 && (
+          <View
+            style={{
+              paddingHorizontal: 24,
+              position: 'absolute',
+              alignSelf: 'center',
+            }}>
+            {!isSearching && (
+              <Text
+                style={{
+                  marginBottom: 20,
+                  fontWeight: 'bold',
+                  fontSize: 17,
+                  marginVertical: 20,
+                  top: 50,
+                }}>
+                Xin lỗi, không có bài viết nào phù hợp với tìm kiếm của bạn !
+              </Text>
+            )}
+            {<NoResultView />}
+          </View>
+        )}
+      </View>
     </ScreenContainer>
   );
   //can truyen data vao dashbroad

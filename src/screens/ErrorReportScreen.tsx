@@ -3,7 +3,7 @@ import {Text} from '../components/text/StyledText';
 import ScreenToolBar from '../components/ScreenToolBar';
 import {useNavigation} from '@react-navigation/native';
 import {AppNavigationProp} from '../navigation/AppNavigator';
-import {StyleSheet, View} from 'react-native';
+import {PermissionsAndroid, StyleSheet, View} from 'react-native';
 import AnimatedLottieView from 'lottie-react-native';
 import {AppAnimations, AppIcons} from '../constant/AppAsset';
 import {ScrollView, TextInput, TouchableOpacity} from 'react-native';
@@ -30,14 +30,33 @@ const ErorReportScreen = () => {
   const onUpdateComplete = (url: string) => {
     imageUrls.push(url);
   };
-  const onOpenCamera = useCallback(async () => {
+  const onOpenCamera = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: 'App Camera Permission',
+          message: 'App needs access to your camera ',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('Camera permission given');
+      } else {
+        console.log('Camera permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
     const response = await launchCamera(launchOptions);
     setShowModalSelectImage(false);
     if (!response.assets) return;
     if (response.assets) {
       setImages([...images, ...response.assets]);
     }
-  }, [images]);
+  };
   const deleteImage = (uri: string) => {
     const newImages = images.filter(item => item.uri != uri);
     setImages(newImages);
@@ -114,7 +133,12 @@ const ErorReportScreen = () => {
             </ScrollView>
           </View>
         </ScrollView>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          onPress={() => {
+            console.log(...imageUrls);
+            console.log(errMess);
+          }}
+          style={styles.button}>
           <Text style={styles.buttonLabel}>Gửi phản hồi</Text>
         </TouchableOpacity>
       </View>
