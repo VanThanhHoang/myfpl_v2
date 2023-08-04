@@ -44,13 +44,13 @@ const LoginScreen = () => {
   }, []);
   return (
     <View style={{flex: 1, padding: 24}}>
-      <View style={styles.container}>
-        <Image
-          source={{
-            uri: 'https://caodang.fpt.edu.vn/wp-content/uploads/Back-To-School-Poster.jpg',
-          }}
-        />
-      </View>
+      <Image
+        resizeMode="cover"
+        style={styles.container}
+        source={{
+          uri: 'https://caodang.fpt.edu.vn/wp-content/uploads/Back-To-School-Poster.jpg',
+        }}
+      />
       <ShowModalSelectFacilityButton
         label={facility ? facility.name : ''}
         onPress={onShowModalSelectFacilityButtonPress}
@@ -71,6 +71,7 @@ const LoginScreen = () => {
 };
 const styles = StyleSheet.create({
   container: {
+    borderRadius: 10,
     backgroundColor: 'red',
     width: '100%',
     height: '40%',
