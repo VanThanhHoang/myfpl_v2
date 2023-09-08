@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import store from './src/redux/store';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {DefaultTheme} from '@react-navigation/native';
-
+//thay doi tu phi......
 export const LightTheme: Theme = {
   ...DefaultTheme,
   colors: {
