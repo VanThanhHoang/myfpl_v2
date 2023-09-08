@@ -10,7 +10,7 @@ export const LightTheme: Theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    background: 'red',
+    background: 'blue',
     text: 'black',
     primary: 'blue',
   },
