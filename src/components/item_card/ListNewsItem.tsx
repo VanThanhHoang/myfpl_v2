@@ -1,19 +1,19 @@
-import React, {memo} from 'react';
-import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import {AppIcons} from '../../constant/AppAsset';
+import React, { memo } from 'react';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { AppIcons } from '../../constant/AppAsset';
 import 'moment/locale/vi';
 import moment from 'moment';
-import {useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../../navigation/AppNavigator';
-import {Text} from '../text/StyledText';
-import {News} from '../../types/News';
-import {changeTypeNews} from '../../types/NewType';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProp } from '../../navigation/AppNavigator';
+import { Text } from '../text/StyledText';
+import { News } from '../../types/News';
+import { changeTypeNews } from '../../types/NewType';
 
 type ListNewsItemProps = {
   news: News;
 };
 
-const ListNewsItem: React.FC<ListNewsItemProps> = ({news}) => {
+const ListNewsItem: React.FC<ListNewsItemProps> = ({ news }) => {
   const navigation = useNavigation<AppNavigationProp>();
   const datetime = moment(news.publishedAt, 'YYYYMMDD');
   // Tùy chỉnh ngôn ngữ thành tiếng Việt
@@ -22,7 +22,7 @@ const ListNewsItem: React.FC<ListNewsItemProps> = ({news}) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('DetailNews', {newId: news._id});
+        navigation.navigate('DetailNews', { newId: news._id });
       }}
       style={styles.container}>
       <Text numberOfLines={2} lineBreakMode="middle" style={[styles.title]}>
@@ -47,13 +47,13 @@ const ListNewsItem: React.FC<ListNewsItemProps> = ({news}) => {
           }}>
           <Image
             resizeMode="contain"
-            style={{width: 12, height: 12}}
+            style={{ width: 12, height: 12 }}
             source={AppIcons.time}
           />
           <Text style={styles.timeText}>{datetime.fromNow()}</Text>
         </View>
         <View style={styles.newsTypeContainer}>
-          <Text style={{fontSize: 12, fontWeight: '700', color: 'white'}}>
+          <Text style={{ fontSize: 12, fontWeight: '700', color: 'white' }}>
             {changeTypeNews(news.type)}
           </Text>
         </View>
@@ -61,7 +61,7 @@ const ListNewsItem: React.FC<ListNewsItemProps> = ({news}) => {
     </TouchableOpacity>
   );
 };
-const AuthorView: React.FC<{name: string}> = ({name}) => {
+const AuthorView: React.FC<{ name: string }> = ({ name }) => {
   const authorstyles = StyleSheet.create({
     container: {
       marginVertical: 10,
@@ -83,7 +83,7 @@ const AuthorView: React.FC<{name: string}> = ({name}) => {
   );
 };
 const styles = StyleSheet.create({
-  content: {fontSize: 15, color: '#8b9cab', fontWeight: '500'},
+  content: { fontSize: 15, color: '#8b9cab', fontWeight: '500' },
   newsTypeContainer: {
     width: 60,
     alignItems: 'center',
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0b85e5',
   },
   timeText: {
-    marginLeft: 10,
+    marginLeft: 5,
     fontWeight: '600',
     color: '#7c8b98',
   },
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     borderRadius: 5,
     backgroundColor: 'white',
-    width: '95%',
+    width: '100%',
     alignSelf: 'center',
     height: 155,
     flexDirection: 'column',

@@ -5,15 +5,15 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {Text} from '../components/text/StyledText';
+import React, { useEffect, useState } from 'react';
+import { Text } from '../components/text/StyledText';
 import moment from 'moment';
-import {fakeAttandances} from '../modal/FakeData';
+import { fakeAttandances } from '../modal/FakeData';
 import AttendancesList from '../components/AttendancesList';
 import LeaveStatus from '../components/LeaveStatus';
-import {AppIcons} from '../constant/AppAsset';
-import {useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../navigation/AppNavigator';
+import { AppIcons } from '../constant/AppAsset';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProp } from '../navigation/AppNavigator';
 
 const Attendances = () => {
   const navigation = useNavigation<AppNavigationProp>();
@@ -29,8 +29,8 @@ const Attendances = () => {
   };
 
   return (
-    <View style={{flex: 1, paddingHorizontal: 15, paddingVertical: 20}}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+    <View style={{ flex: 1, paddingHorizontal: 15, paddingVertical: 20 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View
           style={{
             borderRadius: 20,
@@ -62,8 +62,8 @@ const Attendances = () => {
             />
           </TouchableOpacity>
         </View>
-        <Text style={{fontSize: 20, fontWeight: '800', color: 'black'}}>
-          All Lives
+        <Text style={{ fontSize: 20, fontWeight: '800', color: 'black' }}>
+          Tất cả ngày nghỉ
         </Text>
       </View>
 
@@ -74,13 +74,13 @@ const Attendances = () => {
           marginTop: 20,
         }}>
         <LeaveStatus
-          label="Leave Balance"
+          label="Số ngày chấp thuận"
           value={leaveBalance - leaveCancel}
           backgroundColor="#f5f9ff"
           borderColor="#3889fe"
         />
         <LeaveStatus
-          label="Leave Cancelled"
+          label="Số ngày từ chối"
           value={leaveCancel}
           backgroundColor="#fff9f8"
           borderColor="#ff7f74"
