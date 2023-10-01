@@ -1,16 +1,16 @@
-import {Image, View, ImageStyle, StyleSheet} from 'react-native';
+import { Image, View, ImageStyle, StyleSheet } from 'react-native';
 import LoginGoogleButton from '../components/buttons/LoginGooglen';
 import ShowModalSelectFacilityButton from '../components/buttons/ShowModalSelectFacility';
-import {useCallback, useEffect, useState} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import SelectFacilityModal from '../modal/SelectFacility';
-import {Facility} from '../types/Facility';
-import {AppImages} from '../constant/AppAsset';
+import { Facility } from '../types/Facility';
+import { AppImages } from '../constant/AppAsset';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AsyncStorageKey} from '../constant/AsyncStorageKey';
-import {loginWithGoogle} from '../service/LoginWithGoogle';
-import {useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../navigation/AppNavigator';
-import {Text} from '../components/text/StyledText';
+import { AsyncStorageKey } from '../constant/AsyncStorageKey';
+import { loginWithGoogle } from '../service/LoginWithGoogle';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProp } from '../navigation/AppNavigator';
+import { Text } from '../components/text/StyledText';
 
 const LoginScreen = () => {
   const appNavigation = useNavigation<AppNavigationProp>();
@@ -36,16 +36,17 @@ const LoginScreen = () => {
     setLoading(false);
     appNavigation.reset({
       index: 0, // chỉ định vị trí màn hình muốn reset
-      routes: [{name: 'Main'}], // chỉ định tên màn hình mà bạn muốn reset đến
+      routes: [{ name: 'Main' }], // chỉ định tên màn hình mà bạn muốn reset đến
     });
   }, []);
   useEffect(() => {
     getFacilityFromStorage();
   }, []);
   return (
-    <View style={{flex: 1, padding: 24}}>
+    <View style={{ flex: 1, padding: 24 }}>
       <View style={styles.container}>
         <Image
+          style={{ width: '100%', height: '100%', borderRadius: 10, resizeMode: 'cover' }}
           source={{
             uri: 'https://caodang.fpt.edu.vn/wp-content/uploads/Back-To-School-Poster.jpg',
           }}
@@ -71,10 +72,10 @@ const LoginScreen = () => {
 };
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'red',
     width: '100%',
     height: '40%',
     marginBottom: 20,
+    elevation: 10
   },
 });
 const logoPolyStyles: ImageStyle = {

@@ -12,35 +12,35 @@ export const fakeAttandances: IAttandances[] = [
   {
     id: '1',
     status: 'Rejected',
-    reason: 'Fuck dog',
+    reason: 'Nhà có công chuyện',
     approver: 'khoanda',
     date: '2021-05-01',
   },
   {
     id: '2',
     status: 'Rejected',
-    reason: 'Be a slug',
+    reason: 'Bệnh',
     approver: 'hiennt',
     date: '2021-05-02',
   },
   {
     id: '3',
     status: 'Rejected',
-    reason: 'Masturbation',
+    reason: 'Gãy Chân',
     approver: 'channn',
     date: '2021-05-03',
   },
   {
     id: '4',
     status: 'Rejected',
-    reason: 'Masturbation',
+    reason: 'Nhức đầu',
     approver: 'channn',
     date: '2021-05-03',
   },
   {
     id: '5',
     status: 'Rejected',
-    reason: 'Masturbation',
+    reason: 'Không phép',
     approver: 'channn',
     date: '2021-05-03',
   }]
@@ -88,7 +88,7 @@ export const fakeNotification: TypeNotification[] = [
     isRead: false,
     isSent: true,
     _id: '64b6ca0f9fda0eb930137a84',
-    content: 'Bạn có bài tập mới',
+    content: 'Bạn có bài tập mới môn react native',
     user: {
       fullName: 'Nguyễn Văn A',
       email: 'concu@gmail.com',
@@ -108,7 +108,7 @@ export const fakeNotification: TypeNotification[] = [
     isRead: false,
     isSent: true,
     _id: '64b6ca0f9fda0eb930137a85',
-    content: 'Bạn có bài tập mới đi con mẹ mày nhác con cặc',
+    content: 'Bạn có bài tập mới môn Java 2',
     user: {
       fullName: 'Nguyễn Văn A',
       email: 'concu@gmail.com',
@@ -124,12 +124,11 @@ export const fakeNotification: TypeNotification[] = [
     createdAt: '2023-07-18T17:21:19.791Z',
     updatedAt: '2023-07-18T17:21:19.791Z',
   },
-
   {
     isRead: false,
     isSent: true,
     _id: '64b6ca0f9fda0eb930137a86',
-    content: 'Bạn có bài tập mới đi con mẹ mày nhác đĩ mẹ mày',
+    content: 'Bạn đã điểm danh thành công môn Java_2 ngày 16/07/2023',
     user: {
       fullName: 'Nguyễn Văn A',
       email: 'concu@gmail.com',
@@ -145,12 +144,11 @@ export const fakeNotification: TypeNotification[] = [
     createdAt: '2023-07-18T17:21:19.791Z',
     updatedAt: '2023-07-18T17:21:19.791Z',
   },
-
   {
     isRead: false,
     isSent: true,
     _id: '64b6ca0f9fda0eb930137a87',
-    content: 'Bạn có bài tập mới đi con mẹ mày nhác vãi lồn ra',
+    content: 'Bạn đã điểm danh thành công môn MOB402 ngày 17/07/2023',
     user: {
       fullName: 'Nguyễn Văn A',
       email: 'concu@gmail.com',
@@ -166,34 +164,11 @@ export const fakeNotification: TypeNotification[] = [
     createdAt: '2023-07-18T17:21:19.791Z',
     updatedAt: '2023-07-18T17:21:19.791Z',
   },
-
   {
     isRead: false,
     isSent: true,
     _id: '64b6ca0f9fda0eb930137a88',
-    content: 'Bạn có bài tập mới đi con mẹ mày nhác vãi lồn ra asdasdasdasd',
-    user: {
-      fullName: 'Nguyễn Văn A',
-      email: 'concu@gmail.com',
-      picture:
-        'https://img.freepik.com/free-vector/cute-pig-sitting-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated-premium-flat_138676-7818.jpg?t=st=1690733118~exp=1690733718~hmac=e9cb622d4f14635fad29588f7437a9648a04a787d3410f4e5922feef26248283',
-      classCode: 'CTT12CDT01',
-      facility: 'Công nghệ thông tin',
-      phone: '0123456789',
-      studentId: 'CTT000000',
-      graduationTime: '2023-07-18T17:21:19.791Z',
-    },
-    type: 'homework',
-    createdAt: '2023-07-18T17:21:19.791Z',
-    updatedAt: '2023-07-18T17:21:19.791Z',
-  },
-
-  {
-    isRead: false,
-    isSent: true,
-    _id: '64b6ca0f9fda0eb930137a89',
-    content:
-      'Bạn có bài tập mới đi con mẹ mày nhác vãi lồn ra asdasdasdasd 1eqweqweq',
+    content: 'Bạn đã điểm danh thành công môn MOB306 ngày 18/07/2023',
     user: {
       fullName: 'Nguyễn Văn A',
       email: 'concu@gmail.com',

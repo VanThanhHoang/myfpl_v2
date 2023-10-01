@@ -6,7 +6,7 @@ import {RefeshToken} from '../service/RefeshToken';
 const AxiosInstance = (contentType = 'application/json') => {
   let isRefreshing = false;
   const axiosInstance = axios.create({
-    baseURL: 'http://myfpl.ddns.net/',
+    baseURL: 'http://myap.ddns.net/',
   });
   axiosInstance.interceptors.request.use(
     async (config: any) => {

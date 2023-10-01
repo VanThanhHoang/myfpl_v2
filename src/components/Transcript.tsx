@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,14 +8,14 @@ import {
   Image,
 } from 'react-native';
 import _ from 'lodash';
-import {AppIcons} from '../constant/AppAsset';
-import {Color} from '../constant/Colors';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import { AppIcons } from '../constant/AppAsset';
+import { Color } from '../constant/Colors';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import {
   AppNavigationProp,
   TranscriptScreenProps,
 } from '../navigation/AppNavigator';
-import {Transcript as TranscriptType} from '../types/Grades';
+import { Transcript as TranscriptType } from '../types/Grades';
 import ScreenToolBar from './ScreenToolBar';
 
 const Transcript: React.FC = () => {
@@ -44,11 +44,11 @@ const Transcript: React.FC = () => {
   type TableFooterProps = {
     transcripts: TranscriptType;
   };
-  const TableFooter = ({transcripts}: TableFooterProps) => (
+  const TableFooter = ({ transcripts }: TableFooterProps) => (
     <View style={styles.tableFooter}>
       <Text style={styles.footerText}>
         Average Score:
-        <Text style={{fontWeight: '900'}}>{calculateAverage(transcripts)}</Text>
+        <Text style={{ fontWeight: '900' }}>{calculateAverage(transcripts)}</Text>
       </Text>
       <Text style={styles.footerText}>Status: {getStatus(transcripts)}</Text>
     </View>
@@ -61,7 +61,7 @@ const Transcript: React.FC = () => {
 
   const sortTable = (column: string) => {
     const newDirection = direction === 'desc' ? 'asc' : 'desc';
-    const columnMap: {[key: string]: string} = {
+    const columnMap: { [key: string]: string } = {
       'Tên đầu điểm': 'name',
       'Trọng số': 'weight',
       Điểm: 'result',
@@ -74,7 +74,7 @@ const Transcript: React.FC = () => {
     );
     setSelectedColumn(column);
     setDirection(newDirection);
-    setTranscripts({...transcript, grades: sortedData});
+    setTranscripts({ ...transcript, grades: sortedData });
   };
 
   const tableHeader = () => (
@@ -101,7 +101,7 @@ const Transcript: React.FC = () => {
   );
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <ScreenToolBar
         onButtonBackPress={() => {
           navigation.goBack();
@@ -131,11 +131,11 @@ const Transcript: React.FC = () => {
         <FlatList
           showsVerticalScrollIndicator={false}
           data={transcript.grades}
-          style={{width: '100%'}}
+          style={{ width: '100%' }}
           keyExtractor={(_, index) => index.toString()}
           ListHeaderComponent={tableHeader}
           stickyHeaderIndices={[0]}
-          renderItem={({item, index}) => {
+          renderItem={({ item, index }) => {
             const formattedMark = item.result.toFixed(1);
             return (
               <View
@@ -143,7 +143,7 @@ const Transcript: React.FC = () => {
                   ...styles.tableRow,
                   backgroundColor: index % 2 != 0 ? '#faf1e6' : 'white',
                 }}>
-                <Text style={{...styles.columnRowTxt, fontWeight: 'bold'}}>
+                <Text style={{ ...styles.columnRowTxt, fontWeight: 'bold' }}>
                   {item.name}
                 </Text>
                 <Text style={styles.columnRowTxt}>{item.weight}</Text>

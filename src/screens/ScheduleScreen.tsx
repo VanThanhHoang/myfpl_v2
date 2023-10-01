@@ -41,7 +41,7 @@ const ScheduleScreen = () => {
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
 
   const onTabPress = (tab: Scheduletab) => {
-    setIsShowModal(true);
+    setIsShowModal(false);
     setScheduleQuery(prev => {
       return { ...prev, type: tab.scheduleType };
     });
