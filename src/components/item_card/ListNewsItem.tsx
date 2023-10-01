@@ -2,21 +2,12 @@ import React, { memo } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { AppIcons } from '../../constant/AppAsset';
 import 'moment/locale/vi';
-<<<<<<< Updated upstream
-import moment from 'moment';
-import { useNavigation } from '@react-navigation/native';
-import { AppNavigationProp } from '../../navigation/AppNavigator';
-import { Text } from '../text/StyledText';
-import { News } from '../../types/News';
-import { changeTypeNews } from '../../types/NewType';
-=======
 import {useNavigation} from '@react-navigation/native';
 import {AppNavigationProp} from '../../navigation/AppNavigator';
 import {Text} from '../text/StyledText';
 import {News} from '../../types/News';
 import {changeTypeNews} from '../../types/NewType';
 import {newFeedTimeFormat} from "../../helper/convertHourAndMinute";
->>>>>>> Stashed changes
 
 type ListNewsItemProps = {
   news: News;
