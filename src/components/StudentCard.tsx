@@ -11,6 +11,7 @@ const StudentCard = () => {
   const userInfo = useSelector(
     (state: RootState) => state.userReducer.userInfo,
   );
+  const valueQr = `http://myfpl.ddns.net/info/${userInfo?.studentID}.html`;
   const [showQr, setShowQr] = useState<boolean>(false);
   return (
     <View style={styles.container}>
@@ -31,7 +32,7 @@ const StudentCard = () => {
               logo={AppIcons.poly}
               logoSize={20}
               logoBackgroundColor="white"
-              value="https://www.facebook.com/luvmbdev/"
+              value={valueQr}
             />
           )}
 

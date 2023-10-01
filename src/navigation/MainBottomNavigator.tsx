@@ -68,10 +68,7 @@ const MainBottomNavigatior = () => {
 const bottomTabContainerStyle: ViewStyle = {
   width: '100%',
   backgroundColor: 'white',
-  alignSelf: 'center',
-  borderTopLeftRadius: 20,
   elevation: 5,
   height: 65,
-  marginTop: 0,
 };
 export default MainBottomNavigatior;
