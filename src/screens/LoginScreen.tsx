@@ -31,19 +31,28 @@ const LoginScreen = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const onGoogleLoginButtonPress = useCallback(async () => {
-    setLoading(true);
-    await loginWithGoogle();
-    setLoading(false);
-    appNavigation.reset({
-      index: 0, // chỉ định vị trí màn hình muốn reset
-      routes: [{name: 'Main'}], // chỉ định tên màn hình mà bạn muốn reset đến
-    });
+    try{
+      setLoading(true);
+      const res = await loginWithGoogle();
+      if(!res){
+        appNavigation.reset({
+          index: 0, // chỉ định vị trí màn hình muốn reset
+          routes: [{name: 'Main'}], // chỉ định tên màn hình mà bạn muốn reset đến
+        });
+      }
+    }catch (err){
+
+    }finally {
+      setLoading(false);
+
+    }
+
   }, []);
   useEffect(() => {
     getFacilityFromStorage();
   }, []);
   return (
-    <View style={{flex: 1, padding: 24}}>
+    <View style={{flex: 1,backgroundColor:'white', padding: 24}}>
       <Image
         resizeMode="cover"
         style={styles.container}
