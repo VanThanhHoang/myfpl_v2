@@ -25,7 +25,7 @@ const StudentCard = () => {
           {!showQr ? (
             <Image
               style={[styles.avatar]}
-              source={require('../assets/img/anhthesv.jpg')}
+              source={{ uri: userInfo?.picture }}
             />
           ) : (
             <QRCode

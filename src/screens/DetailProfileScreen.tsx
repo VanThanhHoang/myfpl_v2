@@ -6,13 +6,13 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import {AppIcons, AppImages} from '../constant/AppAsset';
+import { AppIcons, AppImages } from '../constant/AppAsset';
 import UserInfoCard from '../components/UserInfoCard';
-import {useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../navigation/AppNavigator';
-import {Text} from '../components/text/StyledText';
-import {useSelector} from 'react-redux';
-import {RootState} from '../redux/store';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProp } from '../navigation/AppNavigator';
+import { Text } from '../components/text/StyledText';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 import moment from 'moment';
 
 const DetailProFile = () => {
@@ -21,8 +21,8 @@ const DetailProFile = () => {
     (state: RootState) => state.userReducer.userInfo,
   );
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
-      <View style={{elevation: 3}}>
+    <View style={{ flex: 1, backgroundColor: 'white' }}>
+      <View style={{ elevation: 3 }}>
         <Image
           style={styles.banner}
           source={require('../assets/img/bannerFpoly.png')}
@@ -33,6 +33,7 @@ const DetailProFile = () => {
         <NameAndAvatarContainer
           name={userInfo?.fullName || ''}
           email={userInfo?.email || ''}
+          avatar={userInfo?.picture || ''}
         />
         <View style={styles.backButton}>
           <TouchableOpacity
@@ -40,7 +41,7 @@ const DetailProFile = () => {
               navigation.goBack();
             }}>
             <Image
-              style={{tintColor: 'white', width: 24, height: 24}}
+              style={{ tintColor: 'white', width: 24, height: 24 }}
               source={AppIcons.back}
             />
           </TouchableOpacity>
@@ -48,7 +49,7 @@ const DetailProFile = () => {
       </View>
       <ScrollView
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{justifyContent: 'flex-start', padding: 24}}>
+        contentContainerStyle={{ justifyContent: 'flex-start', padding: 24 }}>
         <UserInfoCard
           infoLabel="Mã số sinh viên"
           info={userInfo?.studentID || ''}
@@ -65,21 +66,22 @@ const DetailProFile = () => {
     </View>
   );
 };
-const NameAndAvatarContainer: React.FC<{name: string; email: string}> = ({
+const NameAndAvatarContainer: React.FC<{ name: string; email: string, avatar: string }> = ({
   name,
   email,
+  avatar
 }) => {
   return (
     <View style={styles.nameContainer}>
       <Image
         style={styles.avatar}
         source={{
-          uri: 'https://lh3.googleusercontent.com/a/AAcHTte2VKLwxVyZVUb1QeGJyX2kA6Mag2ykCqsxZxeglZDc=s96-c',
+          uri: avatar,
         }}
       />
 
       <Text style={styles.name}>{name}</Text>
-      <Text style={[styles.name, {fontSize: 14}]}>{email}</Text>
+      <Text style={[styles.name, { fontSize: 14 }]}>{email}</Text>
     </View>
   );
 };
