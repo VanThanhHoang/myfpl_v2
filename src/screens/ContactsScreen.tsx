@@ -30,6 +30,7 @@ const ContactInfos = [
     name: 'Phòng Công tác sinh viên',
     info: 'ctsv.fplhcm@fe.edu.vn',
   },
+//   á
 ];
 const ContactScreen = () => {
   const navigation = useNavigation<AppNavigationProp>();
