@@ -2,12 +2,12 @@ import React, { memo } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { AppIcons } from '../../constant/AppAsset';
 import 'moment/locale/vi';
-import moment from 'moment';
-import { useNavigation } from '@react-navigation/native';
-import { AppNavigationProp } from '../../navigation/AppNavigator';
-import { Text } from '../text/StyledText';
-import { News } from '../../types/News';
-import { changeTypeNews } from '../../types/NewType';
+import {useNavigation} from '@react-navigation/native';
+import {AppNavigationProp} from '../../navigation/AppNavigator';
+import {Text} from '../text/StyledText';
+import {News} from '../../types/News';
+import {changeTypeNews} from '../../types/NewType';
+import {newFeedTimeFormat} from "../../helper/convertHourAndMinute";
 
 type ListNewsItemProps = {
   news: News;
@@ -15,10 +15,7 @@ type ListNewsItemProps = {
 
 const ListNewsItem: React.FC<ListNewsItemProps> = ({ news }) => {
   const navigation = useNavigation<AppNavigationProp>();
-  const datetime = moment(news.publishedAt, 'YYYYMMDD');
   // Tùy chỉnh ngôn ngữ thành tiếng Việt
-  datetime.locale('vi');
-
   return (
     <TouchableOpacity
       onPress={() => {
@@ -50,7 +47,7 @@ const ListNewsItem: React.FC<ListNewsItemProps> = ({ news }) => {
             style={{ width: 12, height: 12 }}
             source={AppIcons.time}
           />
-          <Text style={styles.timeText}>{datetime.fromNow()}</Text>
+          <Text style={styles.timeText}>{newFeedTimeFormat(news.publishedAt)}</Text>
         </View>
         <View style={styles.newsTypeContainer}>
           <Text style={{ fontSize: 12, fontWeight: '700', color: 'white' }}>
