@@ -34,8 +34,9 @@ const Transcript: React.FC = () => {
       (sum, item) => sum + item.result * item.weight,
       0,
     );
-    return weightedSum / 100 + '';
+    return (weightedSum / 100).toFixed(2);
   };
+
 
   const getStatus = (transcripts: TranscriptType) => {
     const average = parseFloat(calculateAverage(transcripts));
@@ -163,7 +164,7 @@ export default Transcript;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    paddingVertical: 10,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
@@ -173,8 +174,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     backgroundColor: Color.MAINCOLOR,
-    borderTopEndRadius: 10,
-    borderTopStartRadius: 10,
     height: 50,
   },
   tableRow: {
@@ -211,8 +210,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     backgroundColor: Color.MAINCOLOR,
-    borderBottomEndRadius: 10,
-    borderBottomStartRadius: 10,
     height: 50,
     marginBottom: 30,
   },

@@ -1,7 +1,5 @@
 import {
-  StyleSheet,
   View,
-  FlatList,
   TouchableOpacity,
   Image,
 } from 'react-native';
@@ -17,8 +15,8 @@ import { AppNavigationProp } from '../navigation/AppNavigator';
 
 const Attendances = () => {
   const navigation = useNavigation<AppNavigationProp>();
-  const leaveCancel = 3;
-  const leaveBalance = 4;
+  const absented = 3; // Số ngày nghỉ
+  const study = 2; //Ca học
   moment.locale('en');
   const [data, setData] = useState(fakeAttandances);
   useEffect(() => {
@@ -74,22 +72,15 @@ const Attendances = () => {
           marginTop: 20,
         }}>
         <LeaveStatus
-          label="Số ngày chấp thuận"
-          value={leaveBalance - leaveCancel}
-          backgroundColor="#f5f9ff"
-          borderColor="#3889fe"
-        />
-        <LeaveStatus
-          label="Số ngày từ chối"
-          value={leaveCancel}
+          label="Số ngày nghỉ"
+          value={absented}
           backgroundColor="#fff9f8"
           borderColor="#ff7f74"
         />
       </View>
       <AttendancesList
         data={data}
-        leaveBalance={leaveBalance}
-        leaveCancel={leaveCancel}
+        study={study}
       />
     </View>
   );

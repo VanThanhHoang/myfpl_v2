@@ -19,6 +19,7 @@ const TermScreen = () => {
   const navigation = useNavigation<AppNavigationProp>();
   const semesters = useSelector(
     (state: RootState) => state.semesterSliceReducer.semesters,
+
   );
   const isLoading = useSelector(
     (state: RootState) => state.showLoadingModalReducer.isShowLoadingModal,
@@ -70,6 +71,14 @@ const TermScreen = () => {
   useEffect(() => {
     getTranscript();
   }, [semesterId]);
+
+  const getSemesterName = (semesterId: string) => {
+    for (let i = 0; i < semesters.length; i++) {
+      if (semesters[i]._id === semesterId) {
+        return semesters[i].name;
+      }
+    }
+  }
   return (
     <ScreenContainer>
       <View
@@ -149,14 +158,14 @@ const TermScreen = () => {
               color: Color.MAINCOLOR,
               fontWeight: '900',
             }}>
-            Summer 2023
+            {getSemesterName(semesterId)}
           </Text>
           <Image
             style={{
               position: 'absolute',
               top: 20,
               right: 0,
-              width: 150,
+              width: 100,
               height: 30,
               resizeMode: 'center',
             }}
